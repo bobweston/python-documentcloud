@@ -270,7 +270,7 @@ class DocumentClient(BaseDocumentCloudClient):
         data=None,
         secure=False,
         force_ocr=False,
-    ):
+        ):
         """
         Upload a PDF or other image file to DocumentCloud.
 
@@ -367,7 +367,7 @@ class DocumentClient(BaseDocumentCloudClient):
         data=None,
         secure=False,
         force_ocr=False,
-    ):
+        ):
         """
         Uploads all the PDFs in the provided directory.
 

@@ -4,7 +4,10 @@ A few toys the API will use.
 import time
 from functools import wraps
 
+import requests
 import six
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 #
 # Exceptions
@@ -68,6 +71,7 @@ def credentials_required(method_func):
     return wraps(method_func)(_checkcredentials)
 
 
+# XXX remove
 def retry(ExceptionToCheck, tries=3, delay=2, backoff=2):
     """
     Retry decorator published by Saltry Crane.
@@ -96,3 +100,37 @@ def retry(ExceptionToCheck, tries=3, delay=2, backoff=2):
         return f_retry  # true decorator
 
     return deco_retry
+
+#
+# Utilities
+#
+
+
+# https://www.peterbe.com/plog/best-practice-with-retries-with-requests
+def requests_retry_session(
+    retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None
+):
+    session = session or requests.Session()
+    retry = Retry(
+        total=retries,
+        read=retries,
+        connect=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=status_forcelist,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    return session
+
+def get_id(id_):
+    """Allow specifying old or new style IDs and convert old style to new style IDs
+
+    Old style: 123-the-slug
+    New style: 123
+    """
+
+    if '-' in id_:
+        return id_.split('-')[0]
+    else:
+        return id_
