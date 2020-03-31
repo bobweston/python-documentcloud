@@ -2,6 +2,8 @@
 The public interface for the DocumentCloud API
 """
 
+from functools import partial
+
 import requests
 
 from .documents import DocumentClient
@@ -32,11 +34,11 @@ class DocumentCloud:
         self.timeout = timeout
         self.refresh_token = None
         self.session = requests.Session()
-        self.set_tokens()
+        self._set_tokens()
 
         self.documents = DocumentClient(self)
 
-    def set_tokens(self):
+    def _set_tokens(self):
         """Set the refresh and access tokens"""
         if self.refresh_token:
             access_token, self.refresh_token = self._refresh_tokens(self.refresh_token)
@@ -58,7 +60,7 @@ class DocumentCloud:
             timeout=self.timeout,
         )
 
-        if response.status_code == requests.codes.UNAUTHROIZED:
+        if response.status_code == requests.codes.UNAUTHORIZED:
             raise CredentialsFailedError("The username and password is incorrect")
 
         # XXX catch and convert to internal error type?
@@ -75,7 +77,7 @@ class DocumentCloud:
             timeout=self.timeout,
         )
 
-        if response.status_code == requests.codes.UNAUTHROIZED:
+        if response.status_code == requests.codes.UNAUTHORIZED:
             # refresh token is expired
             return self._get_tokens(self.username, self.password)
 
@@ -93,22 +95,18 @@ class DocumentCloud:
         )
         if response.status_code == requests.codes.FORBIDDEN and set_tokens:
             # XXX differentiate between expired code and not having access
-            self.set_tokens()
+            self._set_tokens()
             # track set_tokens to not enter an infinite loop
             kwargs["set_tokens"] = False
             return self._request(method, url, **kwargs)
 
         return response
 
-
-def generate_method(method_name):
-    """Generate a helper function for each HTTP request method"""
-
-    def method(self, url, **kwargs):
-        return self._request(method_name, url, **kwargs)
-
-    return method
-
-
-for method_name in ["get", "options", "head", "post", "put", "patch", "delete"]:
-    setattr(DocumentCloud, method_name, generate_method(method_name))
+    def __getattr__(self, attr):
+        """Generate methods for each HTTP request type"""
+        methods = ["get", "options", "head", "post", "put", "patch", "delete"]
+        if attr in methods:
+            return partial(self._request, attr)
+        raise AttributeError(
+            f"'{self.__class__.__name__}' object has no attribute '{attr}'"
+        )

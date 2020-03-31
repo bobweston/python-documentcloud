@@ -3,6 +3,8 @@ A few toys the API will use.
 """
 import time
 from functools import wraps
+from itertools import zip_longest
+from urllib.parse import urlparse
 
 import requests
 import six
@@ -101,15 +103,18 @@ def retry(ExceptionToCheck, tries=3, delay=2, backoff=2):
 
     return deco_retry
 
+
 #
 # Utilities
 #
 
 
-# https://www.peterbe.com/plog/best-practice-with-retries-with-requests
 def requests_retry_session(
     retries=3, backoff_factor=0.3, status_forcelist=(500, 502, 504), session=None
 ):
+    """Automatic retries for HTTP requests
+    See: https://www.peterbe.com/plog/best-practice-with-retries-with-requests
+    """
     session = session or requests.Session()
     retry = Retry(
         total=retries,
@@ -123,6 +128,7 @@ def requests_retry_session(
     session.mount("https://", adapter)
     return session
 
+
 def get_id(id_):
     """Allow specifying old or new style IDs and convert old style to new style IDs
 
@@ -130,7 +136,25 @@ def get_id(id_):
     New style: 123
     """
 
-    if '-' in id_:
-        return id_.split('-')[0]
+    if isinstance(id_, int):
+        return id_
+    elif "-" in id_:
+        return id_.split("-")[0]
     else:
         return id_
+
+
+def is_url(url):
+    """Is `url` a valid url?"""
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except (ValueError, AttributeError):
+        return False
+
+
+def grouper(iterable, n, fillvalue=None):
+    "Collect data into fixed-length chunks or blocks"
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
+    args = [iter(iterable)] * n
+    return zip_longest(*args, fillvalue=fillvalue)
