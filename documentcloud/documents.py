@@ -6,6 +6,7 @@ import os
 import warnings
 
 import requests
+from dateutil.parser import parse as dateparser
 
 from .toolbox import get_id, grouper, is_url
 
@@ -44,13 +45,13 @@ class DocumentClient:
             params["per_page"] = per_page
         response = self.client.get("documents/search/", params=params)
         response.raise_for_status()
-        return [Document(self, d) for d in response.json()["results"]]
+        return [Document(self.client, d) for d in response.json()["results"]]
 
     def get(self, id_):
         """Get a document by its ID"""
         response = self.client.get(f"documents/{get_id(id_)}/")
         response.raise_for_status()
-        return Document(self, response.json())
+        return Document(self.client, response.json())
 
     def upload(self, pdf, **kwargs):
         """Upload a document"""
@@ -85,11 +86,10 @@ class DocumentClient:
             "description",
             "language",
             "related_article",
-            "remote_url",
+            "published_url",
             "source",
             "title",
         ]
-        rename_parameters = [("published_url", "remote_url")]
         # these parameters currently do not work, investigate...
         # XXX do project and data in separate calls?
         ignored_parameters = ["project", "data", "secure", "force_ocr"]
@@ -100,10 +100,6 @@ class DocumentClient:
         for param in allowed_parameters:
             if param in kwargs:
                 params[param] = kwargs[param]
-
-        for old_param, new_param in rename_parameters:
-            if old_param in kwargs:
-                params[new_param] = kwargs[old_param]
 
         for param in ignored_parameters:
             if param in kwargs:
@@ -121,7 +117,7 @@ class DocumentClient:
         params["file_url"] = file_url
         response = self.client.post(f"documents/", json=params)
         response.raise_for_status()
-        return Document(self, response.json())
+        return Document(self.client, response.json())
 
     def _upload_file(self, file_, **kwargs):
         """Upload a document directly"""
@@ -141,7 +137,7 @@ class DocumentClient:
         response = self.client.post(f"documents/{doc_id}/process/")
         response.raise_for_status()
 
-        return Document(self, create_json)
+        return Document(self.client, create_json)
 
     def upload_directory(self, path, **kwargs):
         """Upload all PDFs in a directory"""
@@ -189,7 +185,7 @@ class DocumentClient:
             response.raise_for_status()
 
         # Pass back the list of documents
-        return [Document(self, d) for d in obj_list]
+        return [Document(self.client, d) for d in obj_list]
 
     def delete(self, id_):
         """Deletes a document"""
@@ -197,40 +193,86 @@ class DocumentClient:
         response.raise_for_status()
 
 
-class Document:
-    """A single DocumentCloud document"""
-
-    # XXX deal with data
-    # XXX put in backward compatibility shims for renamed fields
-
+class BaseAPIObject:
     def __init__(self, client, dict_):
         self.__dict__ = dict_
         self._client = client
 
     def __repr__(self):
-        return "<%s: %s>" % (self.__class__.__name__, self)
-
-    def __str__(self):
-        return self.title
-
-    def save(self):
-        writable_fields = [
-                'access',
-                'description',
-                'language',
-                'related_article',
-                'remote_url',
-                'source',
-                'title',
-                ]
-        data = {f: getattr(self, f) for f in writable_fields}
-        response = self._client.client.put(f"documents/{self.id}/", json=data)
-        response.raise_for_status()
+        return f"<{self.__class__.__name__}: {self}>"
 
     def put(self):
         """Alias for save"""
         return self.save()
 
+    def save(self):
+        data = {f: getattr(self, f) for f in self.writable_fields}
+        response = self._client.put(f"{self.api_path}/{self.id}/", json=data)
+        response.raise_for_status()
+
     def delete(self):
-        """Delete this document"""
-        self._client.delete(self.id)
+        response = self._client.delete(f"{self.api_path}/{self.id}/")
+        response.raise_for_status()
+
+
+class Document(BaseAPIObject):
+    """A single DocumentCloud document"""
+
+    # XXX put in backward compatibility shims for renamed fields
+    # XXX deal with data
+
+    api_path = "documents"
+    writable_fields = [
+        "access",
+        "description",
+        "language",
+        "related_article",
+        "published_url",  # XXX published_url
+        "source",
+        "title",
+    ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.created_at = dateparser(self.created_at)
+        self.updated_at = dateparser(self.updated_at)
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def annotations(self):
+        response = self._client.get(f"documents/{self.id}/notes/")
+        response.raise_for_status()
+        return [
+            Annotation(self._client, {**a, "document": self.id})
+            for a in response.json()["results"]
+        ]
+
+    @property
+    def canonical_url(self):
+        return f"https://www.documentcloud.org/documents/{self.id}-{self.slug}"
+
+
+
+
+
+class Annotation(BaseAPIObject):
+
+    writable_fields = [
+        "access",
+        "content",
+        "page_number",
+        "title",
+        "x1",
+        "x2",
+        "y1",
+        "y2",
+    ]
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def api_path(self):
+        return f"documents/{self.document}/notes"
