@@ -3,7 +3,9 @@ Documents
 """
 
 import os
+import re
 import warnings
+from functools import partial
 
 import requests
 from dateutil.parser import parse as dateparser
@@ -89,13 +91,18 @@ class DocumentClient:
             "published_url",
             "source",
             "title",
+            "data",
+            "force_ocr",
+            "projects",
         ]
         # these parameters currently do not work, investigate...
-        # XXX do project and data in separate calls?
-        ignored_parameters = ["project", "data", "secure", "force_ocr"]
+        ignored_parameters = ["secure"]
 
         # title is required, so set a default
         params = {"title": self._get_title(name)}
+
+        if "project" in kwargs:
+            params["projects"] = [kwargs["project"]]
 
         for param in allowed_parameters:
             if param in kwargs:
@@ -122,6 +129,7 @@ class DocumentClient:
     def _upload_file(self, file_, **kwargs):
         """Upload a document directly"""
         # create the document
+        force_ocr = kwargs.pop("force_ocr", False)
         params = self._format_upload_parameters(file_.name, **kwargs)
         response = self.client.post("documents/", json=params)
         response.raise_for_status()
@@ -134,7 +142,9 @@ class DocumentClient:
 
         # begin processing the document
         doc_id = create_json["id"]
-        response = self.client.post(f"documents/{doc_id}/process/")
+        response = self.client.post(
+            f"documents/{doc_id}/process/", json={"force_ocr": force_ocr}
+        )
         response.raise_for_status()
 
         return Document(self.client, create_json)
@@ -194,6 +204,7 @@ class DocumentClient:
 
 
 class BaseAPIObject:
+    # XXX move this to its own module
     def __init__(self, client, dict_):
         self.__dict__ = dict_
         self._client = client
@@ -206,7 +217,7 @@ class BaseAPIObject:
         return self.save()
 
     def save(self):
-        data = {f: getattr(self, f) for f in self.writable_fields}
+        data = {f: getattr(self, f) for f in self.writable_fields if hasattr(self, f)}
         response = self._client.put(f"{self.api_path}/{self.id}/", json=data)
         response.raise_for_status()
 
@@ -227,7 +238,7 @@ class Document(BaseAPIObject):
         "description",
         "language",
         "related_article",
-        "published_url",  # XXX published_url
+        "published_url",
         "source",
         "title",
     ]
@@ -236,9 +247,53 @@ class Document(BaseAPIObject):
         super().__init__(*args, **kwargs)
         self.created_at = dateparser(self.created_at)
         self.updated_at = dateparser(self.updated_at)
+        self._contributor = None
+        self._contirbutor_organization = None
 
     def __str__(self):
         return self.title
+
+    def __getattr__(self, attr):
+        """Generate methods for fetching resources"""
+        p_image = re.compile(
+            r"^get_(?P<size>thumbnail|small|normal|large)_image_url(?P<list>_list)?$"
+        )
+        get = attr.startswith("get_")
+        url = attr.endswith("_url")
+        text = attr.endswith("_text")
+        # this allows dropping `get_` to act like a property, ie
+        # .full_text_url
+        if not get and hasattr(self, f"get_{attr}"):
+            return getattr(self, f"get_{attr}")()
+        # this allows dropping `_url` to fetch the url, ie
+        # .get_full_text()
+        if not url and hasattr(self, f"{attr}_url"):
+            return lambda *a, **k: self._get_url(
+                getattr(self, f"{attr}_url")(*a, **k), text
+            )
+        # this combines both of the above, ie
+        # .full_text
+        if not get and not url and hasattr(self, f"get_{attr}_url"):
+            return lambda *a, **k: self._get_url(
+                getattr(self, f"{attr}_url")(*a, **k), text
+            )()
+        # this genericizes the image sizes
+        m_image = p_image.match(attr)
+        if m_image and m_image.group("list"):
+            return partial(self.get_image_url_list, size=m_image.group("size"))
+        if m_image and not m_image.group("list"):
+            return partial(self.get_image_url, size=m_image.group("size"))
+        raise AttributeError(
+            f"'{self.__class__.__name__}' object has no attribute '{attr}'"
+        )
+
+    @property
+    def pages(self):
+        return self.page_count
+
+    @pages.setter
+    def pages(self, value):
+        self.page_count = value
 
     @property
     def annotations(self):
@@ -251,10 +306,50 @@ class Document(BaseAPIObject):
 
     @property
     def canonical_url(self):
-        return f"https://www.documentcloud.org/documents/{self.id}-{self.slug}"
+        return f"{self._client.base_uri}documents/{self.id}-{self.slug}"
 
+    @property
+    def contributor(self)
 
+    def _get_url(self, url, text):
+        if self.access == "public":
+            # XXX error handling
+            content = requests.get(
+                url, headers={"User-Agent": "python-documentcloud2"}
+            ).content
+            if text:
+                return content.decode("utf8")
+            else:
+                return content
+        else:
+            raise NotImplementedError(
+                "Currently, DocumentCloud only allows you to access this resource "
+                "on public documents."
+            )
 
+    # Resource URLs
+    def get_full_text_url(self):
+        return f"{self.asset_url}documents/{self.id}/{self.slug}.txt"
+
+    def get_page_text_url(self, page=1):
+        return f"{self.asset_url}documents/{self.id}/pages/{self.slug}-p{page}.txt"
+
+    def get_json_text_url(self):
+        return f"{self.asset_url}documents/{self.id}/{self.slug}.txt.json"
+
+    def get_pdf_url(self):
+        return f"{self.asset_url}documents/{self.id}/{self.slug}.pdf"
+
+    def get_image_url(self, page=1, size="normal"):
+        return (
+            f"{self.asset_url}documents/{self.id}/pages/"
+            f"{self.slug}-p{page}-{size}.gif"
+        )
+
+    def get_image_url_list(self, size="normal"):
+        return [
+            self.get_image_url(page=i, size=size) for i in range(1, self.page_count + 1)
+        ]
 
 
 class Annotation(BaseAPIObject):
