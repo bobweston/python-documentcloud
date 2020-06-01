@@ -26,12 +26,15 @@ class DocumentCloud:
         base_uri=BASE_URI,
         auth_uri=AUTH_URI,
         timeout=TIMEOUT,
+        debug=False,
     ):
         self.base_uri = base_uri
         self.auth_uri = auth_uri
         self.username = username
         self.password = password
         self.timeout = timeout
+        # XXX use proper logging
+        self.debug = debug
         self.refresh_token = None
         self.session = requests.Session()
         self._set_tokens()
@@ -89,12 +92,16 @@ class DocumentCloud:
 
     def _request(self, method, url, **kwargs):
         """Generic method to make API requests"""
+        # XXX proper logging
+        if self.debug:
+            print(f"{method}: {url} - {kwargs}")
         set_tokens = kwargs.pop("set_tokens", True)
         response = requests_retry_session(session=self.session).request(
             method, f"{self.base_uri}{url}", timeout=self.timeout, **kwargs
         )
+        if self.debug:
+            print(f"Response: {response.status_code} - {response.content}")
         if response.status_code == requests.codes.FORBIDDEN and set_tokens:
-            # XXX differentiate between expired code and not having access
             self._set_tokens()
             # track set_tokens to not enter an infinite loop
             kwargs["set_tokens"] = False

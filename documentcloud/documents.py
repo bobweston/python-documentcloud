@@ -8,18 +8,183 @@ import warnings
 from functools import partial
 
 import requests
-from dateutil.parser import parse as dateparser
 
-from .toolbox import get_id, grouper, is_url
+from .annotations import Annotation
+from .base import BaseAPIClient, BaseAPIObject
+from .organizations import OrganizationClient
+from .toolbox import grouper, is_url
+from .users import UserClient
 
 BULK_LIMIT = 25
 
 
-class DocumentClient:
+class Document(BaseAPIObject):
+    """A single DocumentCloud document"""
+
+    api_path = "documents"
+    writable_fields = [
+        "access",
+        "data",
+        "description",
+        "language",
+        "related_article",
+        "published_url",
+        "source",
+        "title",
+    ]
+    date_fields = ["created_at", "updated_at"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._user = None
+        self._organization = None
+
+    def __str__(self):
+        return self.title
+
+    def __getattr__(self, attr):
+        """Generate methods for fetching resources"""
+        p_image = re.compile(
+            r"^get_(?P<size>thumbnail|small|normal|large)_image_url(?P<list>_list)?$"
+        )
+        get = attr.startswith("get_")
+        url = attr.endswith("_url")
+        text = attr.endswith("_text")
+        # this allows dropping `get_` to act like a property, ie
+        # .full_text_url
+        if not get and hasattr(self, f"get_{attr}"):
+            return getattr(self, f"get_{attr}")()
+        # this allows dropping `_url` to fetch the url, ie
+        # .get_full_text()
+        if not url and hasattr(self, f"{attr}_url"):
+            return lambda *a, **k: self._get_url(
+                getattr(self, f"{attr}_url")(*a, **k), text
+            )
+        # this combines both of the above, ie
+        # .full_text
+        if not get and not url and hasattr(self, f"get_{attr}_url"):
+            return lambda *a, **k: self._get_url(
+                getattr(self, f"{attr}_url")(*a, **k), text
+            )()
+        # this genericizes the image sizes
+        m_image = p_image.match(attr)
+        if m_image and m_image.group("list"):
+            return partial(self.get_image_url_list, size=m_image.group("size"))
+        if m_image and not m_image.group("list"):
+            return partial(self.get_image_url, size=m_image.group("size"))
+        raise AttributeError(
+            f"'{self.__class__.__name__}' object has no attribute '{attr}'"
+        )
+
+    @property
+    def pages(self):
+        return self.page_count
+
+    @pages.setter
+    def pages(self, value):
+        self.page_count = value
+
+    @property
+    def annotations(self):
+        response = self._client.get(f"documents/{self.id}/notes/")
+        response.raise_for_status()
+        return [
+            Annotation(self._client, {**a, "document": self.id})
+            for a in response.json()["results"]
+        ]
+
+    @property
+    def sections(self):
+        response = self._client.get(f"documents/{self.id}/sections/")
+        response.raise_for_status()
+        return [
+            Section(self._client, {**a, "document": self.id})
+            for a in response.json()["results"]
+        ]
+
+    @property
+    def mentions(self):
+        if hasattr(self, "highlights"):
+            return [Mention(page, text) for page, text in self.highlights.items()]
+        else:
+            return []
+
+    @property
+    def canonical_url(self):
+        return f"{self._client.base_uri}documents/{self.id}-{self.slug}"
+
+    # XXX expose a nicer interface for getting the user/org objects
+    # XXX expose a way to preload user/org object using expand
+    # XXX expose a public search url for user/org when available
+    def _load_user(self):
+        if not self._user:
+            self._user = UserClient(self._client).get(self.user)
+
+    def _load_organization(self):
+        if not self._organization:
+            self._organization = OrganizationClient(self._client).get(self.organization)
+
+    @property
+    def contributor(self):
+        self._load_user()
+        return self._user.name
+
+    @property
+    def contributor_organization(self):
+        self._load_organization()
+        return self._organization.name
+
+    @property
+    def contributor_organization_slug(self):
+        self._load_organization()
+        return self._organization.slug
+
+    def _get_url(self, url, text):
+        if self.access == "public":
+            response = requests.get(
+                url, headers={"User-Agent": "python-documentcloud2"}
+            )
+            response.raise_for_status()
+            if text:
+                return response.content.decode("utf8")
+            else:
+                return response.content
+        else:
+            raise NotImplementedError(
+                "Currently, DocumentCloud only allows you to access this resource "
+                "on public documents."
+            )
+
+    # Resource URLs
+    def get_full_text_url(self):
+        return f"{self.asset_url}documents/{self.id}/{self.slug}.txt"
+
+    def get_page_text_url(self, page=1):
+        return f"{self.asset_url}documents/{self.id}/pages/{self.slug}-p{page}.txt"
+
+    def get_json_text_url(self):
+        return f"{self.asset_url}documents/{self.id}/{self.slug}.txt.json"
+
+    def get_pdf_url(self):
+        return f"{self.asset_url}documents/{self.id}/{self.slug}.pdf"
+
+    def get_image_url(self, page=1, size="normal"):
+        return (
+            f"{self.asset_url}documents/{self.id}/pages/"
+            f"{self.slug}-p{page}-{size}.gif"
+        )
+
+    def get_image_url_list(self, size="normal"):
+        return [
+            self.get_image_url(page=i, size=size) for i in range(1, self.page_count + 1)
+        ]
+
+
+class DocumentClient(BaseAPIClient):
     """Client for interacting with Documents"""
 
-    def __init__(self, client):
-        self.client = client
+    api_path = "documents"
+    resource = Document
 
     def search(self, query, page=1, per_page=None, **kwargs):
         """Return documents matching a search query"""
@@ -48,12 +213,6 @@ class DocumentClient:
         response = self.client.get("documents/search/", params=params)
         response.raise_for_status()
         return [Document(self.client, d) for d in response.json()["results"]]
-
-    def get(self, id_):
-        """Get a document by its ID"""
-        response = self.client.get(f"documents/{get_id(id_)}/")
-        response.raise_for_status()
-        return Document(self.client, response.json())
 
     def upload(self, pdf, **kwargs):
         """Upload a document"""
@@ -197,177 +356,32 @@ class DocumentClient:
         # Pass back the list of documents
         return [Document(self.client, d) for d in obj_list]
 
-    def delete(self, id_):
-        """Deletes a document"""
-        response = self.client.delete(f"documents/{get_id(id_)}/")
-        response.raise_for_status()
+
+class Mention:
+    """A snipper from a document search"""
+
+    def __init__(self, page, text):
+        if page.startswith("page_no_"):
+            page = page[len("page_no_") :]
+        self.page = page
+        self.text = text
 
 
-class BaseAPIObject:
-    # XXX move this to its own module
-    def __init__(self, client, dict_):
-        self.__dict__ = dict_
-        self._client = client
-
-    def __repr__(self):
-        return f"<{self.__class__.__name__}: {self}>"
-
-    def put(self):
-        """Alias for save"""
-        return self.save()
-
-    def save(self):
-        data = {f: getattr(self, f) for f in self.writable_fields if hasattr(self, f)}
-        response = self._client.put(f"{self.api_path}/{self.id}/", json=data)
-        response.raise_for_status()
-
-    def delete(self):
-        response = self._client.delete(f"{self.api_path}/{self.id}/")
-        response.raise_for_status()
-
-
-class Document(BaseAPIObject):
-    """A single DocumentCloud document"""
-
-    # XXX put in backward compatibility shims for renamed fields
-    # XXX deal with data
-
-    api_path = "documents"
-    writable_fields = [
-        "access",
-        "description",
-        "language",
-        "related_article",
-        "published_url",
-        "source",
-        "title",
-    ]
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.created_at = dateparser(self.created_at)
-        self.updated_at = dateparser(self.updated_at)
-        self._contributor = None
-        self._contirbutor_organization = None
-
-    def __str__(self):
-        return self.title
-
-    def __getattr__(self, attr):
-        """Generate methods for fetching resources"""
-        p_image = re.compile(
-            r"^get_(?P<size>thumbnail|small|normal|large)_image_url(?P<list>_list)?$"
-        )
-        get = attr.startswith("get_")
-        url = attr.endswith("_url")
-        text = attr.endswith("_text")
-        # this allows dropping `get_` to act like a property, ie
-        # .full_text_url
-        if not get and hasattr(self, f"get_{attr}"):
-            return getattr(self, f"get_{attr}")()
-        # this allows dropping `_url` to fetch the url, ie
-        # .get_full_text()
-        if not url and hasattr(self, f"{attr}_url"):
-            return lambda *a, **k: self._get_url(
-                getattr(self, f"{attr}_url")(*a, **k), text
-            )
-        # this combines both of the above, ie
-        # .full_text
-        if not get and not url and hasattr(self, f"get_{attr}_url"):
-            return lambda *a, **k: self._get_url(
-                getattr(self, f"{attr}_url")(*a, **k), text
-            )()
-        # this genericizes the image sizes
-        m_image = p_image.match(attr)
-        if m_image and m_image.group("list"):
-            return partial(self.get_image_url_list, size=m_image.group("size"))
-        if m_image and not m_image.group("list"):
-            return partial(self.get_image_url, size=m_image.group("size"))
-        raise AttributeError(
-            f"'{self.__class__.__name__}' object has no attribute '{attr}'"
-        )
-
-    @property
-    def pages(self):
-        return self.page_count
-
-    @pages.setter
-    def pages(self, value):
-        self.page_count = value
-
-    @property
-    def annotations(self):
-        response = self._client.get(f"documents/{self.id}/notes/")
-        response.raise_for_status()
-        return [
-            Annotation(self._client, {**a, "document": self.id})
-            for a in response.json()["results"]
-        ]
-
-    @property
-    def canonical_url(self):
-        return f"{self._client.base_uri}documents/{self.id}-{self.slug}"
-
-    @property
-    def contributor(self)
-
-    def _get_url(self, url, text):
-        if self.access == "public":
-            # XXX error handling
-            content = requests.get(
-                url, headers={"User-Agent": "python-documentcloud2"}
-            ).content
-            if text:
-                return content.decode("utf8")
-            else:
-                return content
-        else:
-            raise NotImplementedError(
-                "Currently, DocumentCloud only allows you to access this resource "
-                "on public documents."
-            )
-
-    # Resource URLs
-    def get_full_text_url(self):
-        return f"{self.asset_url}documents/{self.id}/{self.slug}.txt"
-
-    def get_page_text_url(self, page=1):
-        return f"{self.asset_url}documents/{self.id}/pages/{self.slug}-p{page}.txt"
-
-    def get_json_text_url(self):
-        return f"{self.asset_url}documents/{self.id}/{self.slug}.txt.json"
-
-    def get_pdf_url(self):
-        return f"{self.asset_url}documents/{self.id}/{self.slug}.pdf"
-
-    def get_image_url(self, page=1, size="normal"):
-        return (
-            f"{self.asset_url}documents/{self.id}/pages/"
-            f"{self.slug}-p{page}-{size}.gif"
-        )
-
-    def get_image_url_list(self, size="normal"):
-        return [
-            self.get_image_url(page=i, size=size) for i in range(1, self.page_count + 1)
-        ]
-
-
-class Annotation(BaseAPIObject):
+class Section(BaseAPIObject):
+    """A section of a document"""
 
     writable_fields = [
-        "access",
-        "content",
         "page_number",
         "title",
-        "x1",
-        "x2",
-        "y1",
-        "y2",
     ]
 
     def __str__(self):
-        return self.title
+        return f"{self.title} - p{self.page}"
 
     @property
     def api_path(self):
-        return f"documents/{self.document}/notes"
+        return f"documents/{self.document}/sections"
+
+    @property
+    def page(self):
+        return self.page_number
