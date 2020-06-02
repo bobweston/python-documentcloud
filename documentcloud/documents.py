@@ -76,6 +76,23 @@ class Document(BaseAPIObject):
             f"'{self.__class__.__name__}' object has no attribute '{attr}'"
         )
 
+    def __dir__(self):
+        attrs = super().__dir__()
+        getters = [a for a in attrs if a.startswith("get_")]
+        attrs += [a[len("get_") :] for a in getters]
+        attrs += [a[: -len("_url")] for a in getters if a.endswith("url")]
+        attrs += [a[len("get_") : -len("_url")] for a in getters if a.endswith("url")]
+        for size in ["thumbnail", "small", "normal", "large"]:
+            attrs += [
+                f"get_{size}_image_url",
+                f"{size}_image_url",
+                f"get_{size}_image",
+                f"{size}_image",
+                f"get_{size}_image_url_list",
+                f"{size}_image_url_list",
+            ]
+        return attrs
+
     @property
     def pages(self):
         return self.page_count
