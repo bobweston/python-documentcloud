@@ -133,15 +133,20 @@ def get_id(id_):
     """Allow specifying old or new style IDs and convert old style to new style IDs
 
     Old style: 123-the-slug
-    New style: 123
+    New style: 123 or the-slug-123
     """
 
     if isinstance(id_, int):
         return id_
     elif "-" in id_:
-        return id_.split("-")[0]
-    else:
-        return id_
+        front = id_.split("-", 1)[0]
+        if front.isdigit():
+            return front
+        back = id_.rsplit("-", 1)[-1]
+        if back.isdigit():
+            return back
+
+    return id_
 
 
 def is_url(url):
