@@ -106,7 +106,7 @@ class Document(BaseAPIObject):
         response = self._client.get(f"documents/{self.id}/notes/")
         response.raise_for_status()
         return [
-            Annotation(self._client, {**a, "document": self.id})
+            Annotation(self._client, {**a, "document": self})
             for a in response.json()["results"]
         ]
 
@@ -115,14 +115,18 @@ class Document(BaseAPIObject):
         response = self._client.get(f"documents/{self.id}/sections/")
         response.raise_for_status()
         return [
-            Section(self._client, {**a, "document": self.id})
+            Section(self._client, {**a, "document": self})
             for a in response.json()["results"]
         ]
 
     @property
     def mentions(self):
         if hasattr(self, "highlights"):
-            return [Mention(page, text) for page, text in self.highlights.items()]
+            return [
+                Mention(page, text)
+                for page, texts in self.highlights.items()
+                for text in texts
+            ]
         else:
             return []
 
@@ -383,21 +387,24 @@ class Mention:
         self.page = page
         self.text = text
 
+    def __repr__(self):
+        return f"<{self.__class__.__name__}: {self}>"
+
+    def __str__(self):
+        return f'{self.page} - "{self.text}"'
+
 
 class Section(BaseAPIObject):
     """A section of a document"""
 
-    writable_fields = [
-        "page_number",
-        "title",
-    ]
+    writable_fields = ["page_number", "title"]
 
     def __str__(self):
         return f"{self.title} - p{self.page}"
 
     @property
     def api_path(self):
-        return f"documents/{self.document}/sections"
+        return f"documents/{self.document.id}/sections"
 
     @property
     def page(self):
