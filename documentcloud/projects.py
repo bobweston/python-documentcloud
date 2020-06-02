@@ -45,6 +45,13 @@ class Project(BaseAPIObject):
     def document_ids(self):
         return [d.id for d in self.document_list]
 
+    def get_document(self, doc_id):
+        response = self.client.get(
+            f"{self.api_path}/{get_id(self.id)}/documents/{doc_id}"
+        )
+        return Document(self._client, response.json())
+
+    # XXX all should return just my projects ??
 
 
 class ProjectClient(BaseAPIClient):
@@ -53,13 +60,43 @@ class ProjectClient(BaseAPIClient):
     api_path = "projects"
     resource = Project
 
-    # XXX get by title
+    def get(self, id=None, title=None):
+        if id is not None and title is not None:
+            raise ValueError(
+                "You can only retrieve a Project by id or title, not by both"
+            )
+        elif id is None and title is None:
+            raise ValueError("You must provide an id or a title to make a request.")
 
-    def create(self, title, description="", document_ids=None):
-        data = {"title": title, "description": description}
+        if id is not None:
+            return self.get_by_id(id)
+        elif title is not None:
+            return self.get_by_title(title)
+
+    def get_by_id(self, id_):
+        return super().get(id_)
+
+    def get_by_title(self, title):
+        response = self.client.get(f"{self.api_path}/", params={"title": title})
+        json = response.json()
+        if json["count"] == 0:
+            raise DoesNotExistError()
+        elif json["count"] > 1:
+            raise MultipleObjectsReturnedError()
+
+        return self.resource(self.client, json["results"][0])
+
+    def create(self, title, description="", private=True, document_ids=None):
+        data = {"title": title, "description": description, "private": private}
         response = self._client.post(f"{self.api_path}/", json=data)
-        response.raise_for_status()
-        return Project(self.client, response.json())
+        project = Project(self.client, response.json())
+        if document_ids:
+            data = [{"document": d} for d in document_ids]
+            response = self._client.put(
+                f"{self.api_path}/{project.id}/documents/", json=data
+            )
+            # XXX create document objects
+        return project
 
     def get_or_create_by_title(self, title):
         # XXX need better way of detecting non existent resources
