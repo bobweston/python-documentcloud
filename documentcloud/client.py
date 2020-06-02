@@ -2,6 +2,7 @@
 The public interface for the DocumentCloud API
 """
 
+import logging
 from functools import partial
 
 import requests
@@ -13,6 +14,8 @@ from .toolbox import CredentialsFailedError, requests_retry_session
 BASE_URI = "https://api.beta.documentcloud.org/api/"
 AUTH_URI = "https://accounts.muckrock.com/api/"
 TIMEOUT = 10
+
+logger = logging.getLogger("documentcloud")
 
 
 class DocumentCloud:
@@ -27,18 +30,24 @@ class DocumentCloud:
         base_uri=BASE_URI,
         auth_uri=AUTH_URI,
         timeout=TIMEOUT,
-        debug=False,
+        loglevel=None,
     ):
         self.base_uri = base_uri
         self.auth_uri = auth_uri
         self.username = username
         self.password = password
         self.timeout = timeout
-        # XXX use proper logging
-        self.debug = debug
         self.refresh_token = None
         self.session = requests.Session()
         self._set_tokens()
+
+        if loglevel:
+            logging.basicConfig(
+                level=loglevel,
+                format="%(asctime)s %(levelname)-8s %(name)-25s %(message)s",
+            )
+        else:
+            logger.addHandler(logging.NullHandler())
 
         self.documents = DocumentClient(self)
 
@@ -91,15 +100,12 @@ class DocumentCloud:
 
     def _request(self, method, url, raise_error=True, **kwargs):
         """Generic method to make API requests"""
-        # XXX proper logging
-        if self.debug:
-            print(f"{method}: {url} - {kwargs}")
+        logger.debug("request: %s - %s - %s", method, url, kwargs)
         set_tokens = kwargs.pop("set_tokens", True)
         response = requests_retry_session(session=self.session).request(
             method, f"{self.base_uri}{url}", timeout=self.timeout, **kwargs
         )
-        if self.debug:
-            print(f"Response: {response.status_code} - {response.content}")
+        logger.debug("response: %s - %s", response.status_code, response.content)
         if response.status_code == requests.codes.FORBIDDEN and set_tokens:
             self._set_tokens()
             # track set_tokens to not enter an infinite loop
