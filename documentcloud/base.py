@@ -17,25 +17,21 @@ class BaseAPIClient:
     def get(self, id_):
         """Get a resource by its ID"""
         response = self.client.get(f"{self.api_path}/{get_id(id_)}/")
-        # XXX better error handling
-        response.raise_for_status()
         return self.resource(self.client, response.json())
 
     def delete(self, id):
         """Deletes a resource"""
-        response = self.client.delete(f"{self.api_path}/{get_id(id)}/")
-        response.raise_for_status()
+        self.client.delete(f"{self.api_path}/{get_id(id)}/")
 
     def all(self):
         return self.list()
 
     def list(self, page=1, per_page=None):
-        # XXX custom list class to show metadata?
+        # XXX custom list class to show metadata? (next_url/prev_url/count etc)
         params = {'page': page}
         if per_page is not None:
             params['per_page'] = per_page
         response = self.client.get(f"{self.api_path}/", params=params)
-        response.raise_for_status()
         return [self.resource(self.client, r) for r in response.json()["results"]]
 
 
@@ -59,9 +55,7 @@ class BaseAPIObject:
 
     def save(self):
         data = {f: getattr(self, f) for f in self.writable_fields if hasattr(self, f)}
-        response = self._client.put(f"{self.api_path}/{self.id}/", json=data)
-        response.raise_for_status()
+        self._client.put(f"{self.api_path}/{self.id}/", json=data)
 
     def delete(self):
-        response = self._client.delete(f"{self.api_path}/{self.id}/")
-        response.raise_for_status()
+        self._client.delete(f"{self.api_path}/{self.id}/")

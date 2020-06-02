@@ -104,7 +104,6 @@ class Document(BaseAPIObject):
     @property
     def annotations(self):
         response = self._client.get(f"documents/{self.id}/notes/")
-        response.raise_for_status()
         return [
             Annotation(self._client, {**a, "document": self})
             for a in response.json()["results"]
@@ -113,7 +112,6 @@ class Document(BaseAPIObject):
     @property
     def sections(self):
         response = self._client.get(f"documents/{self.id}/sections/")
-        response.raise_for_status()
         return [
             Section(self._client, {**a, "document": self})
             for a in response.json()["results"]
@@ -132,6 +130,7 @@ class Document(BaseAPIObject):
 
     @property
     def canonical_url(self):
+        # XXX this is not the canonical url
         return f"{self._client.base_uri}documents/{self.id}-{self.slug}"
 
     # XXX expose a nicer interface for getting the user/org objects
@@ -165,7 +164,6 @@ class Document(BaseAPIObject):
             response = requests.get(
                 url, headers={"User-Agent": "python-documentcloud2"}
             )
-            response.raise_for_status()
             if text:
                 return response.content.decode("utf8")
             else:
@@ -232,7 +230,6 @@ class DocumentClient(BaseAPIClient):
         if per_page is not None:
             params["per_page"] = per_page
         response = self.client.get("documents/search/", params=params)
-        response.raise_for_status()
         return [Document(self.client, d) for d in response.json()["results"]]
 
     def upload(self, pdf, **kwargs):
@@ -303,7 +300,6 @@ class DocumentClient(BaseAPIClient):
         params = self._format_upload_parameters(file_url, **kwargs)
         params["file_url"] = file_url
         response = self.client.post(f"documents/", json=params)
-        response.raise_for_status()
         return Document(self.client, response.json())
 
     def _upload_file(self, file_, **kwargs):
@@ -312,20 +308,17 @@ class DocumentClient(BaseAPIClient):
         force_ocr = kwargs.pop("force_ocr", False)
         params = self._format_upload_parameters(file_.name, **kwargs)
         response = self.client.post("documents/", json=params)
-        response.raise_for_status()
 
         # upload the file directly to storage
         create_json = response.json()
         presigned_url = create_json["presigned_url"]
         response = requests.put(presigned_url, data=file_.read())
-        response.raise_for_status()
 
         # begin processing the document
         doc_id = create_json["id"]
         response = self.client.post(
             f"documents/{doc_id}/process/", json={"force_ocr": force_ocr}
         )
-        response.raise_for_status()
 
         return Document(self.client, create_json)
 
@@ -359,7 +352,6 @@ class DocumentClient(BaseAPIClient):
                 "documents/",
                 json=[{**params, "title": self._get_title(p)} for p in pdf_paths],
             )
-            response.raise_for_status()
 
             # upload the files directly to storage
             create_json = response.json()
@@ -367,12 +359,12 @@ class DocumentClient(BaseAPIClient):
             presigned_urls = [j["presigned_url"] for j in create_json]
             for url, pdf_path in zip(presigned_urls, pdf_paths):
                 response = requests.put(url, data=open(pdf_path, "rb").read())
+                # XXX
                 response.raise_for_status()
 
             # begin processing the documents
             doc_ids = [j["id"] for j in create_json]
             response = self.client.post("documents/process/", json={"ids": doc_ids})
-            response.raise_for_status()
 
         # Pass back the list of documents
         return [Document(self.client, d) for d in obj_list]

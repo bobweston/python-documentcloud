@@ -1,5 +1,6 @@
 from .base import BaseAPIClient, BaseAPIObject
 from .documents import Document
+from .exceptions import DoesNotExistError, MultipleObjectsReturnedError
 from .toolbox import get_id
 
 
@@ -20,9 +21,10 @@ class Project(BaseAPIObject):
         """Add the documents to the project as well"""
         super().save()
         if self._document_list:
-            data = [{'document': d} for d in self.document_ids]
-            response = self._client.put(f"{self.api_path}/{self.id}/documents/", json=data)
-            response.raise_for_status()
+            data = [{"document": d} for d in self.document_ids]
+            self._client.put(
+                f"{self.api_path}/{self.id}/documents/", json=data
+            )
 
     @property
     def document_list(self):
@@ -30,7 +32,6 @@ class Project(BaseAPIObject):
         if self._document_list is None:
             # XXX paginate
             response = self.client.get(f"{self.api_path}/{get_id(self.id)}/documents/")
-            response.raise_for_status()
             self._document_list = [
                 Document(self._client, r) for r in response.json()["results"]
             ]
@@ -99,11 +100,10 @@ class ProjectClient(BaseAPIClient):
         return project
 
     def get_or_create_by_title(self, title):
-        # XXX need better way of detecting non existent resources
         try:
             project = self.get(title=title)
             created = False
-        except:  # XXX DoesNotExist
+        except DoesNotExistError:
             project = self.create(title=title)
             created = True
         return project, created

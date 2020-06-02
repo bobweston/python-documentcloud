@@ -7,6 +7,7 @@ from functools import partial
 import requests
 
 from .documents import DocumentClient
+from .exceptions import APIError
 from .toolbox import CredentialsFailedError, requests_retry_session
 
 BASE_URI = "https://api.beta.documentcloud.org/api/"
@@ -66,8 +67,7 @@ class DocumentCloud:
         if response.status_code == requests.codes.UNAUTHORIZED:
             raise CredentialsFailedError("The username and password is incorrect")
 
-        # XXX catch and convert to internal error type?
-        response.raise_for_status()
+        self._raise_for_status(response)
 
         json = response.json()
         return (json["access"], json["refresh"])
@@ -84,13 +84,12 @@ class DocumentCloud:
             # refresh token is expired
             return self._get_tokens(self.username, self.password)
 
-        # XXX catch and convert to internal error type?
-        response.raise_for_status()
+        self._raise_for_status(response)
 
         json = response.json()
         return (json["access"], json["refresh"])
 
-    def _request(self, method, url, **kwargs):
+    def _request(self, method, url, raise_error=True, **kwargs):
         """Generic method to make API requests"""
         # XXX proper logging
         if self.debug:
@@ -107,6 +106,9 @@ class DocumentCloud:
             kwargs["set_tokens"] = False
             return self._request(method, url, **kwargs)
 
+        if raise_error:
+            self._raise_for_status(response)
+
         return response
 
     def __getattr__(self, attr):
@@ -117,3 +119,10 @@ class DocumentCloud:
         raise AttributeError(
             f"'{self.__class__.__name__}' object has no attribute '{attr}'"
         )
+
+    def _raise_for_status(self, response):
+        """Raise for status with a custom error class"""
+        try:
+            response.raise_for_status()
+        except requests.exceptions.RequestException as exc:
+            raise APIError(response=exc.response)
