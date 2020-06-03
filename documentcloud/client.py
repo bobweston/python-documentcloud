@@ -9,7 +9,9 @@ import requests
 
 from .documents import DocumentClient
 from .exceptions import APIError
+from .projects import ProjectClient
 from .toolbox import CredentialsFailedError, requests_retry_session
+from .users import UserClient
 
 BASE_URI = "https://api.beta.documentcloud.org/api/"
 AUTH_URI = "https://accounts.muckrock.com/api/"
@@ -36,6 +38,7 @@ class DocumentCloud:
         self.auth_uri = auth_uri
         self.username = username
         self.password = password
+        self._user_id = None
         self.timeout = timeout
         self.refresh_token = None
         self.session = requests.Session()
@@ -50,6 +53,8 @@ class DocumentCloud:
             logger.addHandler(logging.NullHandler())
 
         self.documents = DocumentClient(self)
+        self.projects = ProjectClient(self)
+        self.users = UserClient(self)
 
     def _set_tokens(self):
         """Set the refresh and access tokens"""
@@ -98,12 +103,24 @@ class DocumentCloud:
         json = response.json()
         return (json["access"], json["refresh"])
 
+    @property
+    def user_id(self):
+        if self._user_id is None:
+            user = self.users.get("me")
+            self._user_id = user.id
+        return self._user_id
+
     def _request(self, method, url, raise_error=True, **kwargs):
         """Generic method to make API requests"""
-        logger.debug("request: %s - %s - %s", method, url, kwargs)
+        logger.info("request: %s - %s - %s", method, url, kwargs)
         set_tokens = kwargs.pop("set_tokens", True)
+        full_url = kwargs.pop("full_url", False)
+
+        if not full_url:
+            url = f"{self.base_uri}{url}"
+
         response = requests_retry_session(session=self.session).request(
-            method, f"{self.base_uri}{url}", timeout=self.timeout, **kwargs
+            method, url, timeout=self.timeout, **kwargs
         )
         logger.debug("response: %s - %s", response.status_code, response.content)
         if response.status_code == requests.codes.FORBIDDEN and set_tokens:

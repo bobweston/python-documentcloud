@@ -25,6 +25,9 @@ class DoesNotExistError(DocumentCloudError):
 class MultipleObjectsReturnedError(DocumentCloudError):
     """Raised when the API returns multiple objects when it expected one"""
 
+class DuplicateObjectError(DocumentCloudError):
+    """Raised when an object is added to a unique list more than once"""
+
 
 class APIError(DocumentCloudError):
     """Any other error calling the API"""
