@@ -10,7 +10,12 @@ from .toolbox import get_id
 class APIResults(Sequence):
     """Class for encapsulating paginated list results from the API"""
 
-    def __init__(self, resource, client, response, next_=None, previous=None):
+    def __init__(
+        self, resource, client, response, extra=None, next_=None, previous=None
+    ):
+        if extra is None:
+            extra = {}
+
         self.resource = resource
         self.client = client
         json = response.json()
@@ -20,7 +25,7 @@ class APIResults(Sequence):
         self.previous_url = json["previous"]
         self._next = next_
         self._previous = previous
-        self.results = [resource(client, r) for r in json["results"]]
+        self.results = [resource(client, {**r, **extra}) for r in json["results"]]
 
     def __repr__(self):
         return f"<APIResults: {self.results!r}"
@@ -78,9 +83,13 @@ class BaseAPIClient:
     def __init__(self, client):
         self.client = client
 
-    def get(self, id_):
+    def get(self, id_, expand=None):
         """Get a resource by its ID"""
-        response = self.client.get(f"{self.api_path}/{get_id(id_)}/")
+        if expand is not None:
+            params = {"expand": ",".join(expand)}
+        else:
+            params = {}
+        response = self.client.get(f"{self.api_path}/{get_id(id_)}/", params=params)
         return self.resource(self.client, response.json())
 
     def delete(self, id):

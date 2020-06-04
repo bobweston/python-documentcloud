@@ -9,6 +9,7 @@ import requests
 
 from .documents import DocumentClient
 from .exceptions import APIError
+from .organizations import OrganizationClient
 from .projects import ProjectClient
 from .toolbox import CredentialsFailedError, requests_retry_session
 from .users import UserClient
@@ -55,6 +56,7 @@ class DocumentCloud:
         self.documents = DocumentClient(self)
         self.projects = ProjectClient(self)
         self.users = UserClient(self)
+        self.organizations = OrganizationClient(self)
 
     def _set_tokens(self):
         """Set the refresh and access tokens"""
@@ -81,7 +83,7 @@ class DocumentCloud:
         if response.status_code == requests.codes.UNAUTHORIZED:
             raise CredentialsFailedError("The username and password is incorrect")
 
-        self._raise_for_status(response)
+        self.raise_for_status(response)
 
         json = response.json()
         return (json["access"], json["refresh"])
@@ -98,7 +100,7 @@ class DocumentCloud:
             # refresh token is expired
             return self._get_tokens(self.username, self.password)
 
-        self._raise_for_status(response)
+        self.raise_for_status(response)
 
         json = response.json()
         return (json["access"], json["refresh"])
@@ -130,7 +132,7 @@ class DocumentCloud:
             return self._request(method, url, **kwargs)
 
         if raise_error:
-            self._raise_for_status(response)
+            self.raise_for_status(response)
 
         return response
 
@@ -143,7 +145,7 @@ class DocumentCloud:
             f"'{self.__class__.__name__}' object has no attribute '{attr}'"
         )
 
-    def _raise_for_status(self, response):
+    def raise_for_status(self, response):
         """Raise for status with a custom error class"""
         try:
             response.raise_for_status()

@@ -10,10 +10,10 @@ from functools import partial
 import requests
 
 from .annotations import Annotation
-from .base import BaseAPIClient, BaseAPIObject
-from .organizations import OrganizationClient
+from .base import APIResults, BaseAPIClient, BaseAPIObject
+from .organizations import Organization
 from .toolbox import grouper, is_url
-from .users import UserClient
+from .users import User
 
 BULK_LIMIT = 25
 
@@ -34,10 +34,23 @@ class Document(BaseAPIObject):
     ]
     date_fields = ["created_at", "updated_at"]
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._user = None
-        self._organization = None
+    def __init__(self, client, dict_):
+
+        # deal with potentially nested objects
+        objs = [
+                ('user', User),
+                ('organization', Organization),
+               ]
+        for name, resource in objs:
+            value = dict_.get(name)
+            if isinstance(value, dict):
+                dict_[f"_{name}"] = resource(client, value)
+                dict_[f"{name}_id"] = value.get("id")
+            elif isinstance(value, int):
+                dict_[f"_{name}"] = None
+                dict_[f"{name}_id"] = value
+
+        super().__init__(client, dict_)
 
     def __str__(self):
         return self.title
@@ -97,25 +110,15 @@ class Document(BaseAPIObject):
     def pages(self):
         return self.page_count
 
-    @pages.setter
-    def pages(self, value):
-        self.page_count = value
-
     @property
     def annotations(self):
         response = self._client.get(f"documents/{self.id}/notes/")
-        return [
-            Annotation(self._client, {**a, "document": self})
-            for a in response.json()["results"]
-        ]
+        return APIResults(Annotation, self._client, response, {"document": self})
 
     @property
     def sections(self):
         response = self._client.get(f"documents/{self.id}/sections/")
-        return [
-            Section(self._client, {**a, "document": self})
-            for a in response.json()["results"]
-        ]
+        return APIResults(Section, self._client, response, {"document": self})
 
     @property
     def mentions(self):
@@ -129,35 +132,28 @@ class Document(BaseAPIObject):
             return []
 
     @property
-    def canonical_url(self):
-        # XXX this is not the canonical url
-        return f"{self._client.base_uri}documents/{self.id}-{self.slug}"
+    def user(self):
+        if self._user is None:
+            self._user = self._client.users.get(self.user_id)
+        return self._user
 
-    # XXX expose a nicer interface for getting the user/org objects
-    # XXX expose a way to preload user/org object using expand
-    # XXX expose a public search url for user/org when available
-    def _load_user(self):
-        if not self._user:
-            self._user = UserClient(self._client).get(self.user)
-
-    def _load_organization(self):
-        if not self._organization:
-            self._organization = OrganizationClient(self._client).get(self.organization)
+    @property
+    def organization(self):
+        if self._organization is None:
+            self._organization = self._client.organizations.get(self.organization_id)
+        return self._organization
 
     @property
     def contributor(self):
-        self._load_user()
-        return self._user.name
+        return self.user.name
 
     @property
     def contributor_organization(self):
-        self._load_organization()
-        return self._organization.name
+        return self.organization.name
 
     @property
     def contributor_organization_slug(self):
-        self._load_organization()
-        return self._organization.slug
+        return self.organization.slug
 
     def _get_url(self, url, text):
         if self.access == "public":
@@ -205,32 +201,32 @@ class DocumentClient(BaseAPIClient):
     api_path = "documents"
     resource = Document
 
-    def search(self, query, page=1, per_page=None, **kwargs):
+    def search(self, query, page=1, per_page=None, **params):
         """Return documents matching a search query"""
 
-        if "mentions" in kwargs:
+        mentions = params.pop("mentions", None)
+        if mentions is not None:
             warnings.warn(
                 "The `mentions` argument to `search` is deprecated, "
                 "it will always include mentions from all pages now",
                 DeprecationWarning,
             )
-        if "data" in kwargs:
+        data = params.pop("data", None)
+        if data is not None:
             warnings.warn(
                 "The `data` argument to `search` is deprecated, "
                 "it will always include data now",
                 DeprecationWarning,
             )
 
-        params = {}
         if query:
             params["q"] = query
         if page is not None:
-            # XXX page=None used to get all, I dislike this...
             params["page"] = page
         if per_page is not None:
             params["per_page"] = per_page
         response = self.client.get("documents/search/", params=params)
-        return [Document(self.client, d) for d in response.json()["results"]]
+        return APIResults(self.resource, self.client, response)
 
     def upload(self, pdf, **kwargs):
         """Upload a document"""
@@ -359,8 +355,7 @@ class DocumentClient(BaseAPIClient):
             presigned_urls = [j["presigned_url"] for j in create_json]
             for url, pdf_path in zip(presigned_urls, pdf_paths):
                 response = requests.put(url, data=open(pdf_path, "rb").read())
-                # XXX
-                response.raise_for_status()
+                self.client.raise_for_status(response)
 
             # begin processing the documents
             doc_ids = [j["id"] for j in create_json]
@@ -371,7 +366,7 @@ class DocumentClient(BaseAPIClient):
 
 
 class Mention:
-    """A snipper from a document search"""
+    """A snippet from a document search"""
 
     def __init__(self, page, text):
         if page.startswith("page_no_"):

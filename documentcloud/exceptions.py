@@ -7,15 +7,16 @@ class DocumentCloudError(Exception):
     """Base class for errors for python-documentcloud"""
 
     def __init__(self, *args, **kwargs):
-        response = kwargs.pop('response', None)
-        if response:
-            json = response.json()
-            self.error = json.get('error')
+        response = kwargs.pop("response", None)
+        if response is not None:
+            self.error = response.text
             self.status_code = response.status_code
+            if not args:
+                args = [f"{self.status_code} - {self.error}"]
         else:
             self.error = None
             self.status_code = None
-        super().__init__(self, *args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class DoesNotExistError(DocumentCloudError):
@@ -24,6 +25,7 @@ class DoesNotExistError(DocumentCloudError):
 
 class MultipleObjectsReturnedError(DocumentCloudError):
     """Raised when the API returns multiple objects when it expected one"""
+
 
 class DuplicateObjectError(DocumentCloudError):
     """Raised when an object is added to a unique list more than once"""
