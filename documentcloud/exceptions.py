@@ -31,5 +31,9 @@ class DuplicateObjectError(DocumentCloudError):
     """Raised when an object is added to a unique list more than once"""
 
 
+class CredentialsFailedError(DocumentCloudError):
+    """Raised if unable to obtain an access token due to bad login credentials"""
+
+
 class APIError(DocumentCloudError):
     """Any other error calling the API"""

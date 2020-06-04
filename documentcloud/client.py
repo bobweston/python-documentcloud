@@ -8,10 +8,10 @@ from functools import partial
 import requests
 
 from .documents import DocumentClient
-from .exceptions import APIError
+from .exceptions import APIError, CredentialsFailedError
 from .organizations import OrganizationClient
 from .projects import ProjectClient
-from .toolbox import CredentialsFailedError, requests_retry_session
+from .toolbox import requests_retry_session
 from .users import UserClient
 
 BASE_URI = "https://api.beta.documentcloud.org/api/"
