@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 import requests
 from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+from urllib3.util.retry import Retry
 
 #
 # Decorators
@@ -89,8 +89,8 @@ def is_url(url):
         return False
 
 
-def grouper(iterable, n, fillvalue=None):
+def grouper(iterable, num, fillvalue=None):
     "Collect data into fixed-length chunks or blocks"
     # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
-    args = [iter(iterable)] * n
+    args = [iter(iterable)] * num
     return zip_longest(*args, fillvalue=fillvalue)

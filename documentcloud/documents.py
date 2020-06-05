@@ -133,12 +133,14 @@ class Document(BaseAPIObject):
 
     @property
     def user(self):
+        # pylint:disable=access-member-before-definition
         if self._user is None:
             self._user = self._client.users.get(self.user_id)
         return self._user
 
     @property
     def organization(self):
+        # pylint:disable=access-member-before-definition
         if self._organization is None:
             self._organization = self._client.organizations.get(self.organization_id)
         return self._organization
@@ -295,7 +297,7 @@ class DocumentClient(BaseAPIClient):
         """Upload a document from a publicly accessible URL"""
         params = self._format_upload_parameters(file_url, **kwargs)
         params["file_url"] = file_url
-        response = self.client.post(f"documents/", json=params)
+        response = self.client.post("documents/", json=params)
         return Document(self.client, response.json())
 
     def _upload_file(self, file_, **kwargs):
@@ -318,13 +320,8 @@ class DocumentClient(BaseAPIClient):
 
         return Document(self.client, create_json)
 
-    def upload_directory(self, path, **kwargs):
-        """Upload all PDFs in a directory"""
-
-        # do not set the same title for all documents
-        kwargs.pop("title", None)
-
-        # Loop through the path and get all the files
+    def _collect_files(self, path):
+        """Find the paths to all pdfs under a directory"""
         path_list = []
         for (dirpath, _dirname, filenames) in os.walk(path):
             path_list.extend(
@@ -334,6 +331,16 @@ class DocumentClient(BaseAPIClient):
                     if i.lower().endswith(".pdf")
                 ]
             )
+        return path_list
+
+    def upload_directory(self, path, **kwargs):
+        """Upload all PDFs in a directory"""
+
+        # do not set the same title for all documents
+        kwargs.pop("title", None)
+
+        # Loop through the path and get all the files
+        path_list = self._collect_files(path)
 
         # Upload all the pdfs using the bulk API to reduce the number
         # of API calls and improve performance

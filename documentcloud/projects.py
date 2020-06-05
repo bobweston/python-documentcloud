@@ -72,6 +72,8 @@ class ProjectClient(BaseAPIClient):
     resource = Project
 
     def get(self, id=None, title=None):
+        # pylint:disable=redefined-builtin, arguments-differ
+        # pylint disables are necessary for backward compatibility
         if id is not None and title is not None:
             raise ValueError(
                 "You can only retrieve a Project by id or title, not by both"
@@ -81,7 +83,7 @@ class ProjectClient(BaseAPIClient):
 
         if id is not None:
             return self.get_by_id(id)
-        elif title is not None:
+        else:
             return self.get_by_title(title)
 
     # all is overriden to filter by the current user for backward compatibility

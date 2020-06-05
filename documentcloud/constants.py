@@ -1,2 +1,1 @@
 PER_PAGE_MAX = 100
-

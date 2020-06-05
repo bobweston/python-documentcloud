@@ -34,6 +34,7 @@ class APIResults(Sequence):
         return str(self.results)
 
     def __getitem__(self, key):
+        # pylint: disable=unsubscriptable-object
         if key >= len(self):
             raise IndexError
 
@@ -49,6 +50,7 @@ class APIResults(Sequence):
     def __iter__(self):
         yield from self.results
         if self.next_url:
+            # pylint: disable=not-an-iterable
             yield from self.next
         else:
             return
@@ -90,11 +92,12 @@ class BaseAPIClient:
         else:
             params = {}
         response = self.client.get(f"{self.api_path}/{get_id(id_)}/", params=params)
+        # pylint: disable=not-callable
         return self.resource(self.client, response.json())
 
-    def delete(self, id):
+    def delete(self, id_):
         """Deletes a resource"""
-        self.client.delete(f"{self.api_path}/{get_id(id)}/")
+        self.client.delete(f"{self.api_path}/{get_id(id_)}/")
 
     def all(self):
         return self.list()
