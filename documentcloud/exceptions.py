@@ -7,10 +7,10 @@ class DocumentCloudError(Exception):
     """Base class for errors for python-documentcloud"""
 
     def __init__(self, *args, **kwargs):
-        response = kwargs.pop("response", None)
-        if response is not None:
-            self.error = response.text
-            self.status_code = response.status_code
+        self.response = kwargs.pop("response", None)
+        if self.response is not None:
+            self.error = self.response.text
+            self.status_code = self.response.status_code
             if not args:
                 args = [f"{self.status_code} - {self.error}"]
         else:

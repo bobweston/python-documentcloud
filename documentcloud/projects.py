@@ -97,15 +97,15 @@ class ProjectClient(BaseAPIClient):
         response = self.client.get(f"{self.api_path}/", params={"title": title})
         json = response.json()
         if json["count"] == 0:
-            raise DoesNotExistError()
+            raise DoesNotExistError(response=response)
         elif json["count"] > 1:
-            raise MultipleObjectsReturnedError()
+            raise MultipleObjectsReturnedError(response=response)
 
         return self.resource(self.client, json["results"][0])
 
     def create(self, title, description="", private=True, document_ids=None):
         data = {"title": title, "description": description, "private": private}
-        response = self._client.post(f"{self.api_path}/", json=data)
+        response = self.client.post(f"{self.api_path}/", json=data)
         project = Project(self.client, response.json())
         if document_ids:
             data = [{"document": d} for d in document_ids]

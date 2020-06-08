@@ -129,7 +129,7 @@ class DocumentCloud:
             self._set_tokens()
             # track set_tokens to not enter an infinite loop
             kwargs["set_tokens"] = False
-            return self._request(method, url, **kwargs)
+            return self._request(method, url, full_url=True, **kwargs)
 
         if raise_error:
             self.raise_for_status(response)

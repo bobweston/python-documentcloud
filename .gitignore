@@ -11,3 +11,4 @@ dist/*
 private_settings.py
 .coverage
 scratch.py
+htmlcov/

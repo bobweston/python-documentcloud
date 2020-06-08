@@ -73,12 +73,6 @@ class Document(BaseAPIObject):
             return lambda *a, **k: self._get_url(
                 getattr(self, f"{attr}_url")(*a, **k), text
             )
-        # this combines both of the above, ie
-        # .full_text
-        if not get and not url and hasattr(self, f"get_{attr}_url"):
-            return lambda *a, **k: self._get_url(
-                getattr(self, f"{attr}_url")(*a, **k), text
-            )()
         # this genericizes the image sizes
         m_image = p_image.match(attr)
         if m_image and m_image.group("list"):
@@ -158,19 +152,13 @@ class Document(BaseAPIObject):
         return self.organization.slug
 
     def _get_url(self, url, text):
-        if self.access == "public":
-            response = requests.get(
-                url, headers={"User-Agent": "python-documentcloud2"}
-            )
-            if text:
-                return response.content.decode("utf8")
-            else:
-                return response.content
+        response = requests.get(
+            url, headers={"User-Agent": "python-documentcloud2"}
+        )
+        if text:
+            return response.content.decode("utf8")
         else:
-            raise NotImplementedError(
-                "Currently, DocumentCloud only allows you to access this resource "
-                "on public documents."
-            )
+            return response.content
 
     # Resource URLs
     def get_full_text_url(self):

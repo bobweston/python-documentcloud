@@ -3,7 +3,7 @@ from copy import copy
 
 from dateutil.parser import parse as dateparser
 
-from .exceptions import DuplicateObjectError
+from .exceptions import APIError, DoesNotExistError, DuplicateObjectError
 from .toolbox import get_id
 
 
@@ -91,7 +91,13 @@ class BaseAPIClient:
             params = {"expand": ",".join(expand)}
         else:
             params = {}
-        response = self.client.get(f"{self.api_path}/{get_id(id_)}/", params=params)
+        try:
+            response = self.client.get(f"{self.api_path}/{get_id(id_)}/", params=params)
+        except APIError as exc:
+            if exc.response.status_code == 404:
+                raise DoesNotExistError(response=exc.response)
+            else:
+                raise exc
         # pylint: disable=not-callable
         return self.resource(self.client, response.json())
 
