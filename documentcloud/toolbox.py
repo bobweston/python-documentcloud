@@ -1,20 +1,20 @@
 """
 A few toys the API will use.
 """
+# Standard Library
 from functools import wraps
 from itertools import zip_longest
 from urllib.parse import urlparse
 
+# Third Party
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-#
-# Decorators
-#
+# Local
+from .exceptions import CredentialsMissingError
 
 
-# XXX keep?
 def credentials_required(method_func):
     """
     Decorator for methods that checks that the client has credentials.
@@ -22,7 +22,8 @@ def credentials_required(method_func):
     Throws a CredentialsMissingError when they are absent.
     """
 
-    def _checkcredentials(self, *args, **kwargs):
+    @wraps(method_func)
+    def check_credentials(self, *args, **kwargs):
         if self.username and self.password:
             return method_func(self, *args, **kwargs)
         else:
@@ -32,12 +33,7 @@ def credentials_required(method_func):
                 "this type of request."
             )
 
-    return wraps(method_func)(_checkcredentials)
-
-
-#
-# Utilities
-#
+    return check_credentials
 
 
 def requests_retry_session(

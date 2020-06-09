@@ -1,8 +1,12 @@
+# Standard Library
 import time
 from datetime import datetime
 
+# Third Party
 import pytest
 
+# DocumentCloud
+from documentcloud.documents import Mention
 from documentcloud.exceptions import DoesNotExistError
 from documentcloud.organizations import Organization
 from documentcloud.users import User
@@ -175,8 +179,11 @@ class TestDocumentClient:
 
 
 class TestMention:
-    pass
+    def test_mention(self):
+        mention = Mention("page_no_42", "text")
+        assert str(mention) == '42 - "text"'
 
 
 class TestSection:
+    # XXX good way to manage sections and notes
     pass

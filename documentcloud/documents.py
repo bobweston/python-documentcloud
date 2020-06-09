@@ -2,13 +2,16 @@
 Documents
 """
 
+# Standard Library
 import os
 import re
 import warnings
 from functools import partial
 
+# Third Party
 import requests
 
+# Local
 from .annotations import Annotation
 from .base import APIResults, BaseAPIClient, BaseAPIObject
 from .organizations import Organization

@@ -1,8 +1,11 @@
+# Standard Library
 from collections.abc import Sequence
 from copy import copy
 
+# Third Party
 from dateutil.parser import parse as dateparser
 
+# Local
 from .exceptions import APIError, DoesNotExistError, DuplicateObjectError
 from .toolbox import get_id
 

@@ -1,8 +1,11 @@
+# Standard Library
 import time
 
+# Third Party
 import pytest
-
 import vcr
+
+# DocumentCloud
 from documentcloud.client import DocumentCloud
 
 # Test against a development environment documentcloud instance
@@ -39,7 +42,7 @@ def public_client():
 def _wait_document(document, client, record_mode):
     # wait for document to finish processing
     while document.status in ("nofile", "pending"):
-        if record_mode != "none":
+        if record_mode == "all":
             time.sleep(1)
         document = client.documents.get(document.id)
     assert document.status == "success"

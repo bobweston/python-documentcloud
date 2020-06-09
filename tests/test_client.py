@@ -1,6 +1,8 @@
+# Third Party
 import pytest
 
-from documentcloud.exceptions import CredentialsFailedError
+# DocumentCloud
+from documentcloud.exceptions import CredentialsFailedError, CredentialsMissingError
 
 # pylint: disable=protected-access
 
@@ -54,6 +56,11 @@ def test_refresh_tokens(client):
 
 def test_user_id(client):
     assert client.user_id
+
+
+def test_user_id_public(public_client):
+    with pytest.raises(CredentialsMissingError):
+        public_client.user_id
 
 
 def test_bad_attr(client):

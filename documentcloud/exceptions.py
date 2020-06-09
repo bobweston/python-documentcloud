@@ -35,5 +35,11 @@ class CredentialsFailedError(DocumentCloudError):
     """Raised if unable to obtain an access token due to bad login credentials"""
 
 
+class CredentialsMissingError(DocumentCloudError):
+    """Raised if you attempt to perform an action which requires authentication
+    without supplying credentials
+    """
+
+
 class APIError(DocumentCloudError):
     """Any other error calling the API"""
