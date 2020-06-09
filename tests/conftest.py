@@ -1,5 +1,6 @@
 # Standard Library
 import time
+from uuid import uuid4
 
 # Third Party
 import pytest
@@ -14,6 +15,7 @@ AUTH_URI = "http://dev.squarelet.com/api/"
 USERNAME = "test-user"
 PASSWORD = "test-password"
 TIMEOUT = 1.0
+DEFAULT_DOCUMENT_URI = "https://assets.documentcloud.org/documents/20071460/test.pdf"
 
 
 # We want to enable VCR for all tests
@@ -53,7 +55,7 @@ def _wait_document(document, client, record_mode):
 @vcr.use_cassette("tests/cassettes/fixtures/document.yaml")
 def document(project, client, record_mode):
     document = client.documents.upload(
-        "https://assets.documentcloud.org/documents/20071460/test.pdf",
+        DEFAULT_DOCUMENT_URI,
         access="private",
         data={"_tag": ["document"]},
         description="A simple test document",
@@ -66,10 +68,10 @@ def document(project, client, record_mode):
     return document
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def document_factory(client, record_mode):
-    def make_document(*args, **kwargs):
-        document = client.documents.upload(*args, **kwargs)
+    def make_document(pdf=DEFAULT_DOCUMENT_URI, **kwargs):
+        document = client.documents.upload(pdf, **kwargs)
         document = _wait_document(document, client, record_mode)
         return document
 
@@ -78,5 +80,9 @@ def document_factory(client, record_mode):
 
 @pytest.fixture(scope="session")
 @vcr.use_cassette("tests/cassettes/fixtures/project.yaml")
-def project(client):
-    return client.projects.create("Test Project", "This is a project for testing")
+def project(client, document_factory):
+    document = document_factory()
+    title = f"This is a project for testing {uuid4()}"
+    return client.projects.create(
+        title, "This is a project for testing", document_ids=[document.id]
+    )

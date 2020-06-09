@@ -94,13 +94,7 @@ class BaseAPIClient:
             params = {"expand": ",".join(expand)}
         else:
             params = {}
-        try:
-            response = self.client.get(f"{self.api_path}/{get_id(id_)}/", params=params)
-        except APIError as exc:
-            if exc.response.status_code == 404:
-                raise DoesNotExistError(response=exc.response)
-            else:
-                raise exc
+        response = self.client.get(f"{self.api_path}/{get_id(id_)}/", params=params)
         # pylint: disable=not-callable
         return self.resource(self.client, response.json())
 
@@ -131,7 +125,10 @@ class BaseAPIObject:
             setattr(self, field, dateparser(getattr(self, field)))
 
     def __repr__(self):
-        return f"<{self.__class__.__name__}: {self}>"
+        return f"<{self.__class__.__name__}: {self.id} - {self}>"
+
+    def __eq__(self, obj):
+        return isinstance(obj, type(self)) and self.id == obj.id
 
     def put(self):
         """Alias for save"""
@@ -157,7 +154,7 @@ class APISet(list):
         for id_ in ids:
             if ids.count(id_) > 1:
                 raise DuplicateObjectError(
-                    f"Object with ID {id} appears in the list more than once"
+                    f"Object with ID {id_} appears in the list more than once"
                 )
 
     def append(self, obj):
@@ -167,9 +164,18 @@ class APISet(list):
             )
         if obj.id in [i.id for i in self]:
             raise DuplicateObjectError(
-                f"Object with ID {id} appears in the list more than once"
+                f"Object with ID {obj.id} appears in the list more than once"
             )
         super().append(copy(obj))
+
+    def add(self, obj):
+        if not isinstance(obj, self.resource):
+            raise TypeError(
+                f"Only {self.resource.__class__.__name__} can be added to this list"
+            )
+        # skip duplicates silently
+        if obj.id not in [i.id for i in self]:
+            super().append(copy(obj))
 
     def extend(self, list_):
         if not all(isinstance(obj, self.resource) for obj in list_):

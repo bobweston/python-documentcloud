@@ -29,20 +29,20 @@ class Project(BaseAPIObject):
     @property
     def document_list(self):
         if self._document_list is None:
-            response = self.client.get(
+            response = self._client.get(
                 f"{self.api_path}/{get_id(self.id)}/documents/",
-                params={"per_page": PER_PAGE_MAX},
+                params={"per_page": PER_PAGE_MAX, "expand": ["document"]},
             )
             json = response.json()
             next_url = json["next"]
             results = json["results"]
             while next_url:
-                response = self.client.get(next_url, full_url=True)
+                response = self._client.get(next_url, full_url=True)
                 json = response.json()
                 next_url = json["next"]
                 results.extend(json["results"])
             self._document_list = APISet(
-                (Document(self._client, r) for r in results), Document
+                (Document(self._client, r["document"]) for r in results), Document
             )
         return self._document_list
 
@@ -56,14 +56,23 @@ class Project(BaseAPIObject):
             raise TypeError("document_list must be set to a list or None")
 
     @property
+    def documents(self):
+        return self.document_list
+
+    @documents.setter
+    def docments(self, value):
+        self.document_list = value
+
+    @property
     def document_ids(self):
         return [d.id for d in self.document_list]
 
     def get_document(self, doc_id):
-        response = self.client.get(
-            f"{self.api_path}/{get_id(self.id)}/documents/{doc_id}"
+        response = self._client.get(
+            f"{self.api_path}/{get_id(self.id)}/documents/{doc_id}",
+            params={"expand": ["document"]},
         )
-        return Document(self._client, response.json())
+        return Document(self._client, response.json()["document"])
 
 
 class ProjectClient(BaseAPIClient):
@@ -71,6 +80,10 @@ class ProjectClient(BaseAPIClient):
 
     api_path = "projects"
     resource = Project
+
+    # all is overriden to filter by the current user for backward compatibility
+    def all(self):
+        return self.list(user=self.client.user_id)
 
     def get(self, id=None, title=None):
         # pylint:disable=redefined-builtin, arguments-differ
@@ -87,15 +100,13 @@ class ProjectClient(BaseAPIClient):
         else:
             return self.get_by_title(title)
 
-    # all is overriden to filter by the current user for backward compatibility
-    def all(self):
-        return self.list(user=self.client.user_id)
-
     def get_by_id(self, id_):
         return super().get(id_)
 
     def get_by_title(self, title):
-        response = self.client.get(f"{self.api_path}/", params={"title": title})
+        response = self.client.get(
+            f"{self.api_path}/", params={"title": title, "user": self.client.user_id}
+        )
         json = response.json()
         if json["count"] == 0:
             raise DoesNotExistError(response=response)
@@ -110,7 +121,7 @@ class ProjectClient(BaseAPIClient):
         project = Project(self.client, response.json())
         if document_ids:
             data = [{"document": d} for d in document_ids]
-            response = self._client.put(
+            response = self.client.put(
                 f"{self.api_path}/{project.id}/documents/", json=data
             )
         return project

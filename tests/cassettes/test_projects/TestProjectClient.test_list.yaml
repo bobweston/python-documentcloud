@@ -1,0 +1,86 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/projects/?page=1
+  response:
+    body:
+      string: '{"count":174,"next":"http://api.dev.documentcloud.org/api/projects/?page=2","previous":null,"results":[{"id":100174,"created_at":"2020-06-09T14:17:21.774445Z","description":"","edit_access":true,"private":true,"slug":"created-title-35d8d289-d256-450b-8c88-458ca2a65534","title":"Created
+        Title 35d8d289-d256-450b-8c88-458ca2a65534","updated_at":"2020-06-09T14:17:21.774892Z","user":100098},{"id":100172,"created_at":"2020-06-09T14:13:52.512275Z","description":"","edit_access":true,"private":true,"slug":"created-title-47d13d72-0d66-4246-a137-67465ffaedae","title":"Created
+        Title 47d13d72-0d66-4246-a137-67465ffaedae","updated_at":"2020-06-09T14:13:52.512667Z","user":100098},{"id":100170,"created_at":"2020-06-09T14:08:07.416198Z","description":"","edit_access":true,"private":true,"slug":"created-title-65878fc5-16bb-47c0-abde-2a7d535de8ae","title":"Created
+        Title 65878fc5-16bb-47c0-abde-2a7d535de8ae","updated_at":"2020-06-09T14:08:07.416649Z","user":100098},{"id":100168,"created_at":"2020-06-09T14:07:16.363728Z","description":"","edit_access":true,"private":true,"slug":"created-title-d7e8a9ba-1cce-429e-8ac9-1599c56dabdd","title":"Created
+        Title d7e8a9ba-1cce-429e-8ac9-1599c56dabdd","updated_at":"2020-06-09T14:07:16.364106Z","user":100098},{"id":100003,"created_at":"2020-03-30T20:39:35.944849Z","description":"","edit_access":null,"private":false,"slug":"test-2","title":"Test
+        2","updated_at":"2020-03-30T20:39:35.945376Z","user":100002},{"id":100004,"created_at":"2020-03-30T20:39:40.232047Z","description":"","edit_access":null,"private":false,"slug":"test-3","title":"Test
+        3","updated_at":"2020-03-30T20:39:40.232303Z","user":100002},{"id":100005,"created_at":"2020-03-30T20:39:44.130055Z","description":"","edit_access":null,"private":false,"slug":"test-4","title":"Test
+        4","updated_at":"2020-03-30T20:39:44.130372Z","user":100002},{"id":100006,"created_at":"2020-03-30T20:39:48.527182Z","description":"","edit_access":null,"private":false,"slug":"test-5","title":"Test
+        5","updated_at":"2020-03-30T20:39:48.527438Z","user":100002},{"id":100007,"created_at":"2020-06-06T15:42:36.279150Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-06T15:42:36.280444Z","user":100098},{"id":100008,"created_at":"2020-06-06T15:43:05.084660Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-06T15:43:05.085104Z","user":100098},{"id":100009,"created_at":"2020-06-06T15:45:28.735852Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-06T15:45:28.736207Z","user":100098},{"id":100010,"created_at":"2020-06-06T15:48:04.533251Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-06T15:48:04.533625Z","user":100098},{"id":100011,"created_at":"2020-06-06T15:50:35.244000Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-06T15:50:35.244399Z","user":100098},{"id":100012,"created_at":"2020-06-06T19:35:40.259351Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-06T19:35:40.259765Z","user":100098},{"id":100013,"created_at":"2020-06-06T19:42:25.119634Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-06T19:42:25.120006Z","user":100098},{"id":100014,"created_at":"2020-06-08T17:26:39.844363Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T17:26:39.844775Z","user":100098},{"id":100015,"created_at":"2020-06-08T17:31:22.459057Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T17:31:22.459572Z","user":100098},{"id":100016,"created_at":"2020-06-08T17:47:31.715639Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T17:47:31.716014Z","user":100098},{"id":100017,"created_at":"2020-06-08T19:28:53.753638Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T19:28:53.754089Z","user":100098},{"id":100018,"created_at":"2020-06-08T19:30:00.903907Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T19:30:00.904501Z","user":100098},{"id":100019,"created_at":"2020-06-08T19:31:32.223631Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T19:31:32.224064Z","user":100098},{"id":100020,"created_at":"2020-06-08T19:32:46.240971Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T19:32:46.241375Z","user":100098},{"id":100021,"created_at":"2020-06-08T19:45:58.289458Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T19:45:58.290277Z","user":100098},{"id":100022,"created_at":"2020-06-08T19:55:28.483070Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T19:55:28.483519Z","user":100098},{"id":100023,"created_at":"2020-06-08T19:57:25.956108Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"test-project","title":"Test
+        Project","updated_at":"2020-06-08T19:57:25.956471Z","user":100098}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '6107'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:17 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

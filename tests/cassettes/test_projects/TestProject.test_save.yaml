@@ -1,0 +1,451 @@
+interactions:
+- request:
+    body: '{"title": "test", "file_url": "https://assets.documentcloud.org/documents/20071460/test.pdf"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '93'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://api.dev.documentcloud.org/api/documents/
+  response:
+    body:
+      string: '{"id":10000421,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000421-test","created_at":"2020-06-09T14:21:06.994952Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"nofile","title":"test","updated_at":"2020-06-09T14:21:06.995445Z","user":100098}'
+    headers:
+      Allow:
+      - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '490'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:07 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000421/
+  response:
+    body:
+      string: '{"id":10000421,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000421-test","created_at":"2020-06-09T14:21:06.994952Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T14:21:07.439715Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - private, no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '491'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:08 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Cookie, Accept, Origin, Accept-Language
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000421/
+  response:
+    body:
+      string: '{"id":10000421,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000421-test","created_at":"2020-06-09T14:21:06.994952Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T14:21:08.250984Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - private, no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '491'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:09 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Cookie, Accept, Origin, Accept-Language
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000421/
+  response:
+    body:
+      string: '{"id":10000421,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000421-test","created_at":"2020-06-09T14:21:06.994952Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T14:21:10.116555Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - private, no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '504'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:10 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Cookie, Accept, Origin, Accept-Language
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000421/
+  response:
+    body:
+      string: '{"id":10000421,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000421-test","created_at":"2020-06-09T14:21:06.994952Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-09T14:21:10.531926Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - private, no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '504'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:11 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Cookie, Accept, Origin, Accept-Language
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/projects/100176/documents/?per_page=100&expand=document
+  response:
+    body:
+      string: '{"count":2,"next":null,"previous":null,"results":[{"document":{"id":10000415,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000415-test","created_at":"2020-06-09T14:20:34.795711Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","presigned_url":"https://documentcloud-dev-mjk.s3.amazonaws.com/documents/10000415/test.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4JBBEJ7KWPNZQB7I%2F20200609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200609T142111Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=c18a296360b1a2d66ef768959719c894c87aeb51a72c23b539ecf60623f65391","projects":[100176],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-09T14:20:38.171168Z","user":100098},"edit_access":true},{"document":{"id":10000416,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000416-test","created_at":"2020-06-09T14:20:39.957973Z","data":{"_tag":["document"]},"description":"A
+        simple test document","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","presigned_url":"https://documentcloud-dev-mjk.s3.amazonaws.com/documents/10000416/test.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4JBBEJ7KWPNZQB7I%2F20200609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200609T142111Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=41fe4f22225554fd67be6ffd54c9278b55d0e9cd72874d6a6823773aa452893e","projects":[100176],"related_article":"https://www.example.com/article/","published_url":"https://www.example.com/article/test.pdf","slug":"test","source":"MuckRock","status":"success","title":"test","updated_at":"2020-06-09T14:20:46.553970Z","user":100098},"edit_access":true}]}'
+    headers:
+      Allow:
+      - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '1976'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:11 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"description": "This is a project for testing", "private": true, "title":
+      "This is a project for testing 4b63e14e-81ff-483c-9694-0994f977ba24"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '144'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: PUT
+    uri: http://api.dev.documentcloud.org/api/projects/100176/
+  response:
+    body:
+      string: '{"id":100176,"created_at":"2020-06-09T14:20:39.422690Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-4b63e14e-81ff-483c-9694-0994f977ba24","title":"This
+        is a project for testing 4b63e14e-81ff-483c-9694-0994f977ba24","updated_at":"2020-06-09T14:21:11.787688Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '346'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:11 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '[{"document": 10000415}, {"document": 10000416}, {"document": 10000421}]'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '72'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: PUT
+    uri: http://api.dev.documentcloud.org/api/projects/100176/documents/
+  response:
+    body:
+      string: '[{"document":10000415,"edit_access":true},{"document":10000416,"edit_access":true}]'
+    headers:
+      Allow:
+      - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '83'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:12 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/projects/100176/
+  response:
+    body:
+      string: '{"id":100176,"created_at":"2020-06-09T14:20:39.422690Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-4b63e14e-81ff-483c-9694-0994f977ba24","title":"This
+        is a project for testing 4b63e14e-81ff-483c-9694-0994f977ba24","updated_at":"2020-06-09T14:21:11.787688Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '346'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:12 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/projects/100176/documents/?per_page=100&expand=document
+  response:
+    body:
+      string: '{"count":3,"next":null,"previous":null,"results":[{"document":{"id":10000415,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000415-test","created_at":"2020-06-09T14:20:34.795711Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","presigned_url":"https://documentcloud-dev-mjk.s3.amazonaws.com/documents/10000415/test.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4JBBEJ7KWPNZQB7I%2F20200609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200609T142112Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=be28385f512351965d65dff667d5fe983f6a545fd1e292167fb8bed60a35b292","projects":[100176],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-09T14:20:38.171168Z","user":100098},"edit_access":true},{"document":{"id":10000416,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000416-test","created_at":"2020-06-09T14:20:39.957973Z","data":{"_tag":["document"]},"description":"A
+        simple test document","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","presigned_url":"https://documentcloud-dev-mjk.s3.amazonaws.com/documents/10000416/test.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4JBBEJ7KWPNZQB7I%2F20200609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200609T142112Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=335df293f27de54e46a42443214e6fad61195f08dedcda0634bac8bdf2d5db22","projects":[100176],"related_article":"https://www.example.com/article/","published_url":"https://www.example.com/article/test.pdf","slug":"test","source":"MuckRock","status":"success","title":"test","updated_at":"2020-06-09T14:20:46.553970Z","user":100098},"edit_access":true},{"document":{"id":10000421,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000421-test","created_at":"2020-06-09T14:21:06.994952Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","presigned_url":"https://documentcloud-dev-mjk.s3.amazonaws.com/documents/10000421/test.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4JBBEJ7KWPNZQB7I%2F20200609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200609T142112Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=3df325bb0b0fbd5413281f2751f59ab9d686e289b889cc161323ab315145fe6d","projects":[100176],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-09T14:21:10.531926Z","user":100098},"edit_access":true}]}'
+    headers:
+      Allow:
+      - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '2878'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 14:21:12 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -9,7 +9,7 @@ test:
 	pytest --record-mode=none --block-network
 
 test-dev:
-	pytest --record-mode=once
+	pytest --record-mode=new_episodes
 
 coverage:
 	coverage erase

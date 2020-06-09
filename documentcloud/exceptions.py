@@ -19,14 +19,6 @@ class DocumentCloudError(Exception):
         super().__init__(*args, **kwargs)
 
 
-class DoesNotExistError(DocumentCloudError):
-    """Raised when the user asks the API for something it cannot find"""
-
-
-class MultipleObjectsReturnedError(DocumentCloudError):
-    """Raised when the API returns multiple objects when it expected one"""
-
-
 class DuplicateObjectError(DocumentCloudError):
     """Raised when an object is added to a unique list more than once"""
 
@@ -43,3 +35,12 @@ class CredentialsMissingError(DocumentCloudError):
 
 class APIError(DocumentCloudError):
     """Any other error calling the API"""
+
+
+class DoesNotExistError(APIError):
+    """Raised when the user asks the API for something it cannot find"""
+
+
+class MultipleObjectsReturnedError(APIError):
+    """Raised when the API returns multiple objects when it expected one"""
+

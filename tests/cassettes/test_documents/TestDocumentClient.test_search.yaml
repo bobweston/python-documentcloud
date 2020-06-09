@@ -7,20 +7,20 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzAzNzEzLCJqdGkiOiIxYzEyZTk0ZThiYTY0OGUzYWIxMmQwNWMxYWZlMDkwMSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pnvoYeeOVf7sHFpgBCRHW_rkayGtzA7MjvwmCt4YjIF1a7PFcKgzRgl2pAIDC8KRK0E9FgmbA9CVU9oNQJSdzyYBG4dEbiy__pHp-FcyVJtJQe1GxZZUOuXHfhcCmD1423N7YyW-wwQBqB_TBH9Ka09BZE5HIIt8zWb7wfjq5erzIjXApouQ_EMxGC_ojY3LB764XF74pRLHkh5WOUNF8qfF87QFZFeO5IRm1xEWybwbhhhnrB9D7IDJHN3RwlDb4Pr4PxmprN5VOVt9pDVdXKbZmZ9v602t2yYQrmqIUn9V5Rllf12XcnARfM4jJMQznp_mR3umKk_tYenwXkVaWA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzEyNzM0LCJqdGkiOiI3NzgwY2U0NzAwM2E0ZGY5OTc4MWE2ZDY3YjBiYjUwOSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.af4AlI5RLh1Ws1Qrkdj6HdlR0TYNXz1gJhe_12umsT4lxrBsF1HMFaEnCNW3Vxcno5bNM6b9EMNeiZD2DPeUOGKfSQ-QRAEfxaGHmuL0EndcHqbGNzhX2ewdAyupHpp6kCimcjk03hUvr8WtY9h3wFm5ynxLRFE8EG1fOqMLw9GO_auHGdS6GOVZRHTr9fOQWY2bncJQeJG-gLtDaumtXnW0wBmQyD1XpnFf67WUfzL7qdjfGjq5pD-NfAsdj1IHJvgRTz2qrMpmgZ-g0nb7uEsH--SLhfJYjks0GJ7PG5KoNRAFaFYcov5dCixBt1hagD4_-49HDVf76ehi-H0TwQ
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/search/?q=document%3A10000330+simple&page=1
+    uri: http://api.dev.documentcloud.org/api/documents/search/?q=document%3A10000416+simple&page=1
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"id":"10000330","user":100098,"organization":11343,"access":"private","status":"success","title":"test","slug":"test","source":"MuckRock","description":"A
-        simple test document","language":"eng","created_at":"2020-06-09T11:50:14.726Z","updated_at":"2020-06-09T11:50:21.719Z","page_count":1,"projects":[100160],"highlights":{"description":["A
+      string: '{"count":1,"next":null,"previous":null,"results":[{"id":"10000416","user":100098,"organization":11343,"access":"private","status":"success","title":"test","slug":"test","source":"MuckRock","description":"A
+        simple test document","language":"eng","created_at":"2020-06-09T14:20:39.957Z","updated_at":"2020-06-09T14:20:46.553Z","page_count":1,"projects":[100176],"highlights":{"description":["A
         <em>simple</em> test document"]},"data":{"_tag":["document"]},"asset_url":"http://api.dev.documentcloud.org/files/"}],"escaped":false,"debug":{"text_query":"simple","fq":["!access:invisible","filter(access:public
         AND status:(success readable)) OR (user:100098) OR (access:organization AND
-        organization:(11343)) OR (projects_edit_access:(100007 100008 100009 100010
+        organization:(11343)) OR (projects_edit_access:(100174 100172 100170 100168
         100011 100012 100013 100014 100015 100016 100017 100018 100019 100020 100021
         100022 100023 100024 100025 100026 100027 100028 100029 100030 100031 100032
         100033 100034 100035 100036 100037 100038 100039 100040 100041 100042 100043
@@ -32,9 +32,10 @@ interactions:
         100099 100100 100101 100102 100103 100104 100105 100106 100107 100108 100109
         100110 100111 100112 100113 100114 100115 100116 100117 100118 100119 100120
         100121 100122 100123 100124 100125 100126 100127 100128 100129 100130 100131
-        100132 100133 100134 100135 100136 100137 100138 100139 100140 100141 100142
+        100132 100007 100134 100135 100136 100137 100138 100139 100140 100141 100142
         100143 100144 100145 100146 100147 100148 100149 100150 100151 100152 100153
-        100154 100155 100156 100157 100158 100159 100160))","id:(10000330)"],"sort":"score
+        100154 100155 100156 100157 100158 100159 100160 100161 100162 100163 100164
+        100165 100166 100169 100171 100133 100008 100009 100010 100176 100175 100173))","id:(10000416)"],"sort":"score
         desc, created_at desc","rows":25,"start":0}}'
     headers:
       Allow:
@@ -46,11 +47,11 @@ interactions:
       Content-Language:
       - en
       Content-Length:
-      - '1885'
+      - '1990'
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 11:50:26 GMT
+      - Tue, 09 Jun 2020 14:20:51 GMT
       Server:
       - nginx/1.15.1
       Vary:

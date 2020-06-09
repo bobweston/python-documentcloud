@@ -136,9 +136,7 @@ class TestDocument:
         assert document.source == "MuckRock"
 
     def test_delete(self, document_factory, client):
-        document = document_factory(
-            "https://assets.documentcloud.org/documents/20071460/test.pdf"
-        )
+        document = document_factory()
         document.delete()
 
         with pytest.raises(DoesNotExistError):
@@ -151,9 +149,7 @@ class TestDocumentClient:
         assert documents
 
     def test_upload_url(self, document_factory):
-        document = document_factory(
-            "https://assets.documentcloud.org/documents/20071460/test.pdf"
-        )
+        document = document_factory()
         assert document.status == "success"
 
     def test_upload_file(self, document_factory):

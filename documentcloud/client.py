@@ -11,7 +11,7 @@ import requests
 
 # Local
 from .documents import DocumentClient
-from .exceptions import APIError, CredentialsFailedError
+from .exceptions import APIError, CredentialsFailedError, DoesNotExistError
 from .organizations import OrganizationClient
 from .projects import ProjectClient
 from .toolbox import credentials_required, requests_retry_session
@@ -154,4 +154,7 @@ class DocumentCloud:
         try:
             response.raise_for_status()
         except requests.exceptions.RequestException as exc:
-            raise APIError(response=exc.response)
+            if exc.response.status_code == 404:
+                raise DoesNotExistError(response=exc.response)
+            else:
+                raise APIError(response=exc.response)

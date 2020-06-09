@@ -13,24 +13,25 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/users/me/
+    uri: http://api.dev.documentcloud.org/api/projects/?title=This+is+a+project+for+testing+4b63e14e-81ff-483c-9694-0994f977ba24&user=100098
   response:
     body:
-      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
-        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+      string: '{"count":1,"next":null,"previous":null,"results":[{"id":100176,"created_at":"2020-06-09T14:20:39.422690Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-4b63e14e-81ff-483c-9694-0994f977ba24","title":"This
+        is a project for testing 4b63e14e-81ff-483c-9694-0994f977ba24","updated_at":"2020-06-09T14:21:11.787688Z","user":100098}]}'
     headers:
       Allow:
-      - GET, PUT, PATCH, HEAD, OPTIONS
+      - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '220'
+      - '398'
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 14:20:34 GMT
+      - Tue, 09 Jun 2020 14:21:19 GMT
       Server:
       - nginx/1.15.1
       Vary:
