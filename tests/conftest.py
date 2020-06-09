@@ -2,6 +2,7 @@ import time
 
 import pytest
 
+import vcr
 from documentcloud.client import DocumentCloud
 
 # Test against a development environment documentcloud instance
@@ -12,7 +13,15 @@ PASSWORD = "test-password"
 TIMEOUT = 1.0
 
 
-def _client():
+# We want to enable VCR for all tests
+def pytest_collection_modifyitems(items):
+    for item in items:
+        item.add_marker(pytest.mark.vcr(match_on=["method", "uri", "body", "headers"]))
+
+
+@pytest.fixture(scope="session")
+@vcr.use_cassette("tests/cassettes/fixtures/client.yaml")
+def client():
     return DocumentCloud(
         username=USERNAME,
         password=PASSWORD,
@@ -23,19 +32,24 @@ def _client():
 
 
 @pytest.fixture
-def client():
-    return _client()
-
-
-@pytest.fixture
 def public_client():
     return DocumentCloud(base_uri=BASE_URI, auth_uri=AUTH_URI, timeout=TIMEOUT)
 
 
-@pytest.fixture(scope="module")
-def document(project):
-    client_ = _client()
-    document_ = client_.documents.upload(
+def _wait_document(document, client, record_mode):
+    # wait for document to finish processing
+    while document.status in ("nofile", "pending"):
+        if record_mode != "none":
+            time.sleep(1)
+        document = client.documents.get(document.id)
+    assert document.status == "success"
+    return document
+
+
+@pytest.fixture(scope="session")
+@vcr.use_cassette("tests/cassettes/fixtures/document.yaml")
+def document(project, client, record_mode):
+    document = client.documents.upload(
         "https://assets.documentcloud.org/documents/20071460/test.pdf",
         access="private",
         data={"_tag": ["document"]},
@@ -45,16 +59,21 @@ def document(project):
         published_url="https://www.example.com/article/test.pdf",
         projects=[project.id],
     )
-    # wait for document to finish processing
-    # XXX how to vcr this
-    while document_.status in ("nofile", "pending"):
-        time.sleep(1)
-        document_ = client_.documents.get(document_.id)
-    assert document_.status == "success"
+    document = _wait_document(document, client, record_mode)
+    return document
 
-    return document_
 
-@pytest.fixture(scope="module")
-def project():
-    client_ = _client()
-    return client_.projects.create("Test Project", "This is a project for testing")
+@pytest.fixture
+def document_factory(client, record_mode):
+    def make_document(*args, **kwargs):
+        document = client.documents.upload(*args, **kwargs)
+        document = _wait_document(document, client, record_mode)
+        return document
+
+    return make_document
+
+
+@pytest.fixture(scope="session")
+@vcr.use_cassette("tests/cassettes/fixtures/project.yaml")
+def project(client):
+    return client.projects.create("Test Project", "This is a project for testing")

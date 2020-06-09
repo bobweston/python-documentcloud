@@ -1,0 +1,424 @@
+interactions:
+- request:
+    body: '{"title": "test"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNjcxNzc2LCJqdGkiOiJiMTU1N2I3NmJjYTM0OTA4YTdjZTMxMTk4OTAzOTg0NCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.RsEsgZaJuIjG4I-jT-oG85ri6gEDq13xLYYxhutGzu0D73ei9XJirB4d0AGNzM_beR5ZijOx14_8S6s0p0WNG7bryCKTZu6FQ-u24HHL2ZpXjO7fHtnLWhRkaHgZhcjfL3pmVwBZXKUAJMtG7d7xC-P56X1PXslNKrTnPs6DfxbmRtLCWVrhTqnsg1-5vIvzry8yeoS15T8JBtpq4j9F3oLmm2-9QsL1wZi-5BuB4G60ZnhEctKbWnxT1n-fB6uat7BU6ziF25EwAHFR7HJozx5g7EIwAP4zwO39sVDyrCWiEr2wv54_1_SnyRAnzcGQj2WDgK4FmQduz23gYjvaGw
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '17'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://api.dev.documentcloud.org/api/documents/
+  response:
+    body:
+      string: '{"id":10000328,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000328-test","created_at":"2020-06-09T02:58:10.701027Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","presigned_url":"https://documentcloud-dev-mjk.s3.amazonaws.com/documents/10000328/test.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4JBBEJ7KWPNZQB7I%2F20200609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200609T025810Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=ee0af535a19c47797f3100cdfe8d738cdc1674503a368c99a9b3a5d46338bb8f","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"nofile","title":"test","updated_at":"2020-06-09T02:58:10.701533Z","user":100098}'
+    headers:
+      Allow:
+      - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '849'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 02:58:10 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: !!binary |
+      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
+      YvNianFu8d3FS4vXFgvm3jr9lvCXb7ptpjdtbwq284PnHz4vhl4ippdsLwn+50LPCafPEdM52zn3
+      OfHZsy7b2Z4629NP3WW79NS1pwT20flUabnvTTJIBqAda7jvvLhse3V3FdmLaZnwbsPlxjWIK4nr
+      CVz43YPiNlxuMuDZLo7/GSk+YznjOPPQmZNnjKnH5h47/Zg49+jpR4VXZy/MChl/oy2ZcNgSPd+w
+      1bbWjOW3imN56IZ96vZN1G/yhcY9tnEUOnig2Xagp9G2rrVizIgJG1DQJNrEDnFQTIpPiBfE/IJh
+      f51tCNcl/zW/4PEXlvhMg7ZB96C4sHzJo/Tb0dqe1J65PWKfr9HW27PdZuqx9bh73un5Xc/Vnrzx
+      HvI8/vle9V3wiR5fo9vn8dXZfRt6LWPVrVVj5cQ0Zm41jQkEG90KY27TskkwmcZND5tEE3SAMFdN
+      jGSBnJ4fHXE4+hfyl4f71QL/QZWcUOtH2N0zdEDNO6HC2IGDgXlC/jT46KlT0GntV1tGAmrIGuxX
+      Iwh4GDCHgNk6Xw2dwUwm6+AXcTgQnsE7OGYcSDyc0aiwygdHhmTwGZXhSsTBBDSc4N3BeEhgegS1
+      D2eA3RjToSkx7YxujitrNw7UHP5vqITgXgplbmRzdHJlYW0KZW5kb2JqCgo2IDAgb2JqCjQ0OTIK
+      ZW5kb2JqCgo3IDAgb2JqCjw8L1R5cGUvRm9udERlc2NyaXB0b3IvRm9udE5hbWUvQkFBQUFBK0xp
+      YmVyYXRpb25TZXJpZgovRmxhZ3MgNAovRm9udEJCb3hbLTU0MyAtMzAzIDEyNzcgOTgxXS9JdGFs
+      aWNBbmdsZSAwCi9Bc2NlbnQgODkxCi9EZXNjZW50IC0yMTYKL0NhcEhlaWdodCA5ODEKL1N0ZW1W
+      IDgwCi9Gb250RmlsZTIgNSAwIFIKPj4KZW5kb2JqCgo4IDAgb2JqCjw8L0xlbmd0aCAyMzYvRmls
+      dGVyL0ZsYXRlRGVjb2RlPj4Kc3RyZWFtCnicXVDLbsMgELzzFXtMDxHY6etgIVWJIvmQtqrbD8Cw
+      dpFqQBgf/PddcNpKPYBmmJnVsPzYnlpnE3+NXneYYLDORJz9EjVCj6N1rKrBWJ2urNx6UoFxynbr
+      nHBq3eCbhvE30uYUV9g9Gd/jDeMv0WC0boTdx7Ej3i0hfOGELoFgUoLBgeZcVHhWE/KS2reGZJvW
+      PUX+DO9rQKgLr7Yq2hucg9IYlRuRNUJIaM5nydCZf9phS/SD/lSRnBU5hXi4lYTrgu/vMj5s749l
+      xtWdp+Xv/rQEvcRIDctOSrVcyjr8XVvwIafK+QbgZXIbCmVuZHN0cmVhbQplbmRvYmoKCjkgMCBv
+      YmoKPDwvVHlwZS9Gb250L1N1YnR5cGUvVHJ1ZVR5cGUvQmFzZUZvbnQvQkFBQUFBK0xpYmVyYXRp
+      b25TZXJpZgovRmlyc3RDaGFyIDAKL0xhc3RDaGFyIDMKL1dpZHRoc1s3NzcgMjc3IDQ0MyA1MDAg
+      XQovRm9udERlc2NyaXB0b3IgNyAwIFIKL1RvVW5pY29kZSA4IDAgUgo+PgplbmRvYmoKCjEwIDAg
+      b2JqCjw8L0YxIDkgMCBSCj4+CmVuZG9iagoKMTEgMCBvYmoKPDwvRm9udCAxMCAwIFIKL1Byb2NT
+      ZXRbL1BERi9UZXh0XQo+PgplbmRvYmoKCjEgMCBvYmoKPDwvVHlwZS9QYWdlL1BhcmVudCA0IDAg
+      Ui9SZXNvdXJjZXMgMTEgMCBSL01lZGlhQm94WzAgMCA2MTEuOTcxNjUzNTQzMzA3IDc5MS45NzE2
+      NTM1NDMzMDddL0dyb3VwPDwvUy9UcmFuc3BhcmVuY3kvQ1MvRGV2aWNlUkdCL0kgdHJ1ZT4+L0Nv
+      bnRlbnRzIDIgMCBSPj4KZW5kb2JqCgo0IDAgb2JqCjw8L1R5cGUvUGFnZXMKL1Jlc291cmNlcyAx
+      MSAwIFIKL01lZGlhQm94WyAwIDAgNjExIDc5MSBdCi9LaWRzWyAxIDAgUiBdCi9Db3VudCAxPj4K
+      ZW5kb2JqCgoxMiAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgNCAwIFIKL09wZW5BY3Rpb25b
+      MSAwIFIgL1hZWiBudWxsIG51bGwgMF0KL0xhbmcoZW4tVVMpCj4+CmVuZG9iagoKMTMgMCBvYmoK
+      PDwvQ3JlYXRvcjxGRUZGMDA1NzAwNzIwMDY5MDA3NDAwNjUwMDcyPgovUHJvZHVjZXI8RkVGRjAw
+      NEMwMDY5MDA2MjAwNzIwMDY1MDA0RjAwNjYwMDY2MDA2OTAwNjMwMDY1MDAyMDAwMzYwMDJFMDAz
+      MD4KL0NyZWF0aW9uRGF0ZShEOjIwMjAwNDA1MjI0NDI4LTA0JzAwJyk+PgplbmRvYmoKCnhyZWYK
+      MCAxNAowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDU1NTQgMDAwMDAgbiAKMDAwMDAwMDAxOSAw
+      MDAwMCBuIAowMDAwMDAwMTgwIDAwMDAwIG4gCjAwMDAwMDU3MjMgMDAwMDAgbiAKMDAwMDAwMDE5
+      OSAwMDAwMCBuIAowMDAwMDA0Nzc1IDAwMDAwIG4gCjAwMDAwMDQ3OTYgMDAwMDAgbiAKMDAwMDAw
+      NDk5MSAwMDAwMCBuIAowMDAwMDA1Mjk2IDAwMDAwIG4gCjAwMDAwMDU0NjcgMDAwMDAgbiAKMDAw
+      MDAwNTQ5OSAwMDAwMCBuIAowMDAwMDA1ODIyIDAwMDAwIG4gCjAwMDAwMDU5MTkgMDAwMDAgbiAK
+      dHJhaWxlcgo8PC9TaXplIDE0L1Jvb3QgMTIgMCBSCi9JbmZvIDEzIDAgUgovSUQgWyA8Q0M2RTQ0
+      RDgxRkE5NjFDOEE0RDFGNDlBNzc2OUQxREQ+CjxDQzZFNDREODFGQTk2MUM4QTREMUY0OUE3NzY5
+      RDFERD4gXQovRG9jQ2hlY2tzdW0gLzc1QUYzQTYzRUIxQ0FGM0JFMTExQ0EyMDY3MDg1QTYwCj4+
+      CnN0YXJ0eHJlZgo2MDk0CiUlRU9GCg==
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '6577'
+      User-Agent:
+      - python-requests/2.23.0
+    method: PUT
+    uri: https://documentcloud-dev-mjk.s3.amazonaws.com/documents/10000328/test.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4JBBEJ7KWPNZQB7I%2F20200609%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200609T025810Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=ee0af535a19c47797f3100cdfe8d738cdc1674503a368c99a9b3a5d46338bb8f
+  response:
+    body:
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      Date:
+      - Tue, 09 Jun 2020 02:58:11 GMT
+      ETag:
+      - '"b1e7f84f7fd7d908654b11f415651098"'
+      Server:
+      - AmazonS3
+      x-amz-id-2:
+      - QICYU5ipYCS9uh9+aN8JA4cblXRyaV/DjnWXVjrvPgOfODcZo3JOxurE8A07AolsStGh13/QlhE=
+      x-amz-request-id:
+      - 37047D38B8B58277
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"force_ocr": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNjcxNzc2LCJqdGkiOiJiMTU1N2I3NmJjYTM0OTA4YTdjZTMxMTk4OTAzOTg0NCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.RsEsgZaJuIjG4I-jT-oG85ri6gEDq13xLYYxhutGzu0D73ei9XJirB4d0AGNzM_beR5ZijOx14_8S6s0p0WNG7bryCKTZu6FQ-u24HHL2ZpXjO7fHtnLWhRkaHgZhcjfL3pmVwBZXKUAJMtG7d7xC-P56X1PXslNKrTnPs6DfxbmRtLCWVrhTqnsg1-5vIvzry8yeoS15T8JBtpq4j9F3oLmm2-9QsL1wZi-5BuB4G60ZnhEctKbWnxT1n-fB6uat7BU6ziF25EwAHFR7HJozx5g7EIwAP4zwO39sVDyrCWiEr2wv54_1_SnyRAnzcGQj2WDgK4FmQduz23gYjvaGw
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '20'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://api.dev.documentcloud.org/api/documents/10000328/process/
+  response:
+    body:
+      string: '"OK"'
+    headers:
+      Allow:
+      - POST, DELETE, OPTIONS
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '4'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 02:58:11 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNjcxNzc2LCJqdGkiOiJiMTU1N2I3NmJjYTM0OTA4YTdjZTMxMTk4OTAzOTg0NCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.RsEsgZaJuIjG4I-jT-oG85ri6gEDq13xLYYxhutGzu0D73ei9XJirB4d0AGNzM_beR5ZijOx14_8S6s0p0WNG7bryCKTZu6FQ-u24HHL2ZpXjO7fHtnLWhRkaHgZhcjfL3pmVwBZXKUAJMtG7d7xC-P56X1PXslNKrTnPs6DfxbmRtLCWVrhTqnsg1-5vIvzry8yeoS15T8JBtpq4j9F3oLmm2-9QsL1wZi-5BuB4G60ZnhEctKbWnxT1n-fB6uat7BU6ziF25EwAHFR7HJozx5g7EIwAP4zwO39sVDyrCWiEr2wv54_1_SnyRAnzcGQj2WDgK4FmQduz23gYjvaGw
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000328/
+  response:
+    body:
+      string: '{"id":10000328,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000328-test","created_at":"2020-06-09T02:58:10.701027Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T02:58:12.464473Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - private, no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '491'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 02:58:12 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Cookie, Accept, Origin, Accept-Language
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNjcxNzc2LCJqdGkiOiJiMTU1N2I3NmJjYTM0OTA4YTdjZTMxMTk4OTAzOTg0NCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.RsEsgZaJuIjG4I-jT-oG85ri6gEDq13xLYYxhutGzu0D73ei9XJirB4d0AGNzM_beR5ZijOx14_8S6s0p0WNG7bryCKTZu6FQ-u24HHL2ZpXjO7fHtnLWhRkaHgZhcjfL3pmVwBZXKUAJMtG7d7xC-P56X1PXslNKrTnPs6DfxbmRtLCWVrhTqnsg1-5vIvzry8yeoS15T8JBtpq4j9F3oLmm2-9QsL1wZi-5BuB4G60ZnhEctKbWnxT1n-fB6uat7BU6ziF25EwAHFR7HJozx5g7EIwAP4zwO39sVDyrCWiEr2wv54_1_SnyRAnzcGQj2WDgK4FmQduz23gYjvaGw
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000328/
+  response:
+    body:
+      string: '{"id":10000328,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000328-test","created_at":"2020-06-09T02:58:10.701027Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T02:58:12.464473Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - private, no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '491'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 02:58:14 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Cookie, Accept, Origin, Accept-Language
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNjcxNzc2LCJqdGkiOiJiMTU1N2I3NmJjYTM0OTA4YTdjZTMxMTk4OTAzOTg0NCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.RsEsgZaJuIjG4I-jT-oG85ri6gEDq13xLYYxhutGzu0D73ei9XJirB4d0AGNzM_beR5ZijOx14_8S6s0p0WNG7bryCKTZu6FQ-u24HHL2ZpXjO7fHtnLWhRkaHgZhcjfL3pmVwBZXKUAJMtG7d7xC-P56X1PXslNKrTnPs6DfxbmRtLCWVrhTqnsg1-5vIvzry8yeoS15T8JBtpq4j9F3oLmm2-9QsL1wZi-5BuB4G60ZnhEctKbWnxT1n-fB6uat7BU6ziF25EwAHFR7HJozx5g7EIwAP4zwO39sVDyrCWiEr2wv54_1_SnyRAnzcGQj2WDgK4FmQduz23gYjvaGw
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000328/
+  response:
+    body:
+      string: '{"id":10000328,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000328-test","created_at":"2020-06-09T02:58:10.701027Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"611.9716796875x791.9716796875:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T02:58:14.195580Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - private, no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '522'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 02:58:15 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Cookie, Accept, Origin, Accept-Language
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNjcxNzc2LCJqdGkiOiJiMTU1N2I3NmJjYTM0OTA4YTdjZTMxMTk4OTAzOTg0NCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.RsEsgZaJuIjG4I-jT-oG85ri6gEDq13xLYYxhutGzu0D73ei9XJirB4d0AGNzM_beR5ZijOx14_8S6s0p0WNG7bryCKTZu6FQ-u24HHL2ZpXjO7fHtnLWhRkaHgZhcjfL3pmVwBZXKUAJMtG7d7xC-P56X1PXslNKrTnPs6DfxbmRtLCWVrhTqnsg1-5vIvzry8yeoS15T8JBtpq4j9F3oLmm2-9QsL1wZi-5BuB4G60ZnhEctKbWnxT1n-fB6uat7BU6ziF25EwAHFR7HJozx5g7EIwAP4zwO39sVDyrCWiEr2wv54_1_SnyRAnzcGQj2WDgK4FmQduz23gYjvaGw
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000328/
+  response:
+    body:
+      string: '{"id":10000328,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000328-test","created_at":"2020-06-09T02:58:10.701027Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"611.9716796875x791.9716796875:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-09T02:58:15.335833Z","user":100098}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - private, no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '522'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 02:58:16 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Cookie, Accept, Origin, Accept-Language
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -131,17 +131,10 @@ class TestDocument:
         document = client.documents.get(document.id)
         assert document.source == "MuckRock"
 
-    def test_delete(self, client):
-        document = client.documents.upload(
+    def test_delete(self, document_factory, client):
+        document = document_factory(
             "https://assets.documentcloud.org/documents/20071460/test.pdf"
         )
-        # wait for document to finish processing
-        # XXX how to vcr this
-        while document.status in ("nofile", "pending"):
-            time.sleep(1)
-            document = client.documents.get(document.id)
-        assert document.status == "success"
-
         document.delete()
 
         with pytest.raises(DoesNotExistError):
@@ -153,30 +146,19 @@ class TestDocumentClient:
         documents = client.documents.search(f"document:{document.id} simple")
         assert documents
 
-    def test_upload_url(self, client):
-        document = client.documents.upload(
+    def test_upload_url(self, document_factory):
+        document = document_factory(
             "https://assets.documentcloud.org/documents/20071460/test.pdf"
         )
-        # wait for document to finish processing
-        # XXX how to vcr this
-        while document.status in ("nofile", "pending"):
-            time.sleep(1)
-            document = client.documents.get(document.id)
         assert document.status == "success"
 
-    def test_upload_file(self, client):
+    def test_upload_file(self, document_factory):
         pdf = open("tests/test.pdf", "rb")
-        document = client.documents.upload(pdf)
-        while document.status in ("nofile", "pending"):
-            time.sleep(1)
-            document = client.documents.get(document.id)
+        document = document_factory(pdf)
         assert document.status == "success"
 
-    def test_upload_file_path(self, client):
-        document = client.documents.upload("tests/test.pdf")
-        while document.status in ("nofile", "pending"):
-            time.sleep(1)
-            document = client.documents.get(document.id)
+    def test_upload_file_path(self, document_factory):
+        document = document_factory("tests/test.pdf")
         assert document.status == "success"
 
     def test_upload_big_file(self, client, mocker):

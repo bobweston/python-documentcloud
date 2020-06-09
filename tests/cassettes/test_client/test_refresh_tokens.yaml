@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: '{"refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTc1Nzg3NiwianRpIjoiMTUwMDViMDZmMjkzNDYyYjgyMTM2NTFiMDZlYjZlOGMiLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.XdV6c4e0Q_WnunhXWJUpEDBxINLl0aD4cZX4LI1_v_FqVGNlkrU90cLzj74zjQ-b3ayknAKVGGBOosP2lTHEMggV9JMoeK3Yl1RfJUtaULbazgRtEJ7gBNbv0_PgO99G938SaQZYEaX92dR7YUV83HaqmzGubZhFB3qE4CHdfbehX92m70eTxvkJ8qlCgGo4TTC38u3W9a9WeTtT7h13BG7Ge-ZlDfJ734dG91K_w4VCq2W2xb_io7tF_qZIUs521bvEzPHegmf_1xlgcnMySya6c5LFcjEuAoNF_ApdKFw1sIRXeegYzE31k1U-WNisNn4wl6z6cFHvZvT0m-3XHg"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '570'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://dev.squarelet.com/api/refresh/
+  response:
+    body:
+      string: '{"access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNjcxNzc2LCJqdGkiOiIzNjlhMmM3MWZiMDM0OGNiYTY1MjhlYzAwNTQ5ZmU5NyIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.J45NYRfvGi18kBENWMEZioQTsYzlHlgpFYqfByZsR224FTv7UOq9LuXeiMqnNnb36rdQZgZ2ydPNTSPGgVE2mAI1YSQqhzkRvu16nzPNByyHYwBWDNw-QY3PrMAa_PZBZLW1WjYdCbFe2QvBOonoF7ymuMYEhnEinxLn6uHSq-WJCrCTTlAkJrQMS_jsBJRoqasAO4AkeJ6_e_tOf4KM9zijWI64qVvbmLJHzLjKOKza4av65K23FlAFU1DOF98_wDLGQhiOwcR6EJPScTDs9n-fXzmqIe3B397dlqWxeBYwzC6TRLBd8Ni96qCXx5tEOiCYb_Rz3CLU_xtoH9UeCg","refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTc1Nzg3NiwianRpIjoiZDE1NGVkOTg0M2YyNGUxMzg2MDNjYmIyNTY3NDY1MWQiLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.g6LKMDDFrz-JzSvCQ-e-XWU_lpAhcFmx6VuqCG6p6v0-xFHYEloO2ODfyF_z_MMfvq5-Am8-smVUCJBfyWd5FiDjgs3l3qry2kf1F-PQU62Ljz0Czi01GoSruLFzX0eq_wiax-x_zMvyar-punBvEMA65o5rsxTrBVHARGTeF39zJvNVddaE1S-ncqxcpJ9O0644CI2El-G44sgF_zzdTxFqJla1yU1XPyZ6OXy5EpZ2cnjWDztebjua2wQt5L7ZlMu7iH2vjB_ldtOy6dRZNm9adzzPAlIVoLMnvvVM1ZTysy7nGfDe5-IDejwxAK_x1KHB4JF-UFVoGteAetn2Bg"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1135'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 02:57:56 GMT
+      Server:
+      - nginx/1.15.1
+      Set-Cookie:
+      - op_browser_state=10d06b504d308f9a9d50dd43b29e769fa952303aed39ffe4bee54780;
+        Path=/
+      Vary:
+      - Accept, Origin
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
