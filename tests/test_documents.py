@@ -173,6 +173,13 @@ class TestDocumentClient:
             )
         assert params == {"title": "test", "access": "private", "projects": [2]}
 
+    def test_delete(self, document_factory, client):
+        document = document_factory()
+        client.documents.delete(document.id)
+
+        with pytest.raises(DoesNotExistError):
+            client.documents.get(document.id)
+
 
 class TestMention:
     def test_mention(self):

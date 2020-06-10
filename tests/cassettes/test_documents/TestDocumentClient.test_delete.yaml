@@ -20,7 +20,7 @@ interactions:
     uri: http://api.dev.documentcloud.org/api/documents/
   response:
     body:
-      string: '{"id":10000485,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000485-test","created_at":"2020-06-09T16:13:14.318682Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"nofile","title":"test","updated_at":"2020-06-09T16:13:14.319146Z","user":100098}'
+      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"nofile","title":"test","updated_at":"2020-06-09T16:13:04.678229Z","user":100098}'
     headers:
       Allow:
       - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:14 GMT
+      - Tue, 09 Jun 2020 16:13:04 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -61,10 +61,10 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000485/
+    uri: http://api.dev.documentcloud.org/api/documents/10000483/
   response:
     body:
-      string: '{"id":10000485,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000485-test","created_at":"2020-06-09T16:13:14.318682Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:15.316641Z","user":100098}'
+      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:05.626026Z","user":100098}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -79,7 +79,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:15 GMT
+      - Tue, 09 Jun 2020 16:13:05 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -105,10 +105,10 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000485/
+    uri: http://api.dev.documentcloud.org/api/documents/10000483/
   response:
     body:
-      string: '{"id":10000485,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000485-test","created_at":"2020-06-09T16:13:14.318682Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:15.316641Z","user":100098}'
+      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:05.626026Z","user":100098}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -123,7 +123,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:16 GMT
+      - Tue, 09 Jun 2020 16:13:07 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -149,10 +149,10 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000485/
+    uri: http://api.dev.documentcloud.org/api/documents/10000483/
   response:
     body:
-      string: '{"id":10000485,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000485-test","created_at":"2020-06-09T16:13:14.318682Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:17.265041Z","user":100098}'
+      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:07.706216Z","user":100098}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -167,7 +167,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:17 GMT
+      - Tue, 09 Jun 2020 16:13:08 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -193,10 +193,10 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000485/
+    uri: http://api.dev.documentcloud.org/api/documents/10000483/
   response:
     body:
-      string: '{"id":10000485,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000485-test","created_at":"2020-06-09T16:13:14.318682Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-09T16:13:17.794194Z","user":100098}'
+      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-09T16:13:08.224322Z","user":100098}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -211,7 +211,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:18 GMT
+      - Tue, 09 Jun 2020 16:13:09 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -234,35 +234,39 @@ interactions:
       - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDYzLCJqdGkiOiI1NGUyNWQ2OGRhYzU0M2JmYTZjZjllZTA2NzRmZTUyMCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.Xt0xOFzFFu2_Iu9zkkwdevSvhcBgy5SI3vmVHftkXOtC3cpUMgJywJ3qU2137l8fmd-HKg8pPIeO6FUYDyXXXJ0u7PIR9Sje8PvaSvyigOzlpv8IDI-bDm8p5yMgdK88k877Q0cBdALl1nTj_yIkwHf6EEHQPATe7PvBxTw3nqQua5BU6vPhvNx4lBkU_1MetmkoKktHOz5KVsn35iwLxqZYiAS6CpasNRpQ0ZdxddcB42b--McD0U1DOU6yiRdCzYP3t80NsUY6bxLZEgzvJBgVk2ZBTkZyxNHgHlvwAB5Ywbib3fzKi1bDL9GCMpcam_jTIc3L78mBjpM5FJTNUA
       Connection:
       - keep-alive
+      Content-Length:
+      - '0'
       User-Agent:
       - python-requests/2.23.0
-    method: GET
-    uri: http://api.dev.documentcloud.org/api/projects/100201/documents/10000485?expand=document
+    method: DELETE
+    uri: http://api.dev.documentcloud.org/api/documents/10000483/
   response:
     body:
       string: ''
     headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - no-cache
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
       - '0'
-      Content-Type:
-      - text/html; charset=utf-8
       Date:
-      - Tue, 09 Jun 2020 16:13:18 GMT
-      Location:
-      - /api/projects/100201/documents/10000485/?expand=document
+      - Tue, 09 Jun 2020 16:13:09 GMT
       Server:
       - nginx/1.15.1
       Vary:
-      - Origin, Accept-Language, Cookie
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
       X-XSS-Protection:
       - 1; mode=block
     status:
-      code: 301
-      message: Moved Permanently
+      code: 204
+      message: No Content
 - request:
     body: null
     headers:
@@ -277,13 +281,15 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/projects/100201/documents/10000485/?expand=document
+    uri: http://api.dev.documentcloud.org/api/documents/10000483/
   response:
     body:
       string: '{"detail":"Not found."}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - no-cache
       Connection:
       - keep-alive
       Content-Language:
@@ -293,7 +299,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:19 GMT
+      - Tue, 09 Jun 2020 16:13:09 GMT
       Server:
       - nginx/1.15.1
       Vary:

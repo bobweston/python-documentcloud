@@ -26,6 +26,7 @@ class Project(BaseAPIObject):
             data = [{"document": d} for d in self.document_ids]
             self._client.put(f"{self.api_path}/{self.id}/documents/", json=data)
 
+    # XXX unify with notes/sections
     @property
     def document_list(self):
         if self._document_list is None:
@@ -60,7 +61,7 @@ class Project(BaseAPIObject):
         return self.document_list
 
     @documents.setter
-    def docments(self, value):
+    def documents(self, value):
         self.document_list = value
 
     @property

@@ -1,0 +1,91 @@
+interactions:
+- request:
+    body: '{"title": "Project Factory", "description": "", "private": true}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDUyLCJqdGkiOiIzNGUwNGFlNmM5ZWU0ODE5OGNjMDgwNjA1ZjYyMDVjMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.IP8V_ndv_t3vZIeogz1oEmPegwH_YjJ93JYmPlA0hOBFErOm2Z_IPNQFXOCvXLcNLtGa0ZcPb4S9kqY3tJpjDwZRTpMvW7KaPwhlc9deh0aRXrxePrvR1aVYc_k1jL9aC4uebNLxKlZfK8QGQlLhdEzdZklmI-C96rpjVAS7a57wQkSQVs1uqeQYWYJsTy8cYPB4msC7tTq1qYrFayKzye9NcwFRBp4UyaVMGKndoXzZYRDBVDL8bUaHoOUecLbxpUy0jiVtCE7uFuTgzRtm4oxq1lNk4K35S7QaWOHeHsOtq3iQKiVs0183avcT8loaH1dzL9Er00HACa95WvCkNg
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '64'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://api.dev.documentcloud.org/api/projects/
+  response:
+    body:
+      string: '{"id":100202,"created_at":"2020-06-09T16:12:42.713578Z","description":"","edit_access":true,"private":true,"slug":"project-factory","title":"Project
+        Factory","updated_at":"2020-06-09T16:12:42.714066Z","user":100098}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '215'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 16:12:42 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDUyLCJqdGkiOiIzNGUwNGFlNmM5ZWU0ODE5OGNjMDgwNjA1ZjYyMDVjMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.IP8V_ndv_t3vZIeogz1oEmPegwH_YjJ93JYmPlA0hOBFErOm2Z_IPNQFXOCvXLcNLtGa0ZcPb4S9kqY3tJpjDwZRTpMvW7KaPwhlc9deh0aRXrxePrvR1aVYc_k1jL9aC4uebNLxKlZfK8QGQlLhdEzdZklmI-C96rpjVAS7a57wQkSQVs1uqeQYWYJsTy8cYPB4msC7tTq1qYrFayKzye9NcwFRBp4UyaVMGKndoXzZYRDBVDL8bUaHoOUecLbxpUy0jiVtCE7uFuTgzRtm4oxq1lNk4K35S7QaWOHeHsOtq3iQKiVs0183avcT8loaH1dzL9Er00HACa95WvCkNg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/projects/100202/documents/?per_page=100&expand=document
+  response:
+    body:
+      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+    headers:
+      Allow:
+      - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '52'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 09 Jun 2020 16:12:42 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

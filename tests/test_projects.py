@@ -3,7 +3,7 @@ import pytest
 
 # DocumentCloud
 from documentcloud.documents import Document
-from documentcloud.exceptions import DoesNotExistError
+from documentcloud.exceptions import DoesNotExistError, MultipleObjectsReturnedError
 
 
 class TestProject:
@@ -24,10 +24,14 @@ class TestProject:
 
     def test_document_list_setter(self, client, project, document):
         assert document in project.document_list
+        # setting to none clears it and sets to an empty list
         project.document_list = None
         assert document not in project.document_list
-        project.document_list = [document]
+        # documents is an alias for document_list
+        project.documents = [document]
         assert document in project.document_list
+        with pytest.raises(TypeError):
+            project.document_list = document
 
     def test_document_ids(self, project, document):
         assert document.id in project.document_ids
@@ -70,6 +74,12 @@ class TestProjectClient:
 
     def test_get_by_title(self, client, project):
         assert client.projects.get_by_title(project.title)
+
+    def test_get_by_title_multiple(self, client, project_factory):
+        for i in range(2):
+            project_factory(title="Dupe")
+        with pytest.raises(MultipleObjectsReturnedError):
+            client.projects.get_by_title("Dupe")
 
     def test_get_or_create_by_title_get(self, client, project):
         title = project.title

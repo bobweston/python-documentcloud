@@ -8,6 +8,7 @@ import vcr
 
 # DocumentCloud
 from documentcloud.client import DocumentCloud
+from documentcloud.exceptions import DoesNotExistError
 
 # Test against a development environment documentcloud instance
 BASE_URI = "http://api.dev.documentcloud.org/api/"
@@ -65,17 +66,28 @@ def document(project, client, record_mode):
         projects=[project.id],
     )
     document = _wait_document(document, client, record_mode)
-    return document
+    yield document
+    document.delete()
 
 
 @pytest.fixture(scope="session")
 def document_factory(client, record_mode):
+    documents = []
+
     def make_document(pdf=DEFAULT_DOCUMENT_URI, **kwargs):
         document = client.documents.upload(pdf, **kwargs)
         document = _wait_document(document, client, record_mode)
+        documents.append(document)
         return document
 
-    return make_document
+    yield make_document
+
+    for document in documents:
+        try:
+            document.delete()
+        except DoesNotExistError:
+            # test deleted the document
+            pass
 
 
 @pytest.fixture(scope="session")
@@ -83,6 +95,28 @@ def document_factory(client, record_mode):
 def project(client, document_factory):
     document = document_factory()
     title = f"This is a project for testing {uuid4()}"
-    return client.projects.create(
+    project = client.projects.create(
         title, "This is a project for testing", document_ids=[document.id]
     )
+    yield project
+    project.delete()
+
+
+@pytest.fixture(scope="session")
+def project_factory(client, record_mode):
+    projects = []
+
+    def make_project(title="Project Factory", *args, **kwargs):
+
+        project = client.projects.create(title, *args, **kwargs)
+        projects.append(project)
+        return project
+
+    yield make_project
+
+    for project in projects:
+        try:
+            project.delete()
+        except DoesNotExistError:
+            # test deleted the project
+            pass
