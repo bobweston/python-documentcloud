@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"title": "test", "file_url": "https://assets.documentcloud.org/documents/20071460/test.pdf"}'
+    body: null
     headers:
       Accept:
       - '*/*'
@@ -10,32 +10,27 @@ interactions:
       - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
       Connection:
       - keep-alive
-      Content-Length:
-      - '93'
-      Content-Type:
-      - application/json
       User-Agent:
       - python-requests/2.23.0
-    method: POST
-    uri: http://api.dev.documentcloud.org/api/documents/
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
   response:
     body:
-      string: '{"id":10000878,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000878-test","created_at":"2020-06-11T14:33:08.818703Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"nofile","title":"test","updated_at":"2020-06-11T14:33:08.819167Z","user":100098}'
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
     headers:
       Allow:
-      - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Cache-Control:
-      - no-cache
+      - GET, PUT, PATCH, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '490'
+      - '220'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:08 GMT
+      - Thu, 11 Jun 2020 14:32:34 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -45,8 +40,8 @@ interactions:
       X-XSS-Protection:
       - 1; mode=block
     status:
-      code: 201
-      message: Created
+      code: 200
+      message: OK
 - request:
     body: null
     headers:
@@ -61,29 +56,329 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/
+    uri: http://api.dev.documentcloud.org/api/users/me/
   response:
     body:
-      string: '{"id":10000878,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000878-test","created_at":"2020-06-11T14:33:08.818703Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-11T14:33:09.233628Z","user":100098}'
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
     headers:
       Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Cache-Control:
-      - private, no-cache
+      - GET, PUT, PATCH, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '491'
+      - '220'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:10 GMT
+      - Thu, 11 Jun 2020 14:32:34 GMT
       Server:
       - nginx/1.15.1
       Vary:
-      - Cookie, Accept, Origin, Accept-Language
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 14:32:34 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 14:32:34 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 14:32:34 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 14:32:35 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 14:32:35 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 14:32:35 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 14:32:35 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
       X-Frame-Options:
       - DENY
       X-XSS-Protection:
@@ -105,29 +400,28 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/
+    uri: http://api.dev.documentcloud.org/api/users/me/
   response:
     body:
-      string: '{"id":10000878,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000878-test","created_at":"2020-06-11T14:33:08.818703Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-11T14:33:10.148748Z","user":100098}'
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
     headers:
       Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Cache-Control:
-      - private, no-cache
+      - GET, PUT, PATCH, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '491'
+      - '220'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:11 GMT
+      - Thu, 11 Jun 2020 14:32:35 GMT
       Server:
       - nginx/1.15.1
       Vary:
-      - Cookie, Accept, Origin, Accept-Language
+      - Accept, Origin, Accept-Language, Cookie
       X-Frame-Options:
       - DENY
       X-XSS-Protection:
@@ -149,29 +443,28 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/
+    uri: http://api.dev.documentcloud.org/api/users/me/
   response:
     body:
-      string: '{"id":10000878,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000878-test","created_at":"2020-06-11T14:33:08.818703Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-11T14:33:11.889634Z","user":100098}'
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
     headers:
       Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Cache-Control:
-      - private, no-cache
+      - GET, PUT, PATCH, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '504'
+      - '220'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:12 GMT
+      - Thu, 11 Jun 2020 14:32:35 GMT
       Server:
       - nginx/1.15.1
       Vary:
-      - Cookie, Accept, Origin, Accept-Language
+      - Accept, Origin, Accept-Language, Cookie
       X-Frame-Options:
       - DENY
       X-XSS-Protection:
@@ -193,29 +486,28 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/
+    uri: http://api.dev.documentcloud.org/api/users/me/
   response:
     body:
-      string: '{"id":10000878,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000878-test","created_at":"2020-06-11T14:33:08.818703Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-11T14:33:12.447496Z","user":100098}'
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
     headers:
       Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Cache-Control:
-      - private, no-cache
+      - GET, PUT, PATCH, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '504'
+      - '220'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:13 GMT
+      - Thu, 11 Jun 2020 14:32:35 GMT
       Server:
       - nginx/1.15.1
       Vary:
-      - Cookie, Accept, Origin, Accept-Language
+      - Accept, Origin, Accept-Language, Cookie
       X-Frame-Options:
       - DENY
       X-XSS-Protection:
@@ -237,25 +529,24 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/sections/
+    uri: http://api.dev.documentcloud.org/api/users/me/
   response:
     body:
-      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
     headers:
       Allow:
-      - GET, POST, HEAD, OPTIONS
-      Cache-Control:
-      - no-cache
+      - GET, PUT, PATCH, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '52'
+      - '220'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:13 GMT
+      - Thu, 11 Jun 2020 14:32:35 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -267,54 +558,6 @@ interactions:
     status:
       code: 200
       message: OK
-- request:
-    body: '{"title": "Test Section", "page_number": 0}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '43'
-      Content-Type:
-      - application/json
-      User-Agent:
-      - python-requests/2.23.0
-    method: POST
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/sections/
-  response:
-    body:
-      string: '{"id":693,"page_number":0,"title":"Test Section"}'
-    headers:
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Language:
-      - en
-      Content-Length:
-      - '49'
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 11 Jun 2020 14:33:13 GMT
-      Server:
-      - nginx/1.15.1
-      Vary:
-      - Accept, Origin, Accept-Language, Cookie
-      X-Frame-Options:
-      - DENY
-      X-XSS-Protection:
-      - 1; mode=block
-    status:
-      code: 201
-      message: Created
 - request:
     body: null
     headers:
@@ -329,26 +572,24 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/sections/
+    uri: http://api.dev.documentcloud.org/api/users/me/
   response:
     body:
-      string: '{"count":1,"next":null,"previous":null,"results":[{"id":693,"page_number":0,"title":"Test
-        Section"}]}'
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
     headers:
       Allow:
-      - GET, POST, HEAD, OPTIONS
-      Cache-Control:
-      - no-cache
+      - GET, PUT, PATCH, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '101'
+      - '220'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:13 GMT
+      - Thu, 11 Jun 2020 14:32:35 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -360,98 +601,6 @@ interactions:
     status:
       code: 200
       message: OK
-- request:
-    body: '{"title": "Test Section 2", "page_number": 0}'
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '45'
-      Content-Type:
-      - application/json
-      User-Agent:
-      - python-requests/2.23.0
-    method: POST
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/sections/
-  response:
-    body:
-      string: '{"page_number":["You may not add more than one section to a page"]}'
-    headers:
-      Allow:
-      - GET, POST, HEAD, OPTIONS
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Language:
-      - en
-      Content-Length:
-      - '67'
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 11 Jun 2020 14:33:14 GMT
-      Server:
-      - nginx/1.15.1
-      Vary:
-      - Accept, Origin, Accept-Language, Cookie
-      X-Frame-Options:
-      - DENY
-      X-XSS-Protection:
-      - 1; mode=block
-    status:
-      code: 400
-      message: Bad Request
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '0'
-      User-Agent:
-      - python-requests/2.23.0
-    method: DELETE
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/sections/693/
-  response:
-    body:
-      string: ''
-    headers:
-      Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Cache-Control:
-      - no-cache
-      Connection:
-      - keep-alive
-      Content-Language:
-      - en
-      Content-Length:
-      - '0'
-      Date:
-      - Thu, 11 Jun 2020 14:33:14 GMT
-      Server:
-      - nginx/1.15.1
-      Vary:
-      - Accept, Origin, Accept-Language, Cookie
-      X-Frame-Options:
-      - DENY
-      X-XSS-Protection:
-      - 1; mode=block
-    status:
-      code: 204
-      message: No Content
 - request:
     body: null
     headers:
@@ -466,25 +615,67 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000878/sections/
+    uri: http://api.dev.documentcloud.org/api/users/me/
   response:
     body:
-      string: '{"count":0,"next":null,"previous":null,"results":[]}'
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
     headers:
       Allow:
-      - GET, POST, HEAD, OPTIONS
-      Cache-Control:
-      - no-cache
+      - GET, PUT, PATCH, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
       - en
       Content-Length:
-      - '52'
+      - '220'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:14 GMT
+      - Thu, 11 Jun 2020 14:32:35 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 14:32:35 GMT
       Server:
       - nginx/1.15.1
       Vary:

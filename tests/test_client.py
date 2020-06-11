@@ -3,8 +3,10 @@ import time
 
 # Third Party
 import pytest
+import ratelimit
 
 # DocumentCloud
+from documentcloud.constants import RATE_LIMIT
 from documentcloud.exceptions import APIError, CredentialsFailedError
 
 # pylint: disable=protected-access
@@ -69,6 +71,12 @@ def test_user_id_public(public_client):
 def test_bad_attr(client):
     with pytest.raises(AttributeError):
         assert client.foo
+
+
+def test_rate_limit(client):
+    with pytest.raises(ratelimit.RateLimitException):
+        for _ in range(RATE_LIMIT * 2):
+            client.users.get("me")
 
 
 @pytest.mark.short

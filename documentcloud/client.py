@@ -7,19 +7,17 @@ import logging
 from functools import partial
 
 # Third Party
+import ratelimit
 import requests
 
 # Local
+from .constants import AUTH_URI, BASE_URI, RATE_LIMIT, RATE_PERIOD, TIMEOUT
 from .documents import DocumentClient
 from .exceptions import APIError, CredentialsFailedError, DoesNotExistError
 from .organizations import OrganizationClient
 from .projects import ProjectClient
 from .toolbox import requests_retry_session
 from .users import UserClient
-
-BASE_URI = "https://api.beta.documentcloud.org/api/"
-AUTH_URI = "https://accounts.muckrock.com/api/"
-TIMEOUT = 10
 
 logger = logging.getLogger("documentcloud")
 
@@ -115,6 +113,7 @@ class DocumentCloud:
             self._user_id = user.id
         return self._user_id
 
+    @ratelimit.limits(calls=RATE_LIMIT, period=RATE_PERIOD)
     def _request(self, method, url, raise_error=True, **kwargs):
         """Generic method to make API requests"""
         logger.info("request: %s - %s - %s", method, url, kwargs)
