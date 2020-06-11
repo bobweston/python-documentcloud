@@ -1,0 +1,96 @@
+interactions:
+- request:
+    body: '{"title": "Test Note", "page_number": 0, "content": "<p>Page note!</p>",
+      "access": "private", "x1": null, "y1": null, "x2": null, "y2": null}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQxOTk4LCJqdGkiOiIxMDFiMDEwMTJmMTM0MDUyOTJjNmE2MjMyZGNiZGU3OSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.ZD7guKopsZp6FzA39ZCjWumHZu3lyj6HbnxuRMIfnaKHXTNBSNudOXnrB5ELwS9foXdQvNWWiEL7qzT2_BcM0cY0aC94deLkHzvWzISU7aKYYtqXJeuA1-FNWaW_w8vKg9NCPrCKvkA41AuEpMzCP9Tsxyx04EnagZdXazcpgDlZSd7GFzuNHWylsv1f47bMe4ppTc0rlgi5TcA_EdBHx9j416a23jb5UT52nQceCeFgCWPZa2pAEUZzDdSup6bvHxbfHhBVbNS7K5iA75PGWbuxJRf1WI9OSv7G_gb1bAuG5nFlLjB0USmQYArF7cYFmB35CQtRCjZB_3i3cnjPVw
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '141'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://api.dev.documentcloud.org/api/documents/10000628/notes/
+  response:
+    body:
+      string: '{"id":1000033,"user":100098,"organization":11343,"page_number":0,"access":"private","edit_access":true,"title":"Test
+        Note","content":"<p>Page note!</p>","x1":null,"x2":null,"y1":null,"y2":null,"created_at":"2020-06-11T02:15:08.983386Z","updated_at":"2020-06-11T02:15:08.983728Z"}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '279'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 02:15:09 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQxOTk4LCJqdGkiOiIxMDFiMDEwMTJmMTM0MDUyOTJjNmE2MjMyZGNiZGU3OSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.ZD7guKopsZp6FzA39ZCjWumHZu3lyj6HbnxuRMIfnaKHXTNBSNudOXnrB5ELwS9foXdQvNWWiEL7qzT2_BcM0cY0aC94deLkHzvWzISU7aKYYtqXJeuA1-FNWaW_w8vKg9NCPrCKvkA41AuEpMzCP9Tsxyx04EnagZdXazcpgDlZSd7GFzuNHWylsv1f47bMe4ppTc0rlgi5TcA_EdBHx9j416a23jb5UT52nQceCeFgCWPZa2pAEUZzDdSup6bvHxbfHhBVbNS7K5iA75PGWbuxJRf1WI9OSv7G_gb1bAuG5nFlLjB0USmQYArF7cYFmB35CQtRCjZB_3i3cnjPVw
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - python-requests/2.23.0
+    method: DELETE
+    uri: http://api.dev.documentcloud.org/api/documents/10000628/notes/1000033/
+  response:
+    body:
+      string: ''
+    headers:
+      Allow:
+      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '0'
+      Date:
+      - Thu, 11 Jun 2020 02:15:09 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 204
+      message: No Content
+version: 1

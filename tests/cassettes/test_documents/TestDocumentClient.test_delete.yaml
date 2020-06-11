@@ -7,7 +7,7 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDYzLCJqdGkiOiI1NGUyNWQ2OGRhYzU0M2JmYTZjZjllZTA2NzRmZTUyMCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.Xt0xOFzFFu2_Iu9zkkwdevSvhcBgy5SI3vmVHftkXOtC3cpUMgJywJ3qU2137l8fmd-HKg8pPIeO6FUYDyXXXJ0u7PIR9Sje8PvaSvyigOzlpv8IDI-bDm8p5yMgdK88k877Q0cBdALl1nTj_yIkwHf6EEHQPATe7PvBxTw3nqQua5BU6vPhvNx4lBkU_1MetmkoKktHOz5KVsn35iwLxqZYiAS6CpasNRpQ0ZdxddcB42b--McD0U1DOU6yiRdCzYP3t80NsUY6bxLZEgzvJBgVk2ZBTkZyxNHgHlvwAB5Ywbib3fzKi1bDL9GCMpcam_jTIc3L78mBjpM5FJTNUA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQyMDI1LCJqdGkiOiJmZmYyNDRmOTY2M2Q0NzU4OWRlNGIwZDIxM2IwZWZmNCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pzbZpGJiWRsYF-3au5YiFNiHcNDuYpu4z3IkHkzeFKF4FrL16-QmEvH-_h-SMx1fzF8sRLe4XA1wG1Tig1c6qSB4DPdhfDISIHBEgoZIt8W8f2dpHGgeT5_3jhvSKR8Vi0plGObcYAhcMLgQ9leA3rZlXYB7OoW4zTuZ8_JQRFGqF1MFYhZhrXSX8ozJCKorfv2n4fxri_Zk3CmU6VWdUE4zNxqJqmaYtPjVQxdtHqZicffa3ATqvXKopIPxyYfwERKtZe8fDkV0esPkuLmP4R5ZwmRWfiTNucJ5pvpT-oA5DUm1jP0anXg3ZdH6nbQeQKrUoZ7BczsxLv1EWXMaIg
       Connection:
       - keep-alive
       Content-Length:
@@ -20,7 +20,7 @@ interactions:
     uri: http://api.dev.documentcloud.org/api/documents/
   response:
     body:
-      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"nofile","title":"test","updated_at":"2020-06-09T16:13:04.678229Z","user":100098}'
+      string: '{"id":10000639,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000639-test","created_at":"2020-06-11T02:15:50.392358Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":0,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"nofile","title":"test","updated_at":"2020-06-11T02:15:50.392830Z","user":100098}'
     headers:
       Allow:
       - GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -35,7 +35,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:04 GMT
+      - Thu, 11 Jun 2020 02:15:50 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -55,16 +55,16 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDYzLCJqdGkiOiI1NGUyNWQ2OGRhYzU0M2JmYTZjZjllZTA2NzRmZTUyMCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.Xt0xOFzFFu2_Iu9zkkwdevSvhcBgy5SI3vmVHftkXOtC3cpUMgJywJ3qU2137l8fmd-HKg8pPIeO6FUYDyXXXJ0u7PIR9Sje8PvaSvyigOzlpv8IDI-bDm8p5yMgdK88k877Q0cBdALl1nTj_yIkwHf6EEHQPATe7PvBxTw3nqQua5BU6vPhvNx4lBkU_1MetmkoKktHOz5KVsn35iwLxqZYiAS6CpasNRpQ0ZdxddcB42b--McD0U1DOU6yiRdCzYP3t80NsUY6bxLZEgzvJBgVk2ZBTkZyxNHgHlvwAB5Ywbib3fzKi1bDL9GCMpcam_jTIc3L78mBjpM5FJTNUA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQyMDI1LCJqdGkiOiJmZmYyNDRmOTY2M2Q0NzU4OWRlNGIwZDIxM2IwZWZmNCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pzbZpGJiWRsYF-3au5YiFNiHcNDuYpu4z3IkHkzeFKF4FrL16-QmEvH-_h-SMx1fzF8sRLe4XA1wG1Tig1c6qSB4DPdhfDISIHBEgoZIt8W8f2dpHGgeT5_3jhvSKR8Vi0plGObcYAhcMLgQ9leA3rZlXYB7OoW4zTuZ8_JQRFGqF1MFYhZhrXSX8ozJCKorfv2n4fxri_Zk3CmU6VWdUE4zNxqJqmaYtPjVQxdtHqZicffa3ATqvXKopIPxyYfwERKtZe8fDkV0esPkuLmP4R5ZwmRWfiTNucJ5pvpT-oA5DUm1jP0anXg3ZdH6nbQeQKrUoZ7BczsxLv1EWXMaIg
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000483/
+    uri: http://api.dev.documentcloud.org/api/documents/10000639/
   response:
     body:
-      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:05.626026Z","user":100098}'
+      string: '{"id":10000639,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000639-test","created_at":"2020-06-11T02:15:50.392358Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-11T02:15:51.221404Z","user":100098}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -79,7 +79,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:05 GMT
+      - Thu, 11 Jun 2020 02:15:51 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -99,16 +99,16 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDYzLCJqdGkiOiI1NGUyNWQ2OGRhYzU0M2JmYTZjZjllZTA2NzRmZTUyMCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.Xt0xOFzFFu2_Iu9zkkwdevSvhcBgy5SI3vmVHftkXOtC3cpUMgJywJ3qU2137l8fmd-HKg8pPIeO6FUYDyXXXJ0u7PIR9Sje8PvaSvyigOzlpv8IDI-bDm8p5yMgdK88k877Q0cBdALl1nTj_yIkwHf6EEHQPATe7PvBxTw3nqQua5BU6vPhvNx4lBkU_1MetmkoKktHOz5KVsn35iwLxqZYiAS6CpasNRpQ0ZdxddcB42b--McD0U1DOU6yiRdCzYP3t80NsUY6bxLZEgzvJBgVk2ZBTkZyxNHgHlvwAB5Ywbib3fzKi1bDL9GCMpcam_jTIc3L78mBjpM5FJTNUA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQyMDI1LCJqdGkiOiJmZmYyNDRmOTY2M2Q0NzU4OWRlNGIwZDIxM2IwZWZmNCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pzbZpGJiWRsYF-3au5YiFNiHcNDuYpu4z3IkHkzeFKF4FrL16-QmEvH-_h-SMx1fzF8sRLe4XA1wG1Tig1c6qSB4DPdhfDISIHBEgoZIt8W8f2dpHGgeT5_3jhvSKR8Vi0plGObcYAhcMLgQ9leA3rZlXYB7OoW4zTuZ8_JQRFGqF1MFYhZhrXSX8ozJCKorfv2n4fxri_Zk3CmU6VWdUE4zNxqJqmaYtPjVQxdtHqZicffa3ATqvXKopIPxyYfwERKtZe8fDkV0esPkuLmP4R5ZwmRWfiTNucJ5pvpT-oA5DUm1jP0anXg3ZdH6nbQeQKrUoZ7BczsxLv1EWXMaIg
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000483/
+    uri: http://api.dev.documentcloud.org/api/documents/10000639/
   response:
     body:
-      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:05.626026Z","user":100098}'
+      string: '{"id":10000639,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000639-test","created_at":"2020-06-11T02:15:50.392358Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-11T02:15:51.221404Z","user":100098}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -123,7 +123,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:07 GMT
+      - Thu, 11 Jun 2020 02:15:52 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -143,16 +143,16 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDYzLCJqdGkiOiI1NGUyNWQ2OGRhYzU0M2JmYTZjZjllZTA2NzRmZTUyMCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.Xt0xOFzFFu2_Iu9zkkwdevSvhcBgy5SI3vmVHftkXOtC3cpUMgJywJ3qU2137l8fmd-HKg8pPIeO6FUYDyXXXJ0u7PIR9Sje8PvaSvyigOzlpv8IDI-bDm8p5yMgdK88k877Q0cBdALl1nTj_yIkwHf6EEHQPATe7PvBxTw3nqQua5BU6vPhvNx4lBkU_1MetmkoKktHOz5KVsn35iwLxqZYiAS6CpasNRpQ0ZdxddcB42b--McD0U1DOU6yiRdCzYP3t80NsUY6bxLZEgzvJBgVk2ZBTkZyxNHgHlvwAB5Ywbib3fzKi1bDL9GCMpcam_jTIc3L78mBjpM5FJTNUA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQyMDI1LCJqdGkiOiJmZmYyNDRmOTY2M2Q0NzU4OWRlNGIwZDIxM2IwZWZmNCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pzbZpGJiWRsYF-3au5YiFNiHcNDuYpu4z3IkHkzeFKF4FrL16-QmEvH-_h-SMx1fzF8sRLe4XA1wG1Tig1c6qSB4DPdhfDISIHBEgoZIt8W8f2dpHGgeT5_3jhvSKR8Vi0plGObcYAhcMLgQ9leA3rZlXYB7OoW4zTuZ8_JQRFGqF1MFYhZhrXSX8ozJCKorfv2n4fxri_Zk3CmU6VWdUE4zNxqJqmaYtPjVQxdtHqZicffa3ATqvXKopIPxyYfwERKtZe8fDkV0esPkuLmP4R5ZwmRWfiTNucJ5pvpT-oA5DUm1jP0anXg3ZdH6nbQeQKrUoZ7BczsxLv1EWXMaIg
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000483/
+    uri: http://api.dev.documentcloud.org/api/documents/10000639/
   response:
     body:
-      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"pending","title":"test","updated_at":"2020-06-09T16:13:07.706216Z","user":100098}'
+      string: '{"id":10000639,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000639-test","created_at":"2020-06-11T02:15:50.392358Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-11T02:15:53.671164Z","user":100098}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -167,7 +167,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:08 GMT
+      - Thu, 11 Jun 2020 02:15:53 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -187,51 +187,7 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDYzLCJqdGkiOiI1NGUyNWQ2OGRhYzU0M2JmYTZjZjllZTA2NzRmZTUyMCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.Xt0xOFzFFu2_Iu9zkkwdevSvhcBgy5SI3vmVHftkXOtC3cpUMgJywJ3qU2137l8fmd-HKg8pPIeO6FUYDyXXXJ0u7PIR9Sje8PvaSvyigOzlpv8IDI-bDm8p5yMgdK88k877Q0cBdALl1nTj_yIkwHf6EEHQPATe7PvBxTw3nqQua5BU6vPhvNx4lBkU_1MetmkoKktHOz5KVsn35iwLxqZYiAS6CpasNRpQ0ZdxddcB42b--McD0U1DOU6yiRdCzYP3t80NsUY6bxLZEgzvJBgVk2ZBTkZyxNHgHlvwAB5Ywbib3fzKi1bDL9GCMpcam_jTIc3L78mBjpM5FJTNUA
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.23.0
-    method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000483/
-  response:
-    body:
-      string: '{"id":10000483,"access":"private","asset_url":"http://api.dev.documentcloud.org/files/","canonical_url":"http://www.dev.documentcloud.org/documents/10000483-test","created_at":"2020-06-09T16:13:04.677548Z","data":{},"description":"","edit_access":true,"language":"eng","organization":11343,"page_count":1,"page_spec":"612.0x792.0:0","projects":[],"related_article":"","published_url":"","slug":"test","source":"","status":"success","title":"test","updated_at":"2020-06-09T16:13:08.224322Z","user":100098}'
-    headers:
-      Allow:
-      - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Cache-Control:
-      - private, no-cache
-      Connection:
-      - keep-alive
-      Content-Language:
-      - en
-      Content-Length:
-      - '504'
-      Content-Type:
-      - application/json
-      Date:
-      - Tue, 09 Jun 2020 16:13:09 GMT
-      Server:
-      - nginx/1.15.1
-      Vary:
-      - Cookie, Accept, Origin, Accept-Language
-      X-Frame-Options:
-      - DENY
-      X-XSS-Protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDYzLCJqdGkiOiI1NGUyNWQ2OGRhYzU0M2JmYTZjZjllZTA2NzRmZTUyMCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.Xt0xOFzFFu2_Iu9zkkwdevSvhcBgy5SI3vmVHftkXOtC3cpUMgJywJ3qU2137l8fmd-HKg8pPIeO6FUYDyXXXJ0u7PIR9Sje8PvaSvyigOzlpv8IDI-bDm8p5yMgdK88k877Q0cBdALl1nTj_yIkwHf6EEHQPATe7PvBxTw3nqQua5BU6vPhvNx4lBkU_1MetmkoKktHOz5KVsn35iwLxqZYiAS6CpasNRpQ0ZdxddcB42b--McD0U1DOU6yiRdCzYP3t80NsUY6bxLZEgzvJBgVk2ZBTkZyxNHgHlvwAB5Ywbib3fzKi1bDL9GCMpcam_jTIc3L78mBjpM5FJTNUA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQyMDI1LCJqdGkiOiJmZmYyNDRmOTY2M2Q0NzU4OWRlNGIwZDIxM2IwZWZmNCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pzbZpGJiWRsYF-3au5YiFNiHcNDuYpu4z3IkHkzeFKF4FrL16-QmEvH-_h-SMx1fzF8sRLe4XA1wG1Tig1c6qSB4DPdhfDISIHBEgoZIt8W8f2dpHGgeT5_3jhvSKR8Vi0plGObcYAhcMLgQ9leA3rZlXYB7OoW4zTuZ8_JQRFGqF1MFYhZhrXSX8ozJCKorfv2n4fxri_Zk3CmU6VWdUE4zNxqJqmaYtPjVQxdtHqZicffa3ATqvXKopIPxyYfwERKtZe8fDkV0esPkuLmP4R5ZwmRWfiTNucJ5pvpT-oA5DUm1jP0anXg3ZdH6nbQeQKrUoZ7BczsxLv1EWXMaIg
       Connection:
       - keep-alive
       Content-Length:
@@ -239,7 +195,7 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: DELETE
-    uri: http://api.dev.documentcloud.org/api/documents/10000483/
+    uri: http://api.dev.documentcloud.org/api/documents/10000639/
   response:
     body:
       string: ''
@@ -255,7 +211,7 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Tue, 09 Jun 2020 16:13:09 GMT
+      - Thu, 11 Jun 2020 02:15:54 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -275,13 +231,13 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxNzE5NDYzLCJqdGkiOiI1NGUyNWQ2OGRhYzU0M2JmYTZjZjllZTA2NzRmZTUyMCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.Xt0xOFzFFu2_Iu9zkkwdevSvhcBgy5SI3vmVHftkXOtC3cpUMgJywJ3qU2137l8fmd-HKg8pPIeO6FUYDyXXXJ0u7PIR9Sje8PvaSvyigOzlpv8IDI-bDm8p5yMgdK88k877Q0cBdALl1nTj_yIkwHf6EEHQPATe7PvBxTw3nqQua5BU6vPhvNx4lBkU_1MetmkoKktHOz5KVsn35iwLxqZYiAS6CpasNRpQ0ZdxddcB42b--McD0U1DOU6yiRdCzYP3t80NsUY6bxLZEgzvJBgVk2ZBTkZyxNHgHlvwAB5Ywbib3fzKi1bDL9GCMpcam_jTIc3L78mBjpM5FJTNUA
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQyMDI1LCJqdGkiOiJmZmYyNDRmOTY2M2Q0NzU4OWRlNGIwZDIxM2IwZWZmNCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pzbZpGJiWRsYF-3au5YiFNiHcNDuYpu4z3IkHkzeFKF4FrL16-QmEvH-_h-SMx1fzF8sRLe4XA1wG1Tig1c6qSB4DPdhfDISIHBEgoZIt8W8f2dpHGgeT5_3jhvSKR8Vi0plGObcYAhcMLgQ9leA3rZlXYB7OoW4zTuZ8_JQRFGqF1MFYhZhrXSX8ozJCKorfv2n4fxri_Zk3CmU6VWdUE4zNxqJqmaYtPjVQxdtHqZicffa3ATqvXKopIPxyYfwERKtZe8fDkV0esPkuLmP4R5ZwmRWfiTNucJ5pvpT-oA5DUm1jP0anXg3ZdH6nbQeQKrUoZ7BczsxLv1EWXMaIg
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/documents/10000483/
+    uri: http://api.dev.documentcloud.org/api/documents/10000639/
   response:
     body:
       string: '{"detail":"Not found."}'
@@ -299,7 +255,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 09 Jun 2020 16:13:09 GMT
+      - Thu, 11 Jun 2020 02:15:54 GMT
       Server:
       - nginx/1.15.1
       Vary:

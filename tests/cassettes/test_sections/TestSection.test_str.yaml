@@ -1,0 +1,47 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQyMDI1LCJqdGkiOiJmZmYyNDRmOTY2M2Q0NzU4OWRlNGIwZDIxM2IwZWZmNCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pzbZpGJiWRsYF-3au5YiFNiHcNDuYpu4z3IkHkzeFKF4FrL16-QmEvH-_h-SMx1fzF8sRLe4XA1wG1Tig1c6qSB4DPdhfDISIHBEgoZIt8W8f2dpHGgeT5_3jhvSKR8Vi0plGObcYAhcMLgQ9leA3rZlXYB7OoW4zTuZ8_JQRFGqF1MFYhZhrXSX8ozJCKorfv2n4fxri_Zk3CmU6VWdUE4zNxqJqmaYtPjVQxdtHqZicffa3ATqvXKopIPxyYfwERKtZe8fDkV0esPkuLmP4R5ZwmRWfiTNucJ5pvpT-oA5DUm1jP0anXg3ZdH6nbQeQKrUoZ7BczsxLv1EWXMaIg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/documents/10000628/sections/
+  response:
+    body:
+      string: '{"count":1,"next":null,"previous":null,"results":[{"id":635,"page_number":0,"title":"Test
+        Section"}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Cache-Control:
+      - no-cache
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '101'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 02:16:16 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

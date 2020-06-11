@@ -66,6 +66,10 @@ def document(project, client, record_mode):
         projects=[project.id],
     )
     document = _wait_document(document, client, record_mode)
+    document.sections.create("Test Section", 0)
+    document.annotations.create(
+        "Test Note", 0, "<h1>A note!</h1>", x1=0.1, y1=0.1, x2=0.2, y2=0.2
+    )
     yield document
     document.delete()
 

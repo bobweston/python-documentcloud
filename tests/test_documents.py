@@ -7,7 +7,7 @@ import pytest
 
 # DocumentCloud
 from documentcloud.documents import Mention
-from documentcloud.exceptions import DoesNotExistError
+from documentcloud.exceptions import APIError, DoesNotExistError
 from documentcloud.organizations import Organization
 from documentcloud.users import User
 
@@ -71,11 +71,11 @@ class TestDocument:
         assert attr in dir(document)
 
     def test_mentions(self, client, document):
-        document = client.documents.search(f"document:{document.id} simple")[0]
+        document = client.documents.search(f"document:{document.id} text")[0]
         assert document.mentions
         mention = document.mentions[0]
         assert mention.page
-        assert "<em>simple</em>" in mention.text
+        assert "<em>text</em>" in mention.text
 
     def test_mentions_nosearch(self, document):
         assert not document.mentions
@@ -135,12 +135,20 @@ class TestDocument:
         document = client.documents.get(document.id)
         assert document.source == "MuckRock"
 
-    def test_delete(self, document_factory, client):
+    def test_delete(self, client, document_factory):
         document = document_factory()
         document.delete()
 
         with pytest.raises(DoesNotExistError):
             client.documents.get(document.id)
+
+    def test_section(self, document_factory):
+        document = document_factory()
+        assert len(document.sections) == 0
+        section = document.sections.create("Test Section", 0)
+        assert str(section) == "Test Section - p0"
+        assert section.page == 0
+        assert section == document.sections.list()[0]
 
 
 class TestDocumentClient:
@@ -166,6 +174,10 @@ class TestDocumentClient:
         with pytest.raises(ValueError):
             client.documents.upload("tests/test.pdf")
 
+    def test_upload_dir(self, client):
+        documents = client.documents.upload_directory("tests/pdfs/")
+        assert len(documents) == 2
+
     def test_format_upload_parameters(self, client):
         with pytest.warns(UserWarning):
             params = client.documents._format_upload_parameters(
@@ -188,5 +200,21 @@ class TestMention:
 
 
 class TestSection:
-    # XXX good way to manage sections and notes
-    pass
+    def test_create_delete(self, document_factory):
+        document = document_factory()
+        assert len(document.sections) == 0
+        section = document.sections.create("Test Section", 0)
+        assert len(document.sections) == 1
+
+        # may not have two sections on the same page
+        with pytest.raises(APIError):
+            document.sections.create("Test Section 2", 0)
+
+        section.delete()
+        assert len(document.sections) == 0
+
+    def test_str(self, document):
+        assert str(document.sections[0])
+
+    def test_page(self, document):
+        assert document.sections[0].page == 0

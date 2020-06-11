@@ -12,13 +12,13 @@ from functools import partial
 import requests
 
 # Local
-from .annotations import Annotation
+from .annotations import AnnotationClient
 from .base import APIResults, BaseAPIClient, BaseAPIObject
+from .constants import BULK_LIMIT
 from .organizations import Organization
+from .sections import SectionClient
 from .toolbox import grouper, is_url
 from .users import User
-
-BULK_LIMIT = 25
 
 
 class Document(BaseAPIObject):
@@ -40,10 +40,7 @@ class Document(BaseAPIObject):
     def __init__(self, client, dict_):
 
         # deal with potentially nested objects
-        objs = [
-                ('user', User),
-                ('organization', Organization),
-               ]
+        objs = [("user", User), ("organization", Organization)]
         for name, resource in objs:
             value = dict_.get(name)
             if isinstance(value, dict):
@@ -54,6 +51,10 @@ class Document(BaseAPIObject):
                 dict_[f"{name}_id"] = value
 
         super().__init__(client, dict_)
+
+        self.sections = SectionClient(client, self)
+        self.annotations = AnnotationClient(client, self)
+        self.notes = self.annotations
 
     def __str__(self):
         return self.title
@@ -108,16 +109,6 @@ class Document(BaseAPIObject):
         return self.page_count
 
     @property
-    def annotations(self):
-        response = self._client.get(f"documents/{self.id}/notes/")
-        return APIResults(Annotation, self._client, response, {"document": self})
-
-    @property
-    def sections(self):
-        response = self._client.get(f"documents/{self.id}/sections/")
-        return APIResults(Section, self._client, response, {"document": self})
-
-    @property
     def mentions(self):
         if hasattr(self, "highlights"):
             return [
@@ -155,9 +146,7 @@ class Document(BaseAPIObject):
         return self.organization.slug
 
     def _get_url(self, url, text):
-        response = requests.get(
-            url, headers={"User-Agent": "python-documentcloud2"}
-        )
+        response = requests.get(url, headers={"User-Agent": "python-documentcloud2"})
         if text:
             return response.content.decode("utf8")
         else:
@@ -194,7 +183,7 @@ class DocumentClient(BaseAPIClient):
     api_path = "documents"
     resource = Document
 
-    def search(self, query, page=1, per_page=None, **params):
+    def search(self, query, **params):
         """Return documents matching a search query"""
 
         mentions = params.pop("mentions", None)
@@ -214,10 +203,6 @@ class DocumentClient(BaseAPIClient):
 
         if query:
             params["q"] = query
-        if page is not None:
-            params["page"] = page
-        if per_page is not None:
-            params["per_page"] = per_page
         response = self.client.get("documents/search/", params=params)
         return APIResults(self.resource, self.client, response)
 
@@ -377,20 +362,3 @@ class Mention:
 
     def __str__(self):
         return f'{self.page} - "{self.text}"'
-
-
-class Section(BaseAPIObject):
-    """A section of a document"""
-
-    writable_fields = ["page_number", "title"]
-
-    def __str__(self):
-        return f"{self.title} - p{self.page}"
-
-    @property
-    def api_path(self):
-        return f"documents/{self.document.id}/sections"
-
-    @property
-    def page(self):
-        return self.page_number

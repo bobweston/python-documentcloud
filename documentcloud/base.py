@@ -6,7 +6,7 @@ from copy import copy
 from dateutil.parser import parse as dateparser
 
 # Local
-from .exceptions import APIError, DoesNotExistError, DuplicateObjectError
+from .exceptions import DuplicateObjectError
 from .toolbox import get_id
 
 
@@ -61,7 +61,9 @@ class APIResults(Sequence):
     def _fetch(self, url, next_=None, previous=None):
         if url:
             response = self.client.get(url, full_url=True)
-            return APIResults(self.resource, self.client, response, next_, previous)
+            return APIResults(
+                self.resource, self.client, response, next_=next_, previous=previous
+            )
         else:
             return None
 
@@ -105,12 +107,34 @@ class BaseAPIClient:
     def all(self):
         return self.list()
 
-    def list(self, page=1, per_page=None, **params):
-        params["page"] = page
-        if per_page is not None:
-            params["per_page"] = per_page
+    def list(self, **params):
         response = self.client.get(f"{self.api_path}/", params=params)
         return APIResults(self.resource, self.client, response)
+
+
+class ChildAPIClient(BaseAPIClient):
+    """Base client for sub resources"""
+
+    def __init__(self, client, parent):
+        super().__init__(client)
+        self.parent = parent
+
+    def list(self, **params):
+        response = self.client.get(f"{self.api_path}/", params=params)
+        parent_name = self.parent.__class__.__name__.lower()
+        return APIResults(
+            self.resource, self.client, response, {parent_name: self.parent}
+        )
+
+    # try to emulate old behavior by making it act as the list of returned resources
+    def __iter__(self):
+        return iter(self.list())
+
+    def __len__(self):
+        return len(self.list())
+
+    def __getitem__(self, key):
+        return self.list()[key]
 
 
 class BaseAPIObject:
