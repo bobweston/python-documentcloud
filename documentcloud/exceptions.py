@@ -37,4 +37,3 @@ class DoesNotExistError(APIError):
 
 class MultipleObjectsReturnedError(APIError):
     """Raised when the API returns multiple objects when it expected one"""
-
