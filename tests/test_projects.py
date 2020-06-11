@@ -14,13 +14,23 @@ class TestProject:
         document = document_factory()
         assert document not in project.documents
         project.documents.append(document)
-        project.save()
+        # put is an alias for save
+        project.put()
         project = client.projects.get(project.id)
         assert document in project.documents
 
     def test_document_list(self, project):
         assert len(project.document_list) > 0
         assert all(isinstance(d, Document) for d in project.document_list)
+
+    def test_document_list_paginate(self, project):
+        length = len(project.document_list)
+        assert length > 1
+        # clear cache
+        project._document_list = None
+        # set per page to 1 to force pagination
+        project._per_page = 1
+        assert len(project.document_list) == length
 
     def test_document_list_setter(self, client, project, document):
         assert document in project.document_list
@@ -47,13 +57,12 @@ class TestProject:
 
 class TestProjectClient:
 
-    def test_all(self, client):
-        # XXX collaborators?
-        pass
 
     def test_list(self, client):
-        # XXX contrast to all
-        assert client.projects.list()
+        all_projects = client.projects.list()
+        my_projects = client.projects.all()
+        assert len(all_projects) > len(my_projects)
+        assert len(client.projects.list(user=client.user_id)) == len(my_projects)
 
     def test_get_id(self, client, project):
         assert client.projects.get(id=project.id)

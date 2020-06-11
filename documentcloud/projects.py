@@ -13,8 +13,10 @@ class Project(BaseAPIObject):
     writable_fields = ["description", "private", "title"]
 
     def __init__(self, *args, **kwargs):
+        per_page = kwargs.pop("per_page", PER_PAGE_MAX)
         super().__init__(*args, **kwargs)
         self._document_list = None
+        self._per_page = per_page
 
     def __str__(self):
         return self.title
@@ -26,13 +28,12 @@ class Project(BaseAPIObject):
             data = [{"document": d} for d in self.document_ids]
             self._client.put(f"{self.api_path}/{self.id}/documents/", json=data)
 
-    # XXX unify with notes/sections
     @property
     def document_list(self):
         if self._document_list is None:
             response = self._client.get(
                 f"{self.api_path}/{get_id(self.id)}/documents/",
-                params={"per_page": PER_PAGE_MAX, "expand": ["document"]},
+                params={"per_page": self._per_page, "expand": ["document"]},
             )
             json = response.json()
             next_url = json["next"]
@@ -83,8 +84,8 @@ class ProjectClient(BaseAPIClient):
     resource = Project
 
     # all is overriden to filter by the current user for backward compatibility
-    def all(self):
-        return self.list(user=self.client.user_id)
+    def all(self, **params):
+        return self.list(user=self.client.user_id, **params)
 
     def get(self, id=None, title=None):
         # pylint:disable=redefined-builtin, arguments-differ

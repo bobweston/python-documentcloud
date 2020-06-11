@@ -11,11 +11,11 @@ interactions:
       User-Agent:
       - python-documentcloud2
     method: GET
-    uri: http://api.dev.documentcloud.org/files/documents/10000628/pages/test-p1.txt
+    uri: http://api.dev.documentcloud.org/files/documents/10000781/pages/test-p1.txt
   response:
     body:
       string: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta http-equiv=\"content-type\"
-        content=\"text/html; charset=utf-8\">\n  <title>Page not found at /files/documents/10000628/pages/test-p1.txt</title>\n
+        content=\"text/html; charset=utf-8\">\n  <title>Page not found at /files/documents/10000781/pages/test-p1.txt</title>\n
         \ <meta name=\"robots\" content=\"NONE,NOARCHIVE\">\n  <style type=\"text/css\">\n
         \   html * { padding:0; margin:0; }\n    body * { padding:10px 20px; }\n    body
         * * { padding:0; }\n    body { font:small sans-serif; background:#eee; color:#000;
@@ -29,7 +29,7 @@ interactions:
         0px none; }\n  </style>\n</head>\n<body>\n  <div id=\"summary\">\n    <h1>Page
         not found <span>(404)</span></h1>\n    <table class=\"meta\">\n      <tr>\n
         \       <th>Request Method:</th>\n        <td>GET</td>\n      </tr>\n      <tr>\n
-        \       <th>Request URL:</th>\n        <td>http://api.dev.documentcloud.org/files/documents/10000628/pages/test-p1.txt</td>\n
+        \       <th>Request URL:</th>\n        <td>http://api.dev.documentcloud.org/files/documents/10000781/pages/test-p1.txt</td>\n
         \     </tr>\n      \n      <tr>\n        <th>Raised by:</th>\n        <td>documentcloud.core.views.FileServer</td>\n
         \     </tr>\n      \n    </table>\n  </div>\n  <div id=\"info\">\n    \n      <p>No
         Document matches the given query.</p>\n    \n  </div>\n\n  <div id=\"explanation\">\n
@@ -39,7 +39,7 @@ interactions:
         rel=\"stylesheet\" href=\"/static/debug_toolbar/css/print.css\" type=\"text/css\"
         media=\"print\">\n<link rel=\"stylesheet\" href=\"/static/debug_toolbar/css/toolbar.css\"
         type=\"text/css\">\n<script src=\"/static/debug_toolbar/js/toolbar.js\" defer></script>\n<div
-        id=\"djDebug\" class=\"djdt-hidden\" dir=\"ltr\"\n     \n     data-store-id=\"4a0a8c55d57b4fc581e62562cd415f61\"\n
+        id=\"djDebug\" class=\"djdt-hidden\" dir=\"ltr\"\n     \n     data-store-id=\"f39b95ae1f784303a692d051819fe286\"\n
         \    data-render-panel-url=\"/__debug__/render_panel/\"\n     \n     >\n\t<div
         class=\"djdt-hidden\" id=\"djDebugToolbar\">\n\t\t<ul id=\"djDebugPanelList\">\n\t\t\t\n\t\t\t<li><a
         id=\"djHideToolBarButton\" href=\"#\" title=\"Hide toolbar\">Hide &#187;</a></li>\n\t\t\t\n\t\t\t\n\t\t\t\t<li
@@ -50,7 +50,7 @@ interactions:
         class=\"djDebugPanelButton\">\n\t\t\t\t\t<input type=\"checkbox\" data-cookie=\"djdtTimerPanel\"
         checked title=\"Disable for next and successive requests\">\n\t\t\t\t\t\n\t\t\t\t\t\t<a
         href=\"#\" title=\"Time\" class=\"TimerPanel\">\n\t\t\t\t\t\n\t\t\t\t\tTime\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<br><small>CPU:
-        86.03ms (89.46ms)</small>\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\n\t\t\t\t</li>\n\t\t\t\n\t\t\t\t<li
+        89.26ms (92.75ms)</small>\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\n\t\t\t\t</li>\n\t\t\t\n\t\t\t\t<li
         class=\"djDebugPanelButton\">\n\t\t\t\t\t<input type=\"checkbox\" data-cookie=\"djdtSettingsPanel\"
         checked title=\"Disable for next and successive requests\">\n\t\t\t\t\t\n\t\t\t\t\t\t<a
         href=\"#\" title=\"Settings from &lt;code&gt;config.settings.local&lt;/code&gt;\"
@@ -64,7 +64,7 @@ interactions:
         class=\"djDebugPanelButton\">\n\t\t\t\t\t<input type=\"checkbox\" data-cookie=\"djdtSQLPanel\"
         checked title=\"Disable for next and successive requests\">\n\t\t\t\t\t\n\t\t\t\t\t\t<a
         href=\"#\" title=\"SQL queries from 1 connection\" class=\"SQLPanel\">\n\t\t\t\t\t\n\t\t\t\t\tSQL\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t<br><small>1
-        query in 1.59ms</small>\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\n\t\t\t\t</li>\n\t\t\t\n\t\t\t\t<li
+        query in 1.83ms</small>\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\n\t\t\t\t</li>\n\t\t\t\n\t\t\t\t<li
         class=\"djDebugPanelButton\">\n\t\t\t\t\t<input type=\"checkbox\" data-cookie=\"djdtStaticFilesPanel\"
         checked title=\"Disable for next and successive requests\">\n\t\t\t\t\t\n\t\t\t\t\t\t<a
         href=\"#\" title=\"Static files (193 found, 0 used)\" class=\"StaticFilesPanel\">\n\t\t\t\t\t\n\t\t\t\t\tStatic
@@ -153,13 +153,13 @@ interactions:
       Content-Type:
       - text/html
       Date:
-      - Thu, 11 Jun 2020 02:15:26 GMT
+      - Thu, 11 Jun 2020 13:38:19 GMT
       Server:
       - nginx/1.15.1
       Server-Timing:
-      - TimerPanel_utime=73.36899999995694; "User CPU time", TimerPanel_stime=12.66499999996995;
-        "System CPU time", TimerPanel_total=86.03399999992689; "Total CPU time", TimerPanel_total_time=89.45989608764648;
-        "Elapsed time", SQLPanel_sql_time=1.5850067138671875; "SQL 1 queries", CachePanel_total_time=0;
+      - TimerPanel_utime=84.96800000000349; "User CPU time", TimerPanel_stime=4.289999999969041;
+        "System CPU time", TimerPanel_total=89.25799999997253; "Total CPU time", TimerPanel_total_time=92.75317192077637;
+        "Elapsed time", SQLPanel_sql_time=1.8258094787597656; "SQL 1 queries", CachePanel_total_time=0;
         "Cache 0 Calls"
       Vary:
       - Origin, Accept-Language, Cookie

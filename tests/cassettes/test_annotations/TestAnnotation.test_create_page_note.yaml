@@ -8,7 +8,7 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQxOTk4LCJqdGkiOiIxMDFiMDEwMTJmMTM0MDUyOTJjNmE2MjMyZGNiZGU3OSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.ZD7guKopsZp6FzA39ZCjWumHZu3lyj6HbnxuRMIfnaKHXTNBSNudOXnrB5ELwS9foXdQvNWWiEL7qzT2_BcM0cY0aC94deLkHzvWzISU7aKYYtqXJeuA1-FNWaW_w8vKg9NCPrCKvkA41AuEpMzCP9Tsxyx04EnagZdXazcpgDlZSd7GFzuNHWylsv1f47bMe4ppTc0rlgi5TcA_EdBHx9j416a23jb5UT52nQceCeFgCWPZa2pAEUZzDdSup6bvHxbfHhBVbNS7K5iA75PGWbuxJRf1WI9OSv7G_gb1bAuG5nFlLjB0USmQYArF7cYFmB35CQtRCjZB_3i3cnjPVw
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyOTU5LCJqdGkiOiI2NzMwZThhYjQ5YmY0YWRmOGI3YjI4ODRiYTA0OGU5MCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.cCenw65BmD9ZifBZ0ObgtssIswM9h0r0v0Tgh_Gh2Q4l9kWvKiJDTu0vnkS-iSZhLwhAAswjC5Fu7UjM-reptmNcItPnsVA8B3A9-bVfVSjGrvtTS16Ss-rMyjfGfoYktnEPmkh4CsyyvN7f7RNnqfuBo1ysMBcT_uLCCuf8TwpSZbvqj8YeP5vjkDkOiZ3KeGLY6gg9-3NAngNeUnnINpn26pxRSUpHLwI7nJ01-B5GiAG2kbhzDGSJULWu8TXjHB_TKFiSZRCg8NHeXkX-iRpAR2SYZbi6NHu_nu5jB5vuAX0lbJxyXB9TqVqK0HQzAwpbuNtKKvX-cUJjVqJE5A
       Connection:
       - keep-alive
       Content-Length:
@@ -18,11 +18,11 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: POST
-    uri: http://api.dev.documentcloud.org/api/documents/10000628/notes/
+    uri: http://api.dev.documentcloud.org/api/documents/10000781/notes/
   response:
     body:
-      string: '{"id":1000033,"user":100098,"organization":11343,"page_number":0,"access":"private","edit_access":true,"title":"Test
-        Note","content":"<p>Page note!</p>","x1":null,"x2":null,"y1":null,"y2":null,"created_at":"2020-06-11T02:15:08.983386Z","updated_at":"2020-06-11T02:15:08.983728Z"}'
+      string: '{"id":1000057,"user":100098,"organization":11343,"page_number":0,"access":"private","edit_access":true,"title":"Test
+        Note","content":"<p>Page note!</p>","x1":null,"x2":null,"y1":null,"y2":null,"created_at":"2020-06-11T13:37:50.674815Z","updated_at":"2020-06-11T13:37:50.675157Z"}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
@@ -37,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 02:15:09 GMT
+      - Thu, 11 Jun 2020 13:37:50 GMT
       Server:
       - nginx/1.15.1
       Vary:
@@ -57,7 +57,7 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQxOTk4LCJqdGkiOiIxMDFiMDEwMTJmMTM0MDUyOTJjNmE2MjMyZGNiZGU3OSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.ZD7guKopsZp6FzA39ZCjWumHZu3lyj6HbnxuRMIfnaKHXTNBSNudOXnrB5ELwS9foXdQvNWWiEL7qzT2_BcM0cY0aC94deLkHzvWzISU7aKYYtqXJeuA1-FNWaW_w8vKg9NCPrCKvkA41AuEpMzCP9Tsxyx04EnagZdXazcpgDlZSd7GFzuNHWylsv1f47bMe4ppTc0rlgi5TcA_EdBHx9j416a23jb5UT52nQceCeFgCWPZa2pAEUZzDdSup6bvHxbfHhBVbNS7K5iA75PGWbuxJRf1WI9OSv7G_gb1bAuG5nFlLjB0USmQYArF7cYFmB35CQtRCjZB_3i3cnjPVw
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyOTU5LCJqdGkiOiI2NzMwZThhYjQ5YmY0YWRmOGI3YjI4ODRiYTA0OGU5MCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.cCenw65BmD9ZifBZ0ObgtssIswM9h0r0v0Tgh_Gh2Q4l9kWvKiJDTu0vnkS-iSZhLwhAAswjC5Fu7UjM-reptmNcItPnsVA8B3A9-bVfVSjGrvtTS16Ss-rMyjfGfoYktnEPmkh4CsyyvN7f7RNnqfuBo1ysMBcT_uLCCuf8TwpSZbvqj8YeP5vjkDkOiZ3KeGLY6gg9-3NAngNeUnnINpn26pxRSUpHLwI7nJ01-B5GiAG2kbhzDGSJULWu8TXjHB_TKFiSZRCg8NHeXkX-iRpAR2SYZbi6NHu_nu5jB5vuAX0lbJxyXB9TqVqK0HQzAwpbuNtKKvX-cUJjVqJE5A
       Connection:
       - keep-alive
       Content-Length:
@@ -65,7 +65,7 @@ interactions:
       User-Agent:
       - python-requests/2.23.0
     method: DELETE
-    uri: http://api.dev.documentcloud.org/api/documents/10000628/notes/1000033/
+    uri: http://api.dev.documentcloud.org/api/documents/10000781/notes/1000057/
   response:
     body:
       string: ''
@@ -81,7 +81,7 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Thu, 11 Jun 2020 02:15:09 GMT
+      - Thu, 11 Jun 2020 13:37:50 GMT
       Server:
       - nginx/1.15.1
       Vary:

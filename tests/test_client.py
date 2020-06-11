@@ -1,3 +1,6 @@
+# Standard Library
+import time
+
 # Third Party
 import pytest
 
@@ -34,7 +37,7 @@ def test_set_tokens_none(public_client):
     assert "Authorization" not in public_client.session.headers
 
 
-def test_get_tokens(client, vcr):
+def test_get_tokens(client):
     """Test getting access and refresh tokens using valid credentials"""
     access, refresh = client._get_tokens(client.username, client.password)
     assert access
@@ -66,3 +69,33 @@ def test_user_id_public(public_client):
 def test_bad_attr(client):
     with pytest.raises(AttributeError):
         assert client.foo
+
+
+@pytest.mark.short
+@pytest.mark.vcr(cassette_library_dir="tests/cassettes/short_fixtures")
+def test_expired_access_token(short_client, record_mode):
+    # get fresh tokens
+    short_client._set_tokens()
+    old_refresh_token = short_client.refresh_token
+    # wait for the access token to expire
+    if record_mode == "all":
+        time.sleep(3)
+    # make a request
+    assert short_client.users.get("me")
+    # check the refresh token was updated
+    assert old_refresh_token != short_client.refresh_token
+
+
+@pytest.mark.short
+@pytest.mark.vcr(cassette_library_dir="tests/cassettes/short_fixtures")
+def test_expired_refresh_token(short_client, record_mode):
+    # get fresh tokens
+    short_client._set_tokens()
+    old_refresh_token = short_client.refresh_token
+    # wait for the access and refresh tokens to expire
+    if record_mode == "all":
+        time.sleep(6)
+    # make a request
+    assert short_client.users.get("me")
+    # check the refresh token was updated
+    assert old_refresh_token != short_client.refresh_token

@@ -31,7 +31,7 @@ class APIResults(Sequence):
         self.results = [resource(client, {**r, **extra}) for r in json["results"]]
 
     def __repr__(self):
-        return f"<APIResults: {self.results!r}"
+        return f"<APIResults: {self.results!r}" # pragma: no cover
 
     def __str__(self):
         return str(self.results)
@@ -104,8 +104,8 @@ class BaseAPIClient:
         """Deletes a resource"""
         self.client.delete(f"{self.api_path}/{get_id(id_)}/")
 
-    def all(self):
-        return self.list()
+    def all(self, **params):
+        return self.list(**params)
 
     def list(self, **params):
         response = self.client.get(f"{self.api_path}/", params=params)
@@ -149,7 +149,7 @@ class BaseAPIObject:
             setattr(self, field, dateparser(getattr(self, field)))
 
     def __repr__(self):
-        return f"<{self.__class__.__name__}: {self.id} - {self}>"
+        return f"<{self.__class__.__name__}: {self.id} - {self}>" # pragma: no cover
 
     def __eq__(self, obj):
         return isinstance(obj, type(self)) and self.id == obj.id

@@ -7,7 +7,7 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQyMDI1LCJqdGkiOiJmZmYyNDRmOTY2M2Q0NzU4OWRlNGIwZDIxM2IwZWZmNCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.pzbZpGJiWRsYF-3au5YiFNiHcNDuYpu4z3IkHkzeFKF4FrL16-QmEvH-_h-SMx1fzF8sRLe4XA1wG1Tig1c6qSB4DPdhfDISIHBEgoZIt8W8f2dpHGgeT5_3jhvSKR8Vi0plGObcYAhcMLgQ9leA3rZlXYB7OoW4zTuZ8_JQRFGqF1MFYhZhrXSX8ozJCKorfv2n4fxri_Zk3CmU6VWdUE4zNxqJqmaYtPjVQxdtHqZicffa3ATqvXKopIPxyYfwERKtZe8fDkV0esPkuLmP4R5ZwmRWfiTNucJ5pvpT-oA5DUm1jP0anXg3ZdH6nbQeQKrUoZ7BczsxLv1EWXMaIg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyOTk3LCJqdGkiOiIzY2JmNTQ1NTNjMDg0Mzg3ODAxN2Q0ZTE3OWJlYmNlZiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.GAsmaZfmM6YR_yVN2mBFKkPiWvt_rS5HyXRr_Xjrz76gq7m3ULlrJjnfsSiBvL6QEBTw-QjgbsN6iUXa73UWM1yhAGT579HH_Y2dr9T9McAkEZocXwjJmEV-yZGjSof_I1EfswG2kPPTtsGJhLrzeMIV32og3MSjl2lvrsIzpo4a23ZgAMMSNXD9jdU70AtUjczISkju5U-qI-6K7CNyaVH-3cozRjghAY7tUolIKFBRT5lfhfqTu0sFPPRPdX8wtIw8cCR_sZwGWGmlSGL912xKCgk7Domcxi453x2L2UI57iJBlc_06RnslgNWxaniEoDDbt_11ntAyNkl7JZJSg
       Connection:
       - keep-alive
       User-Agent:
@@ -16,14 +16,15 @@ interactions:
     uri: http://api.dev.documentcloud.org/api/projects/
   response:
     body:
-      string: '{"count":7,"next":null,"previous":null,"results":[{"id":100253,"created_at":"2020-06-11T02:15:12.158716Z","description":"","edit_access":true,"private":true,"slug":"project-factory","title":"Project
-        Factory","updated_at":"2020-06-11T02:15:12.159095Z","user":100098},{"id":100003,"created_at":"2020-03-30T20:39:35.944849Z","description":"","edit_access":null,"private":false,"slug":"test-2","title":"Test
+      string: '{"count":8,"next":null,"previous":null,"results":[{"id":100301,"created_at":"2020-06-11T13:38:03.192205Z","description":"","edit_access":true,"private":true,"slug":"project-factory","title":"Project
+        Factory","updated_at":"2020-06-11T13:38:03.192729Z","user":100098},{"id":100003,"created_at":"2020-03-30T20:39:35.944849Z","description":"","edit_access":null,"private":false,"slug":"test-2","title":"Test
         2","updated_at":"2020-03-30T20:39:35.945376Z","user":100002},{"id":100004,"created_at":"2020-03-30T20:39:40.232047Z","description":"","edit_access":null,"private":false,"slug":"test-3","title":"Test
         3","updated_at":"2020-03-30T20:39:40.232303Z","user":100002},{"id":100005,"created_at":"2020-03-30T20:39:44.130055Z","description":"","edit_access":null,"private":false,"slug":"test-4","title":"Test
         4","updated_at":"2020-03-30T20:39:44.130372Z","user":100002},{"id":100006,"created_at":"2020-03-30T20:39:48.527182Z","description":"","edit_access":null,"private":false,"slug":"test-5","title":"Test
-        5","updated_at":"2020-03-30T20:39:48.527438Z","user":100002},{"id":100252,"created_at":"2020-06-11T02:15:03.722510Z","description":"This
-        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-277de949-9be7-412d-8e1b-032a678d6faa","title":"This
-        is a project for testing 277de949-9be7-412d-8e1b-032a678d6faa","updated_at":"2020-06-11T02:16:04.910983Z","user":100098},{"id":111,"created_at":"2020-04-07T13:22:20.384987Z","description":"","edit_access":null,"private":false,"slug":"torture-docs","title":"Torture
+        5","updated_at":"2020-03-30T20:39:48.527438Z","user":100002},{"id":100278,"created_at":"2020-06-11T12:05:14.998707Z","description":"","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-418f70d4-f99a-4cc0-984d-6f90de112003","title":"This
+        is a project for testing 418f70d4-f99a-4cc0-984d-6f90de112003","updated_at":"2020-06-11T12:05:14.999171Z","user":100098},{"id":100300,"created_at":"2020-06-11T13:37:44.342923Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-9afb9928-a983-4bbc-93b0-2a803f5edbff","title":"This
+        is a project for testing 9afb9928-a983-4bbc-93b0-2a803f5edbff","updated_at":"2020-06-11T13:39:00.394013Z","user":100098},{"id":111,"created_at":"2020-04-07T13:22:20.384987Z","description":"","edit_access":null,"private":false,"slug":"torture-docs","title":"Torture
         Docs","updated_at":"2020-04-07T13:22:20.386028Z","user":18}]}'
     headers:
       Allow:
@@ -33,11 +34,103 @@ interactions:
       Content-Language:
       - en
       Content-Length:
-      - '1614'
+      - '1932'
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 02:16:10 GMT
+      - Thu, 11 Jun 2020 13:39:06 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyOTk3LCJqdGkiOiIzY2JmNTQ1NTNjMDg0Mzg3ODAxN2Q0ZTE3OWJlYmNlZiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.GAsmaZfmM6YR_yVN2mBFKkPiWvt_rS5HyXRr_Xjrz76gq7m3ULlrJjnfsSiBvL6QEBTw-QjgbsN6iUXa73UWM1yhAGT579HH_Y2dr9T9McAkEZocXwjJmEV-yZGjSof_I1EfswG2kPPTtsGJhLrzeMIV32og3MSjl2lvrsIzpo4a23ZgAMMSNXD9jdU70AtUjczISkju5U-qI-6K7CNyaVH-3cozRjghAY7tUolIKFBRT5lfhfqTu0sFPPRPdX8wtIw8cCR_sZwGWGmlSGL912xKCgk7Domcxi453x2L2UI57iJBlc_06RnslgNWxaniEoDDbt_11ntAyNkl7JZJSg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/projects/?user=100098
+  response:
+    body:
+      string: '{"count":3,"next":null,"previous":null,"results":[{"id":100301,"created_at":"2020-06-11T13:38:03.192205Z","description":"","edit_access":true,"private":true,"slug":"project-factory","title":"Project
+        Factory","updated_at":"2020-06-11T13:38:03.192729Z","user":100098},{"id":100278,"created_at":"2020-06-11T12:05:14.998707Z","description":"","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-418f70d4-f99a-4cc0-984d-6f90de112003","title":"This
+        is a project for testing 418f70d4-f99a-4cc0-984d-6f90de112003","updated_at":"2020-06-11T12:05:14.999171Z","user":100098},{"id":100300,"created_at":"2020-06-11T13:37:44.342923Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-9afb9928-a983-4bbc-93b0-2a803f5edbff","title":"This
+        is a project for testing 9afb9928-a983-4bbc-93b0-2a803f5edbff","updated_at":"2020-06-11T13:39:00.394013Z","user":100098}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '932'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 13:39:06 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyOTk3LCJqdGkiOiIzY2JmNTQ1NTNjMDg0Mzg3ODAxN2Q0ZTE3OWJlYmNlZiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.GAsmaZfmM6YR_yVN2mBFKkPiWvt_rS5HyXRr_Xjrz76gq7m3ULlrJjnfsSiBvL6QEBTw-QjgbsN6iUXa73UWM1yhAGT579HH_Y2dr9T9McAkEZocXwjJmEV-yZGjSof_I1EfswG2kPPTtsGJhLrzeMIV32og3MSjl2lvrsIzpo4a23ZgAMMSNXD9jdU70AtUjczISkju5U-qI-6K7CNyaVH-3cozRjghAY7tUolIKFBRT5lfhfqTu0sFPPRPdX8wtIw8cCR_sZwGWGmlSGL912xKCgk7Domcxi453x2L2UI57iJBlc_06RnslgNWxaniEoDDbt_11ntAyNkl7JZJSg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/projects/?user=100098
+  response:
+    body:
+      string: '{"count":3,"next":null,"previous":null,"results":[{"id":100301,"created_at":"2020-06-11T13:38:03.192205Z","description":"","edit_access":true,"private":true,"slug":"project-factory","title":"Project
+        Factory","updated_at":"2020-06-11T13:38:03.192729Z","user":100098},{"id":100278,"created_at":"2020-06-11T12:05:14.998707Z","description":"","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-418f70d4-f99a-4cc0-984d-6f90de112003","title":"This
+        is a project for testing 418f70d4-f99a-4cc0-984d-6f90de112003","updated_at":"2020-06-11T12:05:14.999171Z","user":100098},{"id":100300,"created_at":"2020-06-11T13:37:44.342923Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-9afb9928-a983-4bbc-93b0-2a803f5edbff","title":"This
+        is a project for testing 9afb9928-a983-4bbc-93b0-2a803f5edbff","updated_at":"2020-06-11T13:39:00.394013Z","user":100098}]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '932'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 13:39:06 GMT
       Server:
       - nginx/1.15.1
       Vary:

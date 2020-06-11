@@ -15,7 +15,7 @@ BASE_URI = "http://api.dev.documentcloud.org/api/"
 AUTH_URI = "http://dev.squarelet.com/api/"
 USERNAME = "test-user"
 PASSWORD = "test-password"
-TIMEOUT = 1.0
+TIMEOUT = 2.0
 DEFAULT_DOCUMENT_URI = "https://assets.documentcloud.org/documents/20071460/test.pdf"
 
 
@@ -28,6 +28,22 @@ def pytest_collection_modifyitems(items):
 @pytest.fixture(scope="session")
 @vcr.use_cassette("tests/cassettes/fixtures/client.yaml")
 def client():
+    return DocumentCloud(
+        username=USERNAME,
+        password=PASSWORD,
+        base_uri=BASE_URI,
+        auth_uri=AUTH_URI,
+        timeout=TIMEOUT,
+    )
+
+
+@pytest.fixture(scope="session")
+@vcr.use_cassette("tests/cassettes/short_fixtures/short_client.yaml")
+def short_client():
+    """This client is to be used with the dev server set to issue tokens
+    with very short expirations in order to test out the expired token
+    handling code
+    """
     return DocumentCloud(
         username=USERNAME,
         password=PASSWORD,

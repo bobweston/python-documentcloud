@@ -1,0 +1,219 @@
+interactions:
+- request:
+    body: '{"refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTg4MjMwOSwianRpIjoiNTBmZmU2NzVkYzFkNGUzNTliZDI5ODRhOWRjOGM5MzQiLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.NWXOPuLaRO_7fzlm6FYoJbU6Ju8oFSu95p-41wuYw6hE2RQdVyVeH0yHzc8zffFPR_l6zuJrZ1LyWT8IOFRnY7N3HNqscpgQmAIdKREOs0IW9LWqB0ltzOYaC3fPODBga7CnEWY4IxczaE6S0RpWvRdw5cputrJ0DtxiqpEW1bjlfIMAks0yYERQlAuKR26D2JTWllwKV9M5J0gHm9v1rurQ4DFJ1xxk4pS9Ig4eLDlZs3a38O8daJtTRFbRLxKVNMr2wuMjxtX_-zJnG4jdRXkVDSuhvgxBauyt6rZlDvz6ep1k-y_-05KEkOy-nflI3o-h_um67L-WbcTz-MIt9Q"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '570'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://dev.squarelet.com/api/refresh/
+  response:
+    body:
+      string: '{"access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyMzA2LCJqdGkiOiJlMjQ1MmQwMGE1OTA0YzcyYTAxZjU0NGEzYjI5YWFlNyIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.H6oVU2JjK7BobkfAag5eWpKLOT7kyXWP7wqEzUrOMKLJ1B0AOtW-YaEUSrovlT6eRjXxWhx54F8LpHG1rW91uOb1b2EsCBRivHSjssbtaJhX3-ZQpBwzslcIntXlPv4xxjzW3CnqY60kSQyiAWd-rjCFhNfrXunkG1Rm4q-3230C1qcNe6avCl6qYsO_f0cwuwV3gMS6p6D9BOGn_LW1IqYcQ0E03-InKqljT2vDoLfWwEFcweTs7bSb9GSkktpue0M6aZXvy5B2KhXOmeeSDDiYkOsGazc7dHEzffQTZWidR__1dlDOrXyXl3T2hgE8yAmyTkqE4vnShCMxTDIVXw","refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTg4MjMwOSwianRpIjoiOTZjZGQzMDMxN2IzNDk5YTlkMjQyODk5MmY5ODNlNDYiLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.JM0e3GHS_N9dNWVJ3Uz2dbO5gkzC7qPHZ-TRPSNL4VfqBFC5yRG22Rl8IgWlGkJQG4BSMPssuDDomKSnW47X2RqSjY8bQbNvSd8YrTHt4mdSQ3Hp0fqhKgQg7Ru57S5b3zCIoFxqNU_KXLBFU8JvpG6BcnbEG5kHgYnPF2Vs0Uf66t1YPoHevrqvCy11StzxYvHaW_NfPO-rnILdK1Wf7XpXLY09abElRDUFZwiSMRgNU4BhWsAfaPKYk6zLXPOnBJpyIwmLZC0D9Xqbm9AH1Bm5cRqglXl9D7Q7z3XxYN_7EuY_A0J2joMSDDWafglsLyHbVZ17BABWU1n_0EcCLw"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1135'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 13:31:44 GMT
+      Server:
+      - nginx/1.15.1
+      Set-Cookie:
+      - op_browser_state=3802111e40c804401abbbe7cb73065e1137587b4379ea1fe9033d70f;
+        Path=/
+      Vary:
+      - Accept, Origin
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyMzA2LCJqdGkiOiJlMjQ1MmQwMGE1OTA0YzcyYTAxZjU0NGEzYjI5YWFlNyIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.H6oVU2JjK7BobkfAag5eWpKLOT7kyXWP7wqEzUrOMKLJ1B0AOtW-YaEUSrovlT6eRjXxWhx54F8LpHG1rW91uOb1b2EsCBRivHSjssbtaJhX3-ZQpBwzslcIntXlPv4xxjzW3CnqY60kSQyiAWd-rjCFhNfrXunkG1Rm4q-3230C1qcNe6avCl6qYsO_f0cwuwV3gMS6p6D9BOGn_LW1IqYcQ0E03-InKqljT2vDoLfWwEFcweTs7bSb9GSkktpue0M6aZXvy5B2KhXOmeeSDDiYkOsGazc7dHEzffQTZWidR__1dlDOrXyXl3T2hgE8yAmyTkqE4vnShCMxTDIVXw
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"detail":"Given token not valid for any token type","code":"token_not_valid","messages":[{"token_class":"AccessToken","token_type":"access","message":"Token
+        is invalid or expired"}]}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '183'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 13:31:50 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 403
+      message: Forbidden
+- request:
+    body: '{"refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTg4MjMwOSwianRpIjoiOTZjZGQzMDMxN2IzNDk5YTlkMjQyODk5MmY5ODNlNDYiLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.JM0e3GHS_N9dNWVJ3Uz2dbO5gkzC7qPHZ-TRPSNL4VfqBFC5yRG22Rl8IgWlGkJQG4BSMPssuDDomKSnW47X2RqSjY8bQbNvSd8YrTHt4mdSQ3Hp0fqhKgQg7Ru57S5b3zCIoFxqNU_KXLBFU8JvpG6BcnbEG5kHgYnPF2Vs0Uf66t1YPoHevrqvCy11StzxYvHaW_NfPO-rnILdK1Wf7XpXLY09abElRDUFZwiSMRgNU4BhWsAfaPKYk6zLXPOnBJpyIwmLZC0D9Xqbm9AH1Bm5cRqglXl9D7Q7z3XxYN_7EuY_A0J2joMSDDWafglsLyHbVZ17BABWU1n_0EcCLw"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '570'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://dev.squarelet.com/api/refresh/
+  response:
+    body:
+      string: '{"detail":"Token is invalid or expired","code":"token_not_valid"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '65'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 13:31:50 GMT
+      Server:
+      - nginx/1.15.1
+      Set-Cookie:
+      - op_browser_state=3802111e40c804401abbbe7cb73065e1137587b4379ea1fe9033d70f;
+        Path=/
+      Vary:
+      - Accept, Origin
+      WWW-Authenticate:
+      - Bearer realm="api"
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 401
+      message: Unauthorized
+- request:
+    body: '{"username": "test-user", "password": "test-password"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '54'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://dev.squarelet.com/api/token/
+  response:
+    body:
+      string: '{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTg4MjMxNSwianRpIjoiZGNkMDE5OGMyYmM5NDhkYmI1ZjMwOWIxMWMyY2NjOTciLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.Wb4WjUmKrSzwJsGHNw9Wi9uyoS15eASw31qWmi3VkM6q9C9aZ80ywNKsS4aX78oQBFw3BMd1sT9gk1hzm9oWyEdtpHCOkeFZTlVBcrm0w_G4n6ZUQbVmYoukFmkDmk_FNKmZne3qH9aeTpnuShPP0gibReGIsjWdrkzUJlN_MllBPx2PMY7lW6ZFezq8NSBR5NXcelDZ887C22nRBPqywR8mrkOQ9YeZj_xYYddo1FARqVjDxx3cxrWZdTYzIpM1pvrcDDzJE9-030FE9UcMcp9GZEMNnPKZ1av1olEoqBig6Z4en3jSN5YvhCxnEjMJoadsN43FofPMavIbwD1AjQ","access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyMzEyLCJqdGkiOiI4OWExNWRhOTE3N2Q0NmViYjNjNDdmMzljZmQyMDEwZiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.gswCA3j8lwqSsgbIVGPGu-m0yAvtA0HBbuB0sZfvIHoevvY1MCqqdqa7YTdV_iafQowjli9cmeVT8spREZyXHBcQJWni4DDdFQSYdRqpJngDD_9yl-TqPwRlQ3H7nkSfXm5FuKGEyaE76fMnguV8GceOB_HhBzESoX5EiOkDb0y1Z2ipvZHjxH0sTQmOl_QlunghjD9almxLL4NkOzzakE5Bn5Tjgk-fCzf9YPTzJGsqBWfgysrWtSQqWpBbdX6Dpi_a1q18fhZjNNVuUo-J3CwC1wIIg-klOZc6HMVYDjptGQF_b7gfZVAnv18mlHC1j7-MLUq-AsjZkoqFbEn3Tg"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1135'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 13:31:50 GMT
+      Server:
+      - nginx/1.15.1
+      Set-Cookie:
+      - op_browser_state=3802111e40c804401abbbe7cb73065e1137587b4379ea1fe9033d70f;
+        Path=/
+      Vary:
+      - Accept, Origin
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyMzEyLCJqdGkiOiI4OWExNWRhOTE3N2Q0NmViYjNjNDdmMzljZmQyMDEwZiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.gswCA3j8lwqSsgbIVGPGu-m0yAvtA0HBbuB0sZfvIHoevvY1MCqqdqa7YTdV_iafQowjli9cmeVT8spREZyXHBcQJWni4DDdFQSYdRqpJngDD_9yl-TqPwRlQ3H7nkSfXm5FuKGEyaE76fMnguV8GceOB_HhBzESoX5EiOkDb0y1Z2ipvZHjxH0sTQmOl_QlunghjD9almxLL4NkOzzakE5Bn5Tjgk-fCzf9YPTzJGsqBWfgysrWtSQqWpBbdX6Dpi_a1q18fhZjNNVuUo-J3CwC1wIIg-klOZc6HMVYDjptGQF_b7gfZVAnv18mlHC1j7-MLUq-AsjZkoqFbEn3Tg
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.23.0
+    method: GET
+    uri: http://api.dev.documentcloud.org/api/users/me/
+  response:
+    body:
+      string: '{"id":100098,"avatar_url":"http://dev.squarelet.com/static/images/avatars/profile.png","name":"Test
+        User","organization":11343,"organizations":[11343],"username":"test-user","uuid":"a7a1bf27-4f5a-4c06-96c2-2d812c51b61f"}'
+    headers:
+      Allow:
+      - GET, PUT, PATCH, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '220'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 13:31:50 GMT
+      Server:
+      - nginx/1.15.1
+      Vary:
+      - Accept, Origin, Accept-Language, Cookie
+      X-Frame-Options:
+      - DENY
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

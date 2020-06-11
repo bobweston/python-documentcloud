@@ -6,13 +6,44 @@ from documentcloud.documents import Document
 from documentcloud.exceptions import DuplicateObjectError
 
 
-def test_api_results(client):
+class TestAPIResults:
+    def test_str(self, client):
+        results = client.documents.list()
+        assert str(results) == str(results.results)
 
-    results = client.documents.list(per_page=2)
-    assert isinstance(results[0], Document)
-    assert len(results) > 0
-    for doc in results:
-        assert isinstance(doc, Document)
+    def test_getitem(self, client):
+        results = client.documents.list()
+        assert isinstance(results[0], Document)
+
+    def test_getitem_paginate(self, client):
+        results = client.documents.list(per_page=2)
+        assert isinstance(results[3], Document)
+
+    def test_getitem_index_error(self, client):
+        results = client.documents.list()
+        index = len(results) + 1
+        with pytest.raises(IndexError):
+            results[index]
+
+    def test_len(self, client):
+        results = client.documents.list()
+        assert len(results) > 0
+
+    def test_iter(self, client):
+        results = client.documents.list()
+        for doc in results:
+            assert isinstance(doc, Document)
+
+    def test_next(self, client):
+        results = client.documents.list(user=client.user_id, per_page=1)
+        assert len(results) > 0
+        while results.next is not None:
+            results = results.next
+
+    def test_previous(self, client):
+        results = client.documents.list(user=client.user_id, per_page=1, page=2)
+        assert results.previous
+        assert results.previous.previous is None
 
 
 class TestAPISet:

@@ -1,5 +1,4 @@
 # Standard Library
-import time
 from datetime import datetime
 
 # Third Party
@@ -155,6 +154,12 @@ class TestDocumentClient:
     def test_search(self, client, document):
         documents = client.documents.search(f"document:{document.id} simple")
         assert documents
+
+    def test_list(self, client, document):
+        # list and all are aliases
+        all_documents = client.documents.all()
+        my_documents = client.documents.list(user=client.user_id)
+        assert len(all_documents) > len(my_documents)
 
     def test_upload_url(self, document_factory):
         document = document_factory()

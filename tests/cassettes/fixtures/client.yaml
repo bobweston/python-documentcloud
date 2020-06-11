@@ -18,7 +18,7 @@ interactions:
     uri: http://dev.squarelet.com/api/token/
   response:
     body:
-      string: '{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTkyODA5OCwianRpIjoiOGUwMmE2ZGM1NWRmNGRlY2JkZTcyNDc4OWU3MTZmZmQiLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.YgbxpZWcLBk42qK40sYKk96bPWZZ63GsUB4DH0-LbLo6fezKRE0PwceCm4xEnVLhxzGpIfhjuttF5dxdqNBXmWhd9NvRBeyGk9hhPrkG3KCOVh5bFZQegj1XRaSHbwyIgKqybqZ68m_zein5r7NH1daQTmUVfg0aild0_mTcf-R_6iFdpbrmjvnxn-8zeustg0duWjGw-8xseJGEI8n2y-IVJ5ZQXA0yZbKBkNIYenzkc8HkAiFNHDsXz6ASMKVdgOODgQ2ZHMaGINPW26QpPvybPAx-D17e28m1ZnsZXsRf1U9mziQ77KJJlWRC6gmoshhT83dmUk7h0C83-0Zu3w","access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODQxOTk4LCJqdGkiOiIxMDFiMDEwMTJmMTM0MDUyOTJjNmE2MjMyZGNiZGU3OSIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.ZD7guKopsZp6FzA39ZCjWumHZu3lyj6HbnxuRMIfnaKHXTNBSNudOXnrB5ELwS9foXdQvNWWiEL7qzT2_BcM0cY0aC94deLkHzvWzISU7aKYYtqXJeuA1-FNWaW_w8vKg9NCPrCKvkA41AuEpMzCP9Tsxyx04EnagZdXazcpgDlZSd7GFzuNHWylsv1f47bMe4ppTc0rlgi5TcA_EdBHx9j416a23jb5UT52nQceCeFgCWPZa2pAEUZzDdSup6bvHxbfHhBVbNS7K5iA75PGWbuxJRf1WI9OSv7G_gb1bAuG5nFlLjB0USmQYArF7cYFmB35CQtRCjZB_3i3cnjPVw"}'
+      string: '{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTk2OTA1OSwianRpIjoiZWE2NDM4MjY4MWJkNGJiNWIzMDkwM2YwMzg2MTllMjAiLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.XoGAUHxMCw72obWhbjifh3WOfC6kKeShzdP_c8ewNVT4uDlvVtIE3uqD3rL8dKjruQvBOWhw1h0fl_NKfpd7WoX_foYBmi7vuBj2tWeNMwWCOrFM7wWLn8Fyo-vOn3fUxQizcyDjWNmAu7nZsQVZEP2VH2JxCRZqcZMsVaR0Bk-MQAlgDOgPPl1fYCWDVSI4WTvxt-896cxCWeaPCcRaD0HJ_Iqc2BliShvaj_EH9q8DAA8ERgmYfOCPqJYFcD3Vj37JlXxeRs8hc-W07NuZFWsDufgyD1CvAQXNPqtK6KafCE7aO-k4izvRiQCMHRfHo5DOub2N26c2W3gHwtvIkA","access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyOTU5LCJqdGkiOiI2NzMwZThhYjQ5YmY0YWRmOGI3YjI4ODRiYTA0OGU5MCIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.cCenw65BmD9ZifBZ0ObgtssIswM9h0r0v0Tgh_Gh2Q4l9kWvKiJDTu0vnkS-iSZhLwhAAswjC5Fu7UjM-reptmNcItPnsVA8B3A9-bVfVSjGrvtTS16Ss-rMyjfGfoYktnEPmkh4CsyyvN7f7RNnqfuBo1ysMBcT_uLCCuf8TwpSZbvqj8YeP5vjkDkOiZ3KeGLY6gg9-3NAngNeUnnINpn26pxRSUpHLwI7nJ01-B5GiAG2kbhzDGSJULWu8TXjHB_TKFiSZRCg8NHeXkX-iRpAR2SYZbi6NHu_nu5jB5vuAX0lbJxyXB9TqVqK0HQzAwpbuNtKKvX-cUJjVqJE5A"}'
     headers:
       Allow:
       - POST, OPTIONS
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 02:14:58 GMT
+      - Thu, 11 Jun 2020 13:37:39 GMT
       Server:
       - nginx/1.15.1
       Set-Cookie:
-      - op_browser_state=10d06b504d308f9a9d50dd43b29e769fa952303aed39ffe4bee54780;
+      - op_browser_state=26c9f0bd227ef90394f962a745196b224e97904193a21922bf09e5df;
         Path=/
       Vary:
       - Accept, Origin

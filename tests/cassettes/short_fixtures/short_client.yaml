@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: '{"username": "test-user", "password": "test-password"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '54'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.23.0
+    method: POST
+    uri: http://dev.squarelet.com/api/token/
+  response:
+    body:
+      string: '{"refresh":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTU5MTg4MjMwNiwianRpIjoiNzRlYWY5ODYwNjRiNDg4M2I0M2VjYWIwMTdkODU4MmIiLCJ1c2VyX2lkIjoiYTdhMWJmMjctNGY1YS00YzA2LTk2YzItMmQ4MTJjNTFiNjFmIn0.NCQPSTOVLHK8GvPXq4Md2vtmB_mq6yRl3JTCmJ_kWmtkoa97E5UTQBkxaPl8la0AfjQBiqLpZDzCOvlo5kczlXx4Wg2HUN7yUIgWreEyE4u-JEVzUWBVYAH-ewgwg30eZjH9slVIbPRa3z8oqxftjWWLAer9f8e0cPZcHXqiVkMYYOpBlmWKfZmg1FuBQwC_5M_7i6hCdpqnozG_aidkz8WxvW-aNYNXeQvkx8SI2hY9luU4RjPcdkyAnJiiaYp9qrFPG0QIysIdiCwo1hQCq5LwRLIXfQQKyNC7clDPjoA8S-M4rnaJkOc4JJZX5fdwH-jUEy3i_RAE1zM5CIHNPA","access":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODgyMzAzLCJqdGkiOiI3Y2RmY2EyMjg2ODg0MDVhOTgxZmM2ZjdlYzA1ZDcwYyIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.nOi94deK4rwRLX3K8gDHTg01nG5jUznvRBukgsy4Ijjjij3lPRE-RsKGCgGrycDiaLODOQNd2GRvft3dfVG1i2poyf0FE4qGSYOTW73nz0rNkcr3S4XGdf5F4X-AK_yI1KRxa1gmkMtuH-U4IsFTaslJa6VF8AxKaQ8i4OSPj_wiR5VhpTHdxLPUEyoT0LrQsDq8AkENQWR5Mk5-ERzDrdX8FY7EmBgGVfNP-d_8dRoKuOgT51pC3UwRHvZp-tVs1__GEYOeUSUQd_fLCLbjQV59wE1ZciW3uRk6uKSZQP_X7uwiPSColYnCxC5tnHeR9ZWjMNRpee384g15DaL-0Q"}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1135'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 11 Jun 2020 13:31:41 GMT
+      Server:
+      - nginx/1.15.1
+      Set-Cookie:
+      - op_browser_state=3802111e40c804401abbbe7cb73065e1137587b4379ea1fe9033d70f;
+        Path=/
+      Vary:
+      - Accept, Origin
+      X-Frame-Options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+version: 1
