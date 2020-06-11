@@ -187,14 +187,14 @@ class DocumentClient(BaseAPIClient):
         """Return documents matching a search query"""
 
         mentions = params.pop("mentions", None)
-        if mentions is not None: # pragma: no cover
+        if mentions is not None:  # pragma: no cover
             warnings.warn(
                 "The `mentions` argument to `search` is deprecated, "
                 "it will always include mentions from all pages now",
                 DeprecationWarning,
             )
         data = params.pop("data", None)
-        if data is not None: # pragma: no cover
+        if data is not None:  # pragma: no cover
             warnings.warn(
                 "The `data` argument to `search` is deprecated, "
                 "it will always include data now",
@@ -216,7 +216,7 @@ class DocumentClient(BaseAPIClient):
         elif hasattr(pdf, "read"):
             try:
                 size = os.fstat(pdf.fileno()).st_size
-            except (AttributeError, OSError): # pragma: no cover
+            except (AttributeError, OSError):  # pragma: no cover
                 size = 0
         else:
             size = os.path.getsize(pdf)
@@ -358,7 +358,7 @@ class Mention:
         self.text = text
 
     def __repr__(self):
-        return f"<{self.__class__.__name__}: {self}>" # pragma: no cover
+        return f"<{self.__class__.__name__}: {self}>"  # pragma: no cover
 
     def __str__(self):
         return f'{self.page} - "{self.text}"'

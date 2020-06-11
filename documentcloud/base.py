@@ -31,7 +31,7 @@ class APIResults(Sequence):
         self.results = [resource(client, {**r, **extra}) for r in json["results"]]
 
     def __repr__(self):
-        return f"<APIResults: {self.results!r}" # pragma: no cover
+        return f"<APIResults: {self.results!r}"  # pragma: no cover
 
     def __str__(self):
         return str(self.results)
@@ -149,7 +149,7 @@ class BaseAPIObject:
             setattr(self, field, dateparser(getattr(self, field)))
 
     def __repr__(self):
-        return f"<{self.__class__.__name__}: {self.id} - {self}>" # pragma: no cover
+        return f"<{self.__class__.__name__}: {self.id} - {self}>"  # pragma: no cover
 
     def __eq__(self, obj):
         return isinstance(obj, type(self)) and self.id == obj.id

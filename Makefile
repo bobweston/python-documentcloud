@@ -24,14 +24,12 @@ coverage:
 	coverage html
 	coverage report -m
 
+check:
+	pylint documentcloud
+	black documentcloud
+	isort -rc documentcloud
 
-testold:
-	flake8 documentcloud
-	coverage run setup.py test
-	coverage report -m
-
-
-shipold:
+ship:
 	rm -rf build/
 	python setup.py sdist bdist_wheel
 	twine upload dist/* --skip-existing

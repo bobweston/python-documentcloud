@@ -46,7 +46,7 @@ class DocumentCloud:
         self.session = requests.Session()
         self._set_tokens()
 
-        if loglevel: # pragma: no cover
+        if loglevel:  # pragma: no cover
             logging.basicConfig(
                 level=loglevel,
                 format="%(asctime)s %(levelname)-8s %(name)-25s %(message)s",

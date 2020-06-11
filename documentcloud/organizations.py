@@ -11,6 +11,7 @@ class Organization(BaseAPIObject):
     def __str__(self):
         return self.name
 
+
 class OrganizationClient(BaseAPIClient):
     """Client for interacting with organizations"""
 
