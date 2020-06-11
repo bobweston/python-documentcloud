@@ -14,7 +14,7 @@ from .documents import DocumentClient
 from .exceptions import APIError, CredentialsFailedError, DoesNotExistError
 from .organizations import OrganizationClient
 from .projects import ProjectClient
-from .toolbox import credentials_required, requests_retry_session
+from .toolbox import requests_retry_session
 from .users import UserClient
 
 BASE_URI = "https://api.beta.documentcloud.org/api/"
@@ -109,7 +109,6 @@ class DocumentCloud:
         return (json["access"], json["refresh"])
 
     @property
-    @credentials_required
     def user_id(self):
         if self._user_id is None:
             user = self.users.get("me")

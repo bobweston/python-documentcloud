@@ -5,7 +5,7 @@ import time
 import pytest
 
 # DocumentCloud
-from documentcloud.exceptions import CredentialsFailedError, CredentialsMissingError
+from documentcloud.exceptions import APIError, CredentialsFailedError
 
 # pylint: disable=protected-access
 
@@ -62,7 +62,7 @@ def test_user_id(client):
 
 
 def test_user_id_public(public_client):
-    with pytest.raises(CredentialsMissingError):
+    with pytest.raises(APIError, match=r"404"):
         public_client.user_id
 
 

@@ -2,7 +2,6 @@
 A few toys the API will use.
 """
 # Standard Library
-from functools import wraps
 from itertools import zip_longest
 from urllib.parse import urlparse
 
@@ -10,30 +9,6 @@ from urllib.parse import urlparse
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-
-# Local
-from .exceptions import CredentialsMissingError
-
-
-def credentials_required(method_func):
-    """
-    Decorator for methods that checks that the client has credentials.
-
-    Throws a CredentialsMissingError when they are absent.
-    """
-
-    @wraps(method_func)
-    def check_credentials(self, *args, **kwargs):
-        if self.username and self.password:
-            return method_func(self, *args, **kwargs)
-        else:
-            raise CredentialsMissingError(
-                "This is a private method. You must provide a username and "
-                "password when you initialize the DocumentCloud client to attempt "
-                "this type of request."
-            )
-
-    return check_credentials
 
 
 def requests_retry_session(

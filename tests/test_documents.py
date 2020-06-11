@@ -165,6 +165,10 @@ class TestDocumentClient:
         document = document_factory()
         assert document.status == "success"
 
+    def test_public_upload(self, public_client):
+        with pytest.raises(APIError, match=r"403"):
+            public_client.documents.upload("tests/test.pdf")
+
     def test_upload_file(self, document_factory):
         pdf = open("tests/test.pdf", "rb")
         document = document_factory(pdf)
