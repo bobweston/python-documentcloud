@@ -1,3 +1,6 @@
+# Future
+from __future__ import division, print_function, unicode_literals
+
 # Standard Library
 import time
 from uuid import uuid4
@@ -18,16 +21,36 @@ PASSWORD = "test-password"
 TIMEOUT = 2.0
 DEFAULT_DOCUMENT_URI = "https://assets.documentcloud.org/documents/20071460/test.pdf"
 
+# pylint: disable=redefined-outer-name
+
 
 # We want to enable VCR for all tests
 def pytest_collection_modifyitems(items):
     for item in items:
-        item.add_marker(pytest.mark.vcr(match_on=["method", "uri", "body", "headers"]))
+        item.add_marker(
+            pytest.mark.vcr(
+                match_on=["method", "scheme", "host", "port", "path", "query", "body"]
+            )
+        )
 
 
 @pytest.fixture(scope="session")
 @vcr.use_cassette("tests/cassettes/fixtures/client.yaml")
 def client():
+    return DocumentCloud(
+        username=USERNAME,
+        password=PASSWORD,
+        base_uri=BASE_URI,
+        auth_uri=AUTH_URI,
+        timeout=TIMEOUT,
+        rate_limit=False,
+    )
+
+
+@pytest.fixture(scope="session")
+@vcr.use_cassette("tests/cassettes/fixtures/rate_client.yaml")
+def rate_client():
+    """This client is solely to test rate limiting"""
     return DocumentCloud(
         username=USERNAME,
         password=PASSWORD,
@@ -50,12 +73,15 @@ def short_client():
         base_uri=BASE_URI,
         auth_uri=AUTH_URI,
         timeout=TIMEOUT,
+        rate_limit=False,
     )
 
 
 @pytest.fixture
 def public_client():
-    return DocumentCloud(base_uri=BASE_URI, auth_uri=AUTH_URI, timeout=TIMEOUT)
+    return DocumentCloud(
+        base_uri=BASE_URI, auth_uri=AUTH_URI, timeout=TIMEOUT, rate_limit=False
+    )
 
 
 def _wait_document(document, client, record_mode):
@@ -114,7 +140,7 @@ def document_factory(client, record_mode):
 @vcr.use_cassette("tests/cassettes/fixtures/project.yaml")
 def project(client, document_factory):
     document = document_factory()
-    title = f"This is a project for testing {uuid4()}"
+    title = "This is a project for testing {}".format(uuid4())
     project = client.projects.create(
         title, "This is a project for testing", document_ids=[document.id]
     )
@@ -123,10 +149,12 @@ def project(client, document_factory):
 
 
 @pytest.fixture(scope="session")
-def project_factory(client, record_mode):
+def project_factory(client):
     projects = []
 
-    def make_project(title="Project Factory", *args, **kwargs):
+    def make_project(*args, **kwargs):
+
+        title = kwargs.pop("title", "Project Factory")
 
         project = client.projects.create(title, *args, **kwargs)
         projects.append(project)

@@ -1,14 +1,20 @@
 """
 A few toys the API will use.
 """
-# Standard Library
-from itertools import zip_longest
-from urllib.parse import urlparse
+# Future
+from __future__ import division, print_function, unicode_literals
 
 # Third Party
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+
+try:
+    from urllib.parse import urlparse
+    from itertools import zip_longest
+except ImportError:
+    from urlparse import urlparse
+    from itertools import izip_longest as zip_longest
 
 
 def requests_retry_session(
@@ -65,3 +71,10 @@ def grouper(iterable, num, fillvalue=None):
     # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
     args = [iter(iterable)] * num
     return zip_longest(*args, fillvalue=fillvalue)
+
+
+def merge_dicts(*dicts):
+    merged = {}
+    for dict_ in dicts:
+        merged.update(dict_)
+    return merged

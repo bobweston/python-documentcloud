@@ -1,3 +1,9 @@
+# Future
+from __future__ import division, print_function, unicode_literals
+
+# Standard Library
+from builtins import str
+
 # Third Party
 import pytest
 
@@ -24,6 +30,7 @@ class TestProject:
         assert all(isinstance(d, Document) for d in project.document_list)
 
     def test_document_list_paginate(self, project):
+        # pylint: disable=protected-access
         length = len(project.document_list)
         assert length > 1
         # clear cache
@@ -32,7 +39,7 @@ class TestProject:
         project._per_page = 1
         assert len(project.document_list) == length
 
-    def test_document_list_setter(self, client, project, document):
+    def test_document_list_setter(self, project, document):
         assert document in project.document_list
         # setting to none clears it and sets to an empty list
         project.document_list = None
@@ -56,8 +63,6 @@ class TestProject:
 
 
 class TestProjectClient:
-
-
     def test_list(self, client):
         all_projects = client.projects.list()
         my_projects = client.projects.all()
@@ -85,7 +90,7 @@ class TestProjectClient:
         assert client.projects.get_by_title(project.title)
 
     def test_get_by_title_multiple(self, client, project_factory):
-        for i in range(2):
+        for _ in range(2):
             project_factory(title="Dupe")
         with pytest.raises(MultipleObjectsReturnedError):
             client.projects.get_by_title("Dupe")

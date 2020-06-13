@@ -1,3 +1,8 @@
+# Future
+from __future__ import division, print_function, unicode_literals
+
+# Standard Library
+from builtins import str
 
 # Third Party
 import pytest

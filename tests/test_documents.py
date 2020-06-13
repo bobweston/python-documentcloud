@@ -1,4 +1,8 @@
+# Future
+from __future__ import division, print_function, unicode_literals
+
 # Standard Library
+from builtins import str
 from datetime import datetime
 
 # Third Party
@@ -70,7 +74,7 @@ class TestDocument:
         assert attr in dir(document)
 
     def test_mentions(self, client, document):
-        document = client.documents.search(f"document:{document.id} text")[0]
+        document = client.documents.search("document:{} text".format(document.id))[0]
         assert document.mentions
         mention = document.mentions[0]
         assert mention.page
@@ -152,10 +156,10 @@ class TestDocument:
 
 class TestDocumentClient:
     def test_search(self, client, document):
-        documents = client.documents.search(f"document:{document.id} simple")
+        documents = client.documents.search("document:{} simple".format(document.id))
         assert documents
 
-    def test_list(self, client, document):
+    def test_list(self, client):
         # list and all are aliases
         all_documents = client.documents.all()
         my_documents = client.documents.list(user=client.user_id)

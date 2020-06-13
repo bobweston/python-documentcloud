@@ -1,3 +1,4 @@
+# Third Party
 from setuptools import setup
 
 setup(
@@ -11,7 +12,8 @@ setup(
     packages=("documentcloud",),
     include_package_data=True,
     install_requires=(
-        'listcrunch',
+        'future',
+        'listcrunch>=1.0.1',
         'python-dateutil',
         'ratelimit',
         'requests',
@@ -23,13 +25,15 @@ setup(
             'coverage',
             'isort',
             'pylint',
+            'sphinx',
+            'twine',
+        ],
+        'test': [
             'pytest',
             'pytest-mock',
             'pytest-recording',
-            'sphinx',
-            'twine',
             'vcrpy',
-        ]
+        ],
     },
     classifiers=(
         'Development Status :: 5 - Production/Stable',
@@ -37,6 +41,8 @@ setup(
         'Operating System :: OS Independent',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',

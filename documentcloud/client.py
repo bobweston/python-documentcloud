@@ -2,6 +2,9 @@
 The public interface for the DocumentCloud API
 """
 
+# Future
+from __future__ import division, print_function, unicode_literals
+
 # Standard Library
 import logging
 from functools import partial
@@ -22,7 +25,7 @@ from .users import UserClient
 logger = logging.getLogger("documentcloud")
 
 
-class DocumentCloud:
+class DocumentCloud(object):
     """
     The public interface for the DocumentCloud API
     """
@@ -35,6 +38,7 @@ class DocumentCloud:
         auth_uri=AUTH_URI,
         timeout=TIMEOUT,
         loglevel=None,
+        rate_limit=True,
     ):
         self.base_uri = base_uri
         self.auth_uri = auth_uri
@@ -59,6 +63,11 @@ class DocumentCloud:
         self.users = UserClient(self)
         self.organizations = OrganizationClient(self)
 
+        if rate_limit:
+            self._request = ratelimit.limits(calls=RATE_LIMIT, period=RATE_PERIOD)(
+                self._request
+            )
+
     def _set_tokens(self):
         """Set the refresh and access tokens"""
         if self.refresh_token:
@@ -71,12 +80,14 @@ class DocumentCloud:
             access_token = None
 
         if access_token:
-            self.session.headers.update({"Authorization": f"Bearer {access_token}"})
+            self.session.headers.update(
+                {"Authorization": "Bearer {}".format(access_token)}
+            )
 
     def _get_tokens(self, username, password):
         """Get an access and refresh token in exchange for the username and password"""
         response = requests_retry_session().post(
-            f"{self.auth_uri}token/",
+            "{}token/".format(self.auth_uri),
             json={"username": username, "password": password},
             timeout=self.timeout,
         )
@@ -92,7 +103,7 @@ class DocumentCloud:
     def _refresh_tokens(self, refresh_token):
         """Refresh the access and refresh tokens"""
         response = requests_retry_session().post(
-            f"{self.auth_uri}refresh/",
+            "{}refresh/".format(self.auth_uri),
             json={"refresh": refresh_token},
             timeout=self.timeout,
         )
@@ -113,15 +124,15 @@ class DocumentCloud:
             self._user_id = user.id
         return self._user_id
 
-    @ratelimit.limits(calls=RATE_LIMIT, period=RATE_PERIOD)
     def _request(self, method, url, raise_error=True, **kwargs):
         """Generic method to make API requests"""
+        # pylint: disable=method-hidden
         logger.info("request: %s - %s - %s", method, url, kwargs)
         set_tokens = kwargs.pop("set_tokens", True)
         full_url = kwargs.pop("full_url", False)
 
         if not full_url:
-            url = f"{self.base_uri}{url}"
+            url = "{}{}".format(self.base_uri, url)
 
         response = requests_retry_session(session=self.session).request(
             method, url, timeout=self.timeout, **kwargs
@@ -144,7 +155,7 @@ class DocumentCloud:
         if attr in methods:
             return partial(self._request, attr)
         raise AttributeError(
-            f"'{self.__class__.__name__}' object has no attribute '{attr}'"
+            "'{}' object has no attribute '{}'".format(self.__class__.__name__, attr)
         )
 
     def raise_for_status(self, response):

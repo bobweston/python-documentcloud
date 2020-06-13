@@ -7,18 +7,18 @@ interactions:
       Accept-Encoding:
       - gzip, deflate
       Authorization:
-      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkxODg2MjU0LCJqdGkiOiJjZGIxOGZlYzRhZjQ0NGQzYmU1N2YzMmYxZWE2MzFkMiIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.anHPIuKq3lMDmsQY7b93Hcswcs5TqIG5v3Jg7YyblvTKFEeInBOq_UhuRFOowUqUNebH-H0i3euXnhGCsB0q7AnW65eeue8rsEGplvLSOIbV8qcnubEcICIGDWaugGlT61P_C2UtJO27uW4KXqrMOH83KRM_BHlzr0NqEO76Aj6LLM5bslWYzeih_NTpIYnyC1daH6QacUhmyCzvc7iR3chL4k6fMn_oVXETEbFLasR3heA87vsNs_XKDeOcCxV6rCibLsIAfyq02ipHcLEhixwfeWAmEeE2V5zuosp-1ZjS6aHeg57c4xO_nEll8u4Nu39LWVUP0rSUMV3zvDrhDg
+      - Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTkyMDYwOTEzLCJqdGkiOiIzYTVjM2Y1ZWRhMjI0ZTNmOWM1NzBhYmQzYjE3YTExMyIsInVzZXJfaWQiOiJhN2ExYmYyNy00ZjVhLTRjMDYtOTZjMi0yZDgxMmM1MWI2MWYifQ.diAJDsO8gAJTvltCOZwJjYFKX5mmbZQoM5EtW5vofJMrsxj0fdZ6sXNYcOyAUeictrwf3Osujrdjef-UxI2EJbUt7nsn6wgChcqM6jn67RwKJE_of_tQVMUYI25kjgSQLArMs4m9miJ6T2Ed6be821QMJNdcoeGFS2dRAh95AjB3ls65SlQy18nz9Inrr-W7JDzCQr6M4ja-00f3BJfVdtx9YRdwnKaNsprCitWjmeOWM4H3Qf2rxkQYYlUQY5G_itMOgH57U2MfXdiVCPcjwkT4p9pp3YJXJrTOF5V4--kB6yNH97ZPntRQwdgn4PDS99CtkB769lALcJpf9SqEzg
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.23.0
     method: GET
-    uri: http://api.dev.documentcloud.org/api/projects/100325/
+    uri: http://api.dev.documentcloud.org/api/projects/100340/
   response:
     body:
-      string: '{"id":100325,"created_at":"2020-06-11T14:31:59.326273Z","description":"This
-        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-a5a601d2-07d4-4a6b-935c-cec5bba71f3b","title":"This
-        is a project for testing a5a601d2-07d4-4a6b-935c-cec5bba71f3b","updated_at":"2020-06-11T14:33:18.320678Z","user":100098}'
+      string: '{"id":100340,"created_at":"2020-06-13T15:03:00.541029Z","description":"This
+        is a project for testing","edit_access":true,"private":true,"slug":"this-is-a-project-for-testing-920add9b-a6e6-46f4-9c02-9f29eba43f9f","title":"This
+        is a project for testing 920add9b-a6e6-46f4-9c02-9f29eba43f9f","updated_at":"2020-06-13T15:04:16.787984Z","user":100098}'
     headers:
       Allow:
       - GET, PUT, PATCH, DELETE, HEAD, OPTIONS
@@ -31,7 +31,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2020 14:33:24 GMT
+      - Sat, 13 Jun 2020 15:04:22 GMT
       Server:
       - nginx/1.15.1
       Vary:

@@ -1,3 +1,9 @@
+# Future
+from __future__ import division, print_function, unicode_literals
+
+# Third Party
+from future.utils import python_2_unicode_compatible
+
 # Local
 from .base import APISet, BaseAPIClient, BaseAPIObject
 from .constants import PER_PAGE_MAX
@@ -6,6 +12,7 @@ from .exceptions import DoesNotExistError, MultipleObjectsReturnedError
 from .toolbox import get_id
 
 
+@python_2_unicode_compatible
 class Project(BaseAPIObject):
     """A documentcloud project"""
 
@@ -14,7 +21,7 @@ class Project(BaseAPIObject):
 
     def __init__(self, *args, **kwargs):
         per_page = kwargs.pop("per_page", PER_PAGE_MAX)
-        super().__init__(*args, **kwargs)
+        super(Project, self).__init__(*args, **kwargs)
         self._document_list = None
         self._per_page = per_page
 
@@ -23,16 +30,18 @@ class Project(BaseAPIObject):
 
     def save(self):
         """Add the documents to the project as well"""
-        super().save()
+        super(Project, self).save()
         if self._document_list:
             data = [{"document": d} for d in self.document_ids]
-            self._client.put(f"{self.api_path}/{self.id}/documents/", json=data)
+            self._client.put(
+                "{}/{}/documents/".format(self.api_path, self.id), json=data
+            )
 
     @property
     def document_list(self):
         if self._document_list is None:
             response = self._client.get(
-                f"{self.api_path}/{get_id(self.id)}/documents/",
+                "{}/{}/documents/".format(self.api_path, get_id(self.id)),
                 params={"per_page": self._per_page, "expand": ["document"]},
             )
             json = response.json()
@@ -71,7 +80,7 @@ class Project(BaseAPIObject):
 
     def get_document(self, doc_id):
         response = self._client.get(
-            f"{self.api_path}/{get_id(self.id)}/documents/{doc_id}",
+            "{}/{}/documents/{}".format(self.api_path, get_id(self.id), doc_id),
             params={"expand": ["document"]},
         )
         return Document(self._client, response.json()["document"])
@@ -103,11 +112,11 @@ class ProjectClient(BaseAPIClient):
             return self.get_by_title(title)
 
     def get_by_id(self, id_):
-        return super().get(id_)
+        return super(ProjectClient, self).get(id_)
 
     def get_by_title(self, title):
         response = self.client.get(
-            f"{self.api_path}/", params={"title": title, "user": self.client.user_id}
+            self.api_path + "/", params={"title": title, "user": self.client.user_id}
         )
         json = response.json()
         if json["count"] == 0:
@@ -119,12 +128,12 @@ class ProjectClient(BaseAPIClient):
 
     def create(self, title, description="", private=True, document_ids=None):
         data = {"title": title, "description": description, "private": private}
-        response = self.client.post(f"{self.api_path}/", json=data)
+        response = self.client.post(self.api_path + "/", json=data)
         project = Project(self.client, response.json())
         if document_ids:
             data = [{"document": d} for d in document_ids]
             response = self.client.put(
-                f"{self.api_path}/{project.id}/documents/", json=data
+                "{}/{}/documents/".format(self.api_path, project.id), json=data
             )
         return project
 

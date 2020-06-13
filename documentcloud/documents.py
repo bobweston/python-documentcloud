@@ -2,6 +2,9 @@
 Documents
 """
 
+# Future
+from __future__ import division, print_function, unicode_literals
+
 # Standard Library
 import os
 import re
@@ -10,6 +13,7 @@ from functools import partial
 
 # Third Party
 import requests
+from future.utils import python_2_unicode_compatible
 
 # Local
 from .annotations import AnnotationClient
@@ -17,10 +21,11 @@ from .base import APIResults, BaseAPIClient, BaseAPIObject
 from .constants import BULK_LIMIT
 from .organizations import Organization
 from .sections import SectionClient
-from .toolbox import grouper, is_url
+from .toolbox import grouper, is_url, merge_dicts
 from .users import User
 
 
+@python_2_unicode_compatible
 class Document(BaseAPIObject):
     """A single DocumentCloud document"""
 
@@ -44,13 +49,13 @@ class Document(BaseAPIObject):
         for name, resource in objs:
             value = dict_.get(name)
             if isinstance(value, dict):
-                dict_[f"_{name}"] = resource(client, value)
-                dict_[f"{name}_id"] = value.get("id")
+                dict_["_" + name] = resource(client, value)
+                dict_[name + "_id"] = value.get("id")
             elif isinstance(value, int):
-                dict_[f"_{name}"] = None
-                dict_[f"{name}_id"] = value
+                dict_["_" + name] = None
+                dict_[name + "_id"] = value
 
-        super().__init__(client, dict_)
+        super(Document, self).__init__(client, dict_)
 
         self.sections = SectionClient(client, self)
         self.annotations = AnnotationClient(client, self)
@@ -69,13 +74,13 @@ class Document(BaseAPIObject):
         text = attr.endswith("_text")
         # this allows dropping `get_` to act like a property, ie
         # .full_text_url
-        if not get and hasattr(self, f"get_{attr}"):
-            return getattr(self, f"get_{attr}")()
+        if not get and hasattr(self, "get_{}".format(attr)):
+            return getattr(self, "get_{}".format(attr))()
         # this allows dropping `_url` to fetch the url, ie
         # .get_full_text()
-        if not url and hasattr(self, f"{attr}_url"):
+        if not url and hasattr(self, "{}_url".format(attr)):
             return lambda *a, **k: self._get_url(
-                getattr(self, f"{attr}_url")(*a, **k), text
+                getattr(self, "{}_url".format(attr))(*a, **k), text
             )
         # this genericizes the image sizes
         m_image = p_image.match(attr)
@@ -84,25 +89,25 @@ class Document(BaseAPIObject):
         if m_image and not m_image.group("list"):
             return partial(self.get_image_url, size=m_image.group("size"))
         raise AttributeError(
-            f"'{self.__class__.__name__}' object has no attribute '{attr}'"
+            "'{}' object has no attribute '{}'".format(self.__class__.__name__, attr)
         )
 
     def __dir__(self):
-        attrs = super().__dir__()
+        attrs = dir(type(self)) + list(self.__dict__.keys())
         getters = [a for a in attrs if a.startswith("get_")]
         attrs += [a[len("get_") :] for a in getters]
         attrs += [a[: -len("_url")] for a in getters if a.endswith("url")]
         attrs += [a[len("get_") : -len("_url")] for a in getters if a.endswith("url")]
         for size in ["thumbnail", "small", "normal", "large"]:
             attrs += [
-                f"get_{size}_image_url",
-                f"{size}_image_url",
-                f"get_{size}_image",
-                f"{size}_image",
-                f"get_{size}_image_url_list",
-                f"{size}_image_url_list",
+                "get_{}_image_url".format(size),
+                "{}_image_url".format(size),
+                "get_{}_image".format(size),
+                "{}_image".format(size),
+                "get_{}_image_url_list".format(size),
+                "{}_image_url_list".format(size),
             ]
-        return attrs
+        return sorted(attrs)
 
     @property
     def pages(self):
@@ -154,21 +159,22 @@ class Document(BaseAPIObject):
 
     # Resource URLs
     def get_full_text_url(self):
-        return f"{self.asset_url}documents/{self.id}/{self.slug}.txt"
+        return "{}documents/{}/{}.txt".format(self.asset_url, self.id, self.slug)
 
     def get_page_text_url(self, page=1):
-        return f"{self.asset_url}documents/{self.id}/pages/{self.slug}-p{page}.txt"
+        return "{}documents/{}/pages/{}-p{}.txt".format(
+            self.asset_url, self.id, self.slug, page
+        )
 
     def get_json_text_url(self):
-        return f"{self.asset_url}documents/{self.id}/{self.slug}.txt.json"
+        return "{}documents/{}/{}.txt.json".format(self.asset_url, self.id, self.slug)
 
     def get_pdf_url(self):
-        return f"{self.asset_url}documents/{self.id}/{self.slug}.pdf"
+        return "{}documents/{}/{}.pdf".format(self.asset_url, self.id, self.slug)
 
     def get_image_url(self, page=1, size="normal"):
-        return (
-            f"{self.asset_url}documents/{self.id}/pages/"
-            f"{self.slug}-p{page}-{size}.gif"
+        return "{}documents/{}/pages/{}-p{}-{}.gif".format(
+            self.asset_url, self.id, self.slug, page, size
         )
 
     def get_image_url_list(self, size="normal"):
@@ -261,7 +267,9 @@ class DocumentClient(BaseAPIClient):
 
         for param in ignored_parameters:
             if param in kwargs:
-                warnings.warn(f"The parameter `{param}` is not currently supported")
+                warnings.warn(
+                    "The parameter `{}` is not currently supported".format(param)
+                )
 
         return params
 
@@ -291,7 +299,7 @@ class DocumentClient(BaseAPIClient):
         # begin processing the document
         doc_id = create_json["id"]
         response = self.client.post(
-            f"documents/{doc_id}/process/", json={"force_ocr": force_ocr}
+            "documents/{}/process/".format(doc_id), json={"force_ocr": force_ocr}
         )
 
         return Document(self.client, create_json)
@@ -329,7 +337,10 @@ class DocumentClient(BaseAPIClient):
             # create the documents
             response = self.client.post(
                 "documents/",
-                json=[{**params, "title": self._get_title(p)} for p in pdf_paths],
+                json=[
+                    merge_dicts(params, {"title": self._get_title(p)})
+                    for p in pdf_paths
+                ],
             )
 
             # upload the files directly to storage
@@ -348,6 +359,7 @@ class DocumentClient(BaseAPIClient):
         return [Document(self.client, d) for d in obj_list]
 
 
+@python_2_unicode_compatible
 class Mention:
     """A snippet from a document search"""
 
@@ -358,7 +370,7 @@ class Mention:
         self.text = text
 
     def __repr__(self):
-        return f"<{self.__class__.__name__}: {self}>"  # pragma: no cover
+        return "<{}: {}>".format(self.__class__.__name__, self)  # pragma: no cover
 
     def __str__(self):
-        return f'{self.page} - "{self.text}"'
+        return '{} - "{}"'.format(self.page, self.text)

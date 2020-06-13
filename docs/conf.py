@@ -12,6 +12,9 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+# Future
+from __future__ import division, print_function, unicode_literals
+
 # Standard Library
 import os
 import sys

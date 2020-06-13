@@ -1,6 +1,8 @@
 """
 Custom exceptions for python-documentcloud
 """
+# Future
+from __future__ import division, print_function, unicode_literals
 
 
 class DocumentCloudError(Exception):
@@ -12,11 +14,11 @@ class DocumentCloudError(Exception):
             self.error = self.response.text
             self.status_code = self.response.status_code
             if not args:
-                args = [f"{self.status_code} - {self.error}"]
+                args = ["{} - {}".format(self.status_code, self.error)]
         else:
             self.error = None
             self.status_code = None
-        super().__init__(*args, **kwargs)
+        super(DocumentCloudError, self).__init__(*args, **kwargs)
 
 
 class DuplicateObjectError(DocumentCloudError):

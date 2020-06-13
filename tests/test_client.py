@@ -1,3 +1,6 @@
+# Future
+from __future__ import division, print_function, unicode_literals
+
 # Standard Library
 import time
 
@@ -64,6 +67,7 @@ def test_user_id(client):
 
 
 def test_user_id_public(public_client):
+    # pylint: disable=pointless-statement
     with pytest.raises(APIError, match=r"404"):
         public_client.user_id
 
@@ -73,10 +77,10 @@ def test_bad_attr(client):
         assert client.foo
 
 
-def test_rate_limit(client):
+def test_rate_limit(rate_client):
     with pytest.raises(ratelimit.RateLimitException):
         for _ in range(RATE_LIMIT * 2):
-            client.users.get("me")
+            rate_client.users.get("me")
 
 
 @pytest.mark.short

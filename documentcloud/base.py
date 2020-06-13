@@ -1,15 +1,25 @@
+# Future
+from __future__ import division, print_function, unicode_literals
+
 # Standard Library
-from collections.abc import Sequence
+from builtins import str
 from copy import copy
 
 # Third Party
 from dateutil.parser import parse as dateparser
+from future.utils import python_2_unicode_compatible
 
 # Local
 from .exceptions import DuplicateObjectError
-from .toolbox import get_id
+from .toolbox import get_id, merge_dicts
+
+try:
+    from collections.abc import Sequence
+except ImportError:
+    from collections import Sequence
 
 
+@python_2_unicode_compatible
 class APIResults(Sequence):
     """Class for encapsulating paginated list results from the API"""
 
@@ -28,13 +38,15 @@ class APIResults(Sequence):
         self.previous_url = json["previous"]
         self._next = next_
         self._previous = previous
-        self.results = [resource(client, {**r, **extra}) for r in json["results"]]
+        self.results = [
+            resource(client, merge_dicts(r, extra)) for r in json["results"]
+        ]
 
     def __repr__(self):
-        return f"<APIResults: {self.results!r}"  # pragma: no cover
+        return "<APIResults: {!r}".format(self.results)  # pragma: no cover
 
     def __str__(self):
-        return str(self.results)
+        return "[{}]".format(", ".join(str(r) for r in self.results))
 
     def __getitem__(self, key):
         # pylint: disable=unsubscriptable-object
@@ -51,10 +63,12 @@ class APIResults(Sequence):
         return self.count
 
     def __iter__(self):
-        yield from self.results
+        for result in self.results:
+            yield result
         if self.next_url:
             # pylint: disable=not-an-iterable
-            yield from self.next
+            for result in self.next:
+                yield result
         else:
             return
 
@@ -80,7 +94,7 @@ class APIResults(Sequence):
         return self._previous
 
 
-class BaseAPIClient:
+class BaseAPIClient(object):
     """Base client for all API resources"""
 
     # subclasses should set these
@@ -96,19 +110,21 @@ class BaseAPIClient:
             params = {"expand": ",".join(expand)}
         else:
             params = {}
-        response = self.client.get(f"{self.api_path}/{get_id(id_)}/", params=params)
+        response = self.client.get(
+            "{}/{}/".format(self.api_path, get_id(id_)), params=params
+        )
         # pylint: disable=not-callable
         return self.resource(self.client, response.json())
 
     def delete(self, id_):
         """Deletes a resource"""
-        self.client.delete(f"{self.api_path}/{get_id(id_)}/")
+        self.client.delete("{}/{}/".format(self.api_path, get_id(id_)))
 
     def all(self, **params):
         return self.list(**params)
 
     def list(self, **params):
-        response = self.client.get(f"{self.api_path}/", params=params)
+        response = self.client.get(self.api_path + "/", params=params)
         return APIResults(self.resource, self.client, response)
 
 
@@ -116,11 +132,11 @@ class ChildAPIClient(BaseAPIClient):
     """Base client for sub resources"""
 
     def __init__(self, client, parent):
-        super().__init__(client)
+        super(ChildAPIClient, self).__init__(client)
         self.parent = parent
 
     def list(self, **params):
-        response = self.client.get(f"{self.api_path}/", params=params)
+        response = self.client.get(self.api_path + "/", params=params)
         parent_name = self.parent.__class__.__name__.lower()
         return APIResults(
             self.resource, self.client, response, {parent_name: self.parent}
@@ -137,7 +153,7 @@ class ChildAPIClient(BaseAPIClient):
         return self.list()[key]
 
 
-class BaseAPIObject:
+class BaseAPIObject(object):
     """Base object for all API resources"""
 
     date_fields = []
@@ -149,7 +165,9 @@ class BaseAPIObject:
             setattr(self, field, dateparser(getattr(self, field)))
 
     def __repr__(self):
-        return f"<{self.__class__.__name__}: {self.id} - {self}>"  # pragma: no cover
+        return "<{}: {} - {}>".format(
+            self.__class__.__name__, self.id, self
+        )  # pragma: no cover
 
     def __eq__(self, obj):
         return isinstance(obj, type(self)) and self.id == obj.id
@@ -160,56 +178,65 @@ class BaseAPIObject:
 
     def save(self):
         data = {f: getattr(self, f) for f in self.writable_fields if hasattr(self, f)}
-        self._client.put(f"{self.api_path}/{self.id}/", json=data)
+        self._client.put("{}/{}/".format(self.api_path, self.id), json=data)
 
     def delete(self):
-        self._client.delete(f"{self.api_path}/{self.id}/")
+        self._client.delete("{}/{}/".format(self.api_path, self.id))
 
 
+@python_2_unicode_compatible
 class APISet(list):
     def __init__(self, iterable, resource):
-        super().__init__(iterable)
+        super(APISet, self).__init__(iterable)
         self.resource = resource
         if not all(isinstance(obj, self.resource) for obj in self):
             raise TypeError(
-                f"Only {self.resource.__class__.__name__} can be added to this list"
+                "Only {} can be added to this list".format(
+                    self.resource.__class__.__name__
+                )
             )
         ids = [obj.id for obj in self]
         for id_ in ids:
             if ids.count(id_) > 1:
                 raise DuplicateObjectError(
-                    f"Object with ID {id_} appears in the list more than once"
+                    "Object with ID {} appears in the list more than once".format(id_)
                 )
 
     def append(self, obj):
         if not isinstance(obj, self.resource):
             raise TypeError(
-                f"Only {self.resource.__class__.__name__} can be added to this list"
+                "Only {} can be added to this list".format(
+                    self.resource.__class__.__name__
+                )
             )
         if obj.id in [i.id for i in self]:
             raise DuplicateObjectError(
-                f"Object with ID {obj.id} appears in the list more than once"
+                "Object with ID {} appears in the list more than once".format(obj.id)
             )
-        super().append(copy(obj))
+        super(APISet, self).append(copy(obj))
 
     def add(self, obj):
         if not isinstance(obj, self.resource):
             raise TypeError(
-                f"Only {self.resource.__class__.__name__} can be added to this list"
+                "Only {} can be added to this list".format(
+                    self.resource.__class__.__name__
+                )
             )
         # skip duplicates silently
         if obj.id not in [i.id for i in self]:
-            super().append(copy(obj))
+            super(APISet, self).append(copy(obj))
 
     def extend(self, list_):
         if not all(isinstance(obj, self.resource) for obj in list_):
             raise TypeError(
-                f"Only {self.resource.__class__.__name__} can be added to this list"
+                "Only {} can be added to this list".format(
+                    self.resource.__class__.__name__
+                )
             )
         ids = [obj.id for obj in self + list_]
         for id_ in ids:
             if ids.count(id_) > 1:
                 raise DuplicateObjectError(
-                    f"Object with ID {id} appears in the list more than once"
+                    "Object with ID {} appears in the list more than once".format(id)
                 )
-        super().extend(copy(obj) for obj in list_)
+        super(APISet, self).extend(copy(obj) for obj in list_)

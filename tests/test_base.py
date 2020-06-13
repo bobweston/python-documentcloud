@@ -1,3 +1,9 @@
+# Future
+from __future__ import division, print_function, unicode_literals
+
+# Standard Library
+from builtins import str
+
 # Third Party
 import pytest
 
@@ -9,7 +15,7 @@ from documentcloud.exceptions import DuplicateObjectError
 class TestAPIResults:
     def test_str(self, client):
         results = client.documents.list()
-        assert str(results) == str(results.results)
+        assert str(results)
 
     def test_getitem(self, client):
         results = client.documents.list()
@@ -20,6 +26,7 @@ class TestAPIResults:
         assert isinstance(results[3], Document)
 
     def test_getitem_index_error(self, client):
+        # pylint: disable=pointless-statement
         results = client.documents.list()
         index = len(results) + 1
         with pytest.raises(IndexError):
