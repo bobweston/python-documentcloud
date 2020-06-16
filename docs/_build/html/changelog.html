@@ -1,33 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Changelog &mdash; python-documentcloud 1.0.3 documentation</title>
-    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog &#8212; python-documentcloud 1.0.4 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0.3',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="python-documentcloud 1.0.3 documentation" href="index.html" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Credits" href="credits.html" />
     <link rel="prev" title="Other objects" href="otherobjects.html" /> 
-  </head>
-  <body role="document">
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,7 +32,8 @@
         <li class="right" >
           <a href="otherobjects.html" title="Other objects"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">python-documentcloud 1.0.3 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">python-documentcloud 1.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Changelog</a></li> 
       </ul>
     </div>  
 
@@ -52,117 +45,24 @@
   <div class="section" id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>1.0.3<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>2.0.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Encoding bug fix for metadata associated with documents via API</li>
-</ul>
-</div>
-<div class="section" id="id2">
-<h2>1.0.2<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>URLs to PDFs can now be submitted for upload</li>
-<li>Refactored setup.py and tests to be less complex</li>
-</ul>
-</div>
-<div class="section" id="id3">
-<h2>1.0.1<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Python 3.4 testing</li>
-<li>400MB upload limit to match DocumentCloud&#8217;s API restrictions</li>
-</ul>
-</div>
-<div class="section" id="id4">
-<h2>1.0.0<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Adopted <a class="reference external" href="http://semver.org/">semantic versioning</a> without breaking existing packages on PyPI</li>
-<li>Fixed bugs with <code class="docutils literal"><span class="pre">get_page_text</span></code></li>
-<li>Added keyword argument during initialization that allows you to override the <code class="docutils literal"><span class="pre">BASE_URI</span></code> and connect with independent clones of DocumentCloud. Contributed by <a class="reference external" href="https://github.com/adieyal">Adi Eyal</a>.</li>
-<li>Refactored unit tests to run more quickly and require fewer web requests</li>
-<li>Documentation moved from the gh-pages branch to master and refactored to be published via <a class="reference external" href="http://readthedocs.org">ReadTheDocs</a>.</li>
-</ul>
-</div>
-<div class="section" id="id5">
-<h2>0.2<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Python 3 support</li>
-<li>PEP8 and PyFlakes compliance</li>
-<li>Coverage reports on testing via coveralls.io</li>
-</ul>
-</div>
-<div class="section" id="id6">
-<h2>0.16<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Continuous integration testing with TravisCI</li>
-<li>Fixed bug with empty strings in Document descriptions</li>
-<li>Raise errors when a user tries to save a data keyword reserved by DocumentCloud</li>
-<li>Allow all-caps file extensions</li>
-<li>Retry requests that fail with an increasing backoff delay</li>
-<li>Fixed a bug in how titles are assigned to a file object</li>
-<li>Added access checks when retrieving txt, pdf, img about a document</li>
-</ul>
-</div>
-<div class="section" id="id7">
-<h2>0.15<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>File objects can now be submitted for uploading</li>
-<li>Added more support for unicode data thanks to contributions by <a class="reference external" href="https://twitter.com/#!/shaneshifflett">Shane Shifflet</a>.</li>
-<li>Smarter lazy loading of Document attributes missing from a search</li>
-</ul>
-</div>
-<div class="section" id="id8">
-<h2>0.14<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Added <code class="docutils literal"><span class="pre">data</span></code> attribute on Document for storing dictionaries of arbitrary metadata</li>
-<li>Added <code class="docutils literal"><span class="pre">secure</span></code> option for Document uploads to prevent data from being sent to OpenCalais</li>
-<li>Added <code class="docutils literal"><span class="pre">save</span></code> alias on Document and Project objects that uses the pre-existing <code class="docutils literal"><span class="pre">put</span></code> command</li>
-<li>Fixed to url encoding to makes the system more unicode friendly</li>
-<li>Added all Document upload arguments to <code class="docutils literal"><span class="pre">upload_directory</span></code> method</li>
-</ul>
-</div>
-<div class="section" id="id9">
-<h2>0.13<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">upload_directory</span></code> method for documents</li>
-</ul>
-</div>
-<div class="section" id="id10">
-<h2>0.12<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">get_or_create_by_title</span></code> method for projects</li>
-<li>Document and project creation methods now return an object, not the new id.</li>
-<li>Projects can pulled by id or by title</li>
-</ul>
-</div>
-<div class="section" id="id11">
-<h2>0.11<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Document search now returns <code class="docutils literal"><span class="pre">mentions</span></code> of the keyword in the documents</li>
-<li><code class="docutils literal"><span class="pre">related_url</span></code> and <code class="docutils literal"><span class="pre">published_url</span></code> attributes now more easily accessible</li>
-<li><code class="docutils literal"><span class="pre">normal</span></code> sized images now available</li>
+<li><p>Initial release of re-written library for the new DocumentCloud API</p></li>
 </ul>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Changelog</a><ul>
-<li><a class="reference internal" href="#id1">1.0.3</a></li>
-<li><a class="reference internal" href="#id2">1.0.2</a></li>
-<li><a class="reference internal" href="#id3">1.0.1</a></li>
-<li><a class="reference internal" href="#id4">1.0.0</a></li>
-<li><a class="reference internal" href="#id5">0.2</a></li>
-<li><a class="reference internal" href="#id6">0.16</a></li>
-<li><a class="reference internal" href="#id7">0.15</a></li>
-<li><a class="reference internal" href="#id8">0.14</a></li>
-<li><a class="reference internal" href="#id9">0.13</a></li>
-<li><a class="reference internal" href="#id10">0.12</a></li>
-<li><a class="reference internal" href="#id11">0.11</a></li>
+<li><a class="reference internal" href="#id1">2.0.0</a></li>
 </ul>
 </li>
 </ul>
@@ -176,23 +76,20 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/changelog.txt"
+      <li><a href="_sources/changelog.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -209,12 +106,13 @@
         <li class="right" >
           <a href="otherobjects.html" title="Other objects"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">python-documentcloud 1.0.3 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">python-documentcloud 1.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Changelog</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Los Angeles Times Data Desk.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2014, Los Angeles Times Data Desk.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.1.
     </div>
   </body>
 </html>

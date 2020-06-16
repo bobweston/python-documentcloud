@@ -47,6 +47,14 @@ class Annotation(BaseAPIObject):
             int(self.x1 * width),
         )
 
+    @property
+    def page(self):
+        return self.page_number
+
+    @property
+    def description(self):
+        return self.content
+
 
 class Location(object):
     def __init__(self, top, right, bottom, left):

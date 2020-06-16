@@ -1,33 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Projects &mdash; python-documentcloud 1.0.3 documentation</title>
-    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects &#8212; python-documentcloud 1.0.4 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0.3',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="python-documentcloud 1.0.3 documentation" href="index.html" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Other objects" href="otherobjects.html" />
     <link rel="prev" title="Documents" href="documents.html" /> 
-  </head>
-  <body role="document">
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -40,7 +32,8 @@
         <li class="right" >
           <a href="documents.html" title="Documents"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">python-documentcloud 1.0.3 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">python-documentcloud 1.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Projects</a></li> 
       </ul>
     </div>  
 
@@ -51,44 +44,49 @@
             
   <div class="section" id="projects">
 <h1>Projects<a class="headerlink" href="#projects" title="Permalink to this headline">¶</a></h1>
-<p>Methods for drawing down, editing and uploading data about DocumentCloud projects. A project is a group of documents.</p>
+<p>Methods for drawing down, editing and uploading data about DocumentCloud
+projects. A project is a group of documents.</p>
 <div class="section" id="retrieval">
 <h2>Retrieval<a class="headerlink" href="#retrieval" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
+<dl class="py method">
 <dt id="client.projects.get">
-<code class="descclassname">client.projects.</code><code class="descname">get</code><span class="sig-paren">(</span><em>id=None</em>, <em>title=None</em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the project with the provided DocumentCloud identifer. You can retrieve projects using either the <cite>id</cite> or <cite>title</cite>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">documentcloud</span> <span class="kn">import</span> <span class="n">DocumentCloud</span>
+<code class="sig-prename descclassname">client.projects.</code><code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the project with the provided DocumentCloud identifer. You can
+retrieve projects using either the <cite>id</cite> or <cite>title</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">documentcloud</span> <span class="kn">import</span> <span class="n">DocumentCloud</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">DocumentCloud</span><span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># Fetch using the id</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s">&#39;816&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Fetch using the id</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;816&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span>
 <span class="go">&lt;Project: The Ruben Salazar Files&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># Fetch using the title</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#39;The Ruben Salazar Files&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Fetch using the title</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;The Ruben Salazar Files&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span>
 <span class="go">&lt;Project: The Ruben Salazar Files&gt;</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py method">
 <dt id="client.projects.get_by_id">
-<code class="descclassname">client.projects.</code><code class="descname">get_by_id</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.get_by_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the project with the provided id. Operates the same as <cite>client.projects.get</cite>.</p>
+<code class="sig-prename descclassname">client.projects.</code><code class="sig-name descname">get_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.get_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the project with the provided id. Operates the same as
+<cite>client.projects.get</cite>.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py method">
 <dt id="client.projects.get_by_title">
-<code class="descclassname">client.projects.</code><code class="descname">get_by_title</code><span class="sig-paren">(</span><em>title</em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.get_by_title" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the project with the provided title. Operates the same as <cite>client.projects.get</cite>.</p>
+<code class="sig-prename descclassname">client.projects.</code><code class="sig-name descname">get_by_title</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">title</span></em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.get_by_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the project with the provided title. Operates the same as
+<cite>client.projects.get</cite>.</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py method">
 <dt id="client.projects.all">
-<code class="descclassname">client.projects.</code><code class="descname">all</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.all" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all projects for the authorized DocumentCloud account</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">documentcloud</span> <span class="kn">import</span> <span class="n">DocumentCloud</span>
+<code class="sig-prename descclassname">client.projects.</code><code class="sig-name descname">all</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all projects for the authorized DocumentCloud account.
+Please see the full <a class="reference external" href="https://beta.documentcloud.org/help/API/">API documentation</a> for available parameters.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">documentcloud</span> <span class="kn">import</span> <span class="n">DocumentCloud</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">DocumentCloud</span><span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj_list</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -97,64 +95,83 @@
 </div>
 </dd></dl>
 
+<dl class="py method">
+<dt id="client.projects.list">
+<code class="sig-prename descclassname">client.projects.</code><code class="sig-name descname">list</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all projects.
+Please see the full <a class="reference external" href="https://beta.documentcloud.org/help/API/">API documentation</a> for available parameters.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="editing">
 <h2>Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h2>
-<dl class="method">
+<dl class="py method">
 <dt id="project_obj.put">
-<code class="descclassname">project_obj.</code><code class="descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#project_obj.put" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save changes to a project back to DocumentCloud. You must be authorized to make these changes. Only the <cite>title</cite>, <cite>source</cite>, <cite>document_list</cite> attributes may be edited.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;816&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Brand new title&quot;</span>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">put</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#project_obj.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save changes to a project back to DocumentCloud. You must be authorized to
+make these changes. Only the
+<a class="reference internal" href="#project_obj.description" title="project_obj.description"><code class="xref py py-attr docutils literal notranslate"><span class="pre">description</span></code></a>,
+<a class="reference internal" href="#project_obj.document_list" title="project_obj.document_list"><code class="xref py py-attr docutils literal notranslate"><span class="pre">document_list</span></code></a>,
+<a class="reference internal" href="#project_obj.private" title="project_obj.private"><code class="xref py py-attr docutils literal notranslate"><span class="pre">private</span></code></a>,
+and <a class="reference internal" href="#project_obj.title" title="project_obj.title"><code class="xref py py-attr docutils literal notranslate"><span class="pre">title</span></code></a>,
+attributes may be edited.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;816&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Brand new title&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">put</span><span class="p">()</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="project_obj.delete">
-<code class="descclassname">project_obj.</code><code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#project_obj.delete" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delete a project from DocumentCloud. You must be authorized to make these changes.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;816&#39;</span><span class="p">)</span>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#project_obj.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a project from DocumentCloud. You must be authorized to make these
+changes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;816&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="project_obj.save">
-<code class="descclassname">project_obj.</code><code class="descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#project_obj.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>An alias for <code class="docutils literal"><span class="pre">put</span></code> that saves changes back to DocumentCloud.</p>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#project_obj.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>An alias for <a class="reference internal" href="#project_obj.put" title="project_obj.put"><code class="xref py py-meth docutils literal notranslate"><span class="pre">put()</span></code></a> that saves changes back to DocumentCloud.</p>
 </dd></dl>
 
 </div>
 <div class="section" id="creation">
 <h2>Creation<a class="headerlink" href="#creation" title="Permalink to this headline">¶</a></h2>
-<dl class="method">
+<dl class="py method">
 <dt id="client.projects.create">
-<code class="descclassname">client.projects.</code><code class="descname">create</code><span class="sig-paren">(</span><em>title=None</em>, <em>description=None</em>, <em>document_ids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new project on DocumentCloud. You must be authorized to do this. Returns the object representing the new record you&#8217;ve created.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">documentcloud</span> <span class="kn">import</span> <span class="n">DocumentCloud</span>
+<code class="sig-prename descclassname">client.projects.</code><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">title</span></em>, <em class="sig-param"><span class="n">description</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">private</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">document_ids</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new project on DocumentCloud. You must be authorized to do this.
+Returns the object representing the new record you’ve created.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">documentcloud</span> <span class="kn">import</span> <span class="n">DocumentCloud</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">DocumentCloud</span><span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s">&quot;New project&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;New project&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span>
 <span class="go">&lt;Project: New project&gt;</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="client.projects.get_or_create_by_title">
-<code class="descclassname">client.projects.</code><code class="descname">get_or_create_by_title</code><span class="sig-paren">(</span><em>title=None</em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.get_or_create_by_title" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetch the project with provided name, or create it if it does not exist. You must be authorized to do this. Returns a tuple. An object representing the record comes first. A boolean that reports whether or not the objects was created fresh comes second. It is true when the record was created, false when it was found on the site already.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">documentcloud</span> <span class="kn">import</span> <span class="n">DocumentCloud</span>
+<code class="sig-prename descclassname">client.projects.</code><code class="sig-name descname">get_or_create_by_title</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">title</span></em><span class="sig-paren">)</span><a class="headerlink" href="#client.projects.get_or_create_by_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch the project with provided name, or create it if it does not exist. You
+must be authorized to do this. Returns a tuple. An object representing the
+record comes first. A boolean that reports whether or not the objects was
+created fresh comes second. It is true when the record was created, false
+when it was found on the site already.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">documentcloud</span> <span class="kn">import</span> <span class="n">DocumentCloud</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">DocumentCloud</span><span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># The first time it will be created and added to documentcloud.org</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get_or_create_by_title</span><span class="p">(</span><span class="s">&quot;New project&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The first time it will be created and added to documentcloud.org</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get_or_create_by_title</span><span class="p">(</span><span class="s2">&quot;New project&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="p">,</span> <span class="n">created</span>
 <span class="go">&lt;Project: New project&gt;, True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c"># The second time it will be fetched from documentcloud.org</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get_or_create_by_title</span><span class="p">(</span><span class="s">&quot;New project&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The second time it will be fetched from documentcloud.org</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="p">,</span> <span class="n">created</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get_or_create_by_title</span><span class="p">(</span><span class="s2">&quot;New project&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="p">,</span> <span class="n">created</span>
 <span class="go">&lt;Project: New project&gt;, False</span>
 </pre></div>
@@ -164,62 +181,104 @@
 </div>
 <div class="section" id="metadata">
 <h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
-<dl class="attribute">
+<dl class="py attribute">
+<dt id="project_obj.created_at">
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">created_at</code><a class="headerlink" href="#project_obj.created_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt id="project_obj.description">
-<code class="descclassname">project_obj.</code><code class="descname">description</code><a class="headerlink" href="#project_obj.description" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">description</code><a class="headerlink" href="#project_obj.description" title="Permalink to this definition">¶</a></dt>
 <dd><p>A summary of the project. Can be edited and saved with a put command.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="project_obj.document_ids">
-<code class="descclassname">project_obj.</code><code class="descname">document_ids</code><a class="headerlink" href="#project_obj.document_ids" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list that contains the unique identifier of the documents assigned to this project. Cannot be edited. Edit the document_list instead.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;816&#39;</span><span class="p">)</span>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">document_ids</code><a class="headerlink" href="#project_obj.document_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list that contains the unique identifier of the documents assigned to
+this project. Cannot be edited. Edit the document_list instead.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;816&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">document_ids</span>
-<span class="go">[u&#39;19419-times-columnist-ruben-salazar-killed-by-bullet&#39;, u&#39;19420-usps-american-journalists-stamp&#39;, u&#39;19280-fbi-file-on-el-paso-investigations&#39;, u&#39;19281-letter-from-the-lapd-chief&#39;, ...</span>
+<span class="go">[19419, 19420, 19280, 19281, ...</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="project_obj.document_list">
-<code class="descclassname">project_obj.</code><code class="descname">document_list</code><a class="headerlink" href="#project_obj.document_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>A list that documents assigned to this project. Can be expanded by appending new documents to the list or cleared by reassigning it as an empty list and then issuing the put command.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;816&#39;</span><span class="p">)</span>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">document_list</code><a class="headerlink" href="#project_obj.document_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list that documents assigned to this project. Can be expanded by
+appending new documents to the list or cleared by reassigning it as an
+empty list and then issuing the put command.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">projects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;816&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">obj</span><span class="o">.</span><span class="n">document_list</span>
 <span class="go">[&lt;Document: Times Columnist Ruben Salazar Slain by Tear-gas Missile&gt;, &lt;Document: Salazar&#39;s Legacy Lives On&gt;, &lt;Document: Cub Reporter Catches Attention of El Paso FBI&gt;, ...</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
+<dt id="project_obj.documents">
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">documents</code><a class="headerlink" href="#project_obj.documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for <a class="reference internal" href="#project_obj.document_list" title="project_obj.document_list"><code class="xref py py-attr docutils literal notranslate"><span class="pre">document_list</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="project_obj.edit_access">
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">edit_access</code><a class="headerlink" href="#project_obj.edit_access" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="project_obj.get_document">
-<code class="descclassname">project_obj.</code><code class="descname">get_document</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#project_obj.get_document" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieves a particular document from the project using the provided DocumentCloud identifer.</p>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">get_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#project_obj.get_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a particular document from the project using the provided
+DocumentCloud identifer.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="project_obj.id">
-<code class="descclassname">project_obj.</code><code class="descname">id</code><a class="headerlink" href="#project_obj.id" title="Permalink to this definition">¶</a></dt>
-<dd><p>The unique identifer of the project in DocumentCloud&#8217;s system. Typically this is a number.</p>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">id</code><a class="headerlink" href="#project_obj.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unique identifer of the project in DocumentCloud’s system. Typically
+this is a number.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
+<dt id="project_obj.private">
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">private</code><a class="headerlink" href="#project_obj.private" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="project_obj.slug">
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">slug</code><a class="headerlink" href="#project_obj.slug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt id="project_obj.title">
-<code class="descclassname">project_obj.</code><code class="descname">title</code><a class="headerlink" href="#project_obj.title" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">title</code><a class="headerlink" href="#project_obj.title" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of the project. Can be edited and saved with a put command.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="project_obj.updated_at">
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">updated_at</code><a class="headerlink" href="#project_obj.updated_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="project_obj.user">
+<code class="sig-prename descclassname">project_obj.</code><code class="sig-name descname">user</code><a class="headerlink" href="#project_obj.user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Projects</a><ul>
 <li><a class="reference internal" href="#retrieval">Retrieval</a></li>
@@ -239,23 +298,20 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/projects.txt"
+      <li><a href="_sources/projects.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -272,12 +328,13 @@
         <li class="right" >
           <a href="documents.html" title="Documents"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">python-documentcloud 1.0.3 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">python-documentcloud 1.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Projects</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2014, Los Angeles Times Data Desk.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+        &#169; Copyright 2014, Los Angeles Times Data Desk.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.1.
     </div>
   </body>
 </html>

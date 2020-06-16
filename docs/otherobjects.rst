@@ -12,11 +12,21 @@ Notes left in documents.
 
 .. attribute:: annotation_obj.access
 
-    The privacy level of the resource within the DocumentCloud system. It will be either ``public`` or ``private``.
+    The privacy level of the resource within the DocumentCloud system. It will
+    be either ``public`` or ``private``.
+
+.. attribute:: annotation_obj.content
+
+    Space for a lengthy text block that will be published below the highlighted
+    text in the DocumentCloud design.
+
+.. attribute:: annotation_obj.created_at
 
 .. attribute:: annotation_obj.description
 
-    Space for a lengthy text block that will be published below the highlighted text in the DocumentCloud design.
+    Alias for :attr:`content`.
+
+.. attribute:: annotation_obj.edit_access
 
 .. attribute:: annotation_obj.id
 
@@ -24,34 +34,33 @@ Notes left in documents.
 
 .. attribute:: annotation_obj.location
 
-    The location of where the annotation appears on the document's page. Defined by the :ref:`locations` class.
+    The location of where the annotation appears on the document's page.
+    Defined by the :ref:`locations` class.
+
+.. attribute:: annotation_obj.organization
 
 .. attribute:: annotation_obj.page
 
     The page where the annotation appears.
 
+.. attribute:: annotation_obj.page_number
+
+    Alias for :attr:`page`.
+
 .. attribute:: annotation_obj.title
 
-    The name of the annotation, which appears in the table of contents and above the highlighted text when published by DocumentCloud.
+    The name of the annotation, which appears in the table of contents and
+    above the highlighted text when published by DocumentCloud.
 
-.. _entities:
+.. attribute:: annotation_obj.updated_at
 
-Entities
---------
+.. attribute:: annotation_obj.user
 
-Keywords extracted from documents with OpenCalais.
-
-.. attribute:: location_obj.relevance
-
-    The weighting associated with this connection by OpenCalais. Higher numbers are supposed to be more relevant.
-
-.. attribute:: location_obj.type
-
-    The category of entity the value belongs to.
-
-.. attribute:: location_obj.value
-
-    The name of the entity extracted from the document (i.e. "Los Angeles" or "Museum of Modern Art")
+.. XXX in document percantage
+.. attribute:: annotation_obj.x1
+.. attribute:: annotation_obj.x2
+.. attribute:: annotation_obj.y1
+.. attribute:: annotation_obj.y2
 
 .. _locations:
 
@@ -60,6 +69,7 @@ Locations
 
 The location where :ref:`annotations` are placed within a document.
 
+.. XXX in pixels assuming 700 pixel width
 .. attribute:: location_obj.bottom
 
     The value of the bottom edge of an annotation.
@@ -105,3 +115,7 @@ Sections of the documents earmarked by users.
 .. attribute:: section_obj.page
 
     The page where the section begins.
+
+.. attribute:: section_obj.page_number
+
+    Alias to :attr:`page`.

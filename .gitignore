@@ -12,3 +12,4 @@ private_settings.py
 .coverage
 scratch.py
 htmlcov/
+_build/

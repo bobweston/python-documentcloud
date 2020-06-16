@@ -8,7 +8,7 @@ Installation
 
 Provided that you have `pip <http://pypi.python.org/pypi/pip>`_ installed, you can install the library like so: ::
 
-    $ pip install python-documentcloud
+    $ pip install python-documentcloud2
 
 Creating a client
 -----------------
@@ -24,7 +24,7 @@ Since we didn't provide any log-in credentials, the client above will only be ab
 
 You can also specify a custom uri if you have installed your own version of DocumentCloud ::
 
-    >>> client = DocumentCloud(USERNAME, PASSWORD, base_uri="https://your.documentcloud.domain/api/")
+    >>> client = DocumentCloud(USERNAME, PASSWORD, base_uri="https://your.documentcloud.domain/api/", auth_uri="https://your.account.server.domain/api/")
 
 Searching for documents
 -----------------------
@@ -45,7 +45,7 @@ Once you have you hands on a document object, you can interact with the metadata
     >>> print obj.title
     Final OIR Report
     >>> print obj.id
-    71072-oir-final-report
+    71072
     >>> print obj.contributor_organization
     Los Angeles Times
     >>> print obj.canonical_url
@@ -97,7 +97,7 @@ First upload the document as normal. ::
 Then refresh your local document object from the server. If it is does not show up as public, then it is still processing, and you'll have to check again. ::
 
     >>> obj = client.documents.get(obj.id)
-    >>> while obj.access != 'public':
+    >>> while obj.status != 'success':
     >>>     time.sleep(5)
     >>>     obj = client.documents.get(obj.id)
 
@@ -117,15 +117,6 @@ Here's how to upload a directory full of documents and add them all to a new pro
     >>> project.document_list = obj_list
     >>> # Save the changes to the project
     >>> project.put()
-
-Securely uploading a document
------------------------------
-
-How to upload a document, but prevent it from being sent to DocumentCloud's third-party services like OpenCalais.
-
-    >>> from documentcloud import DocumentCloud
-    >>> client = DocumentCloud(DOCUMENTCLOUD_USERNAME, DOCUMENTCLOUD_PASSWORD)
-    >>> obj = client.documents.upload("/home/ben/pdfs/myfile.pdf", secure=True)
 
 Uploading a PDF from a URL
 --------------------------
