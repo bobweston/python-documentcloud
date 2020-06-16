@@ -8,6 +8,8 @@ Other types of data provided by the DocumentCloud system.
 Annotations
 -----------
 
+.. class:: Annotation
+
 Notes left in documents.
 
 .. attribute:: annotation_obj.access
