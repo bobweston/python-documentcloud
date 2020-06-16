@@ -1,5 +1,5 @@
-python-documentcloud
-====================
+python-documentcloud2
+=====================
 
 A simple Python wrapper for the `DocumentCloud API <http://api.beta.documentcloud.org/api/>`_
 
