@@ -8,8 +8,7 @@ A simple python wrapper for the DocumentCloud API
 
 * Documentation: [http://python-documentcloud2.readthedocs.org/](http://python-documentcloud2.readthedocs.org/)
 * Issues: [https://github.com/muckrock/python-documentcloud/issues](https://github.com/muckrock/python-documentcloud/issues)
-<!--* Packaging: [https://pypi.python.org/pypi/python-documentcloud2](https://pypi.python.org/pypi/python-documentcloud2)-->
-* Coverage: [https://coveralls.io/r/datadesk/python-documentcloud](https://coveralls.io/r/datadesk/python-documentcloud)
+* Packaging: [https://pypi.python.org/pypi/python-documentcloud2](https://pypi.python.org/pypi/python-documentcloud2)
 
 Features
 --------
@@ -18,7 +17,6 @@ Features
 * Upload PDFs into your documentcloud.org account and organize them into projects
 * Download text and images extracted from your PDFs by DocumentCloud
 
-<!--
 Getting started
 ---------------
 
@@ -27,4 +25,3 @@ Installation is as easy as...
 ```bash
 $ pip install python-documentcloud2
 ```
--->
