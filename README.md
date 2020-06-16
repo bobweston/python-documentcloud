@@ -6,15 +6,9 @@
 
 A simple python wrapper for the DocumentCloud API
 
-[![Build Status](https://travis-ci.org/datadesk/python-documentcloud.png?branch=master)](https://travis-ci.org/datadesk/python-documentcloud)
-[![PyPI version](https://badge.fury.io/py/python-documentcloud.png)](http://badge.fury.io/py/python-documentcloud)
-[![Coverage Status](https://coveralls.io/repos/datadesk/python-documentcloud/badge.png?branch=master)](https://coveralls.io/r/datadesk/python-documentcloud?branch=master)
-[![Documentation Status](https://readthedocs.org/projects/python-documentcloud/badge/?version=latest)](https://python-documentcloud,readthedocs.org/)
-
-* Documentation: [http://python-documentcloud.rtfd.org/](http://python-documentcloud.rtfd.org/)
-* Issues: [https://github.com/datadesk/python-documentcloud/issues](https://github.com/datadesk/python-documentcloud/issues)
-* Packaging: [https://pypi.python.org/pypi/python-documentcloud](https://pypi.python.org/pypi/python-documentcloud)
-* Testing: [https://travis-ci.org/datadesk/python-documentcloud](https://travis-ci.org/datadesk/python-documentcloud)
+<!--* Documentation: [http://python-documentcloud2.rtfd.org/](http://python-documentcloud2.rtfd.org/)-->
+* Issues: [https://github.com/muckrock/python-documentcloud/issues](https://github.com/muckrock/python-documentcloud/issues)
+<!--* Packaging: [https://pypi.python.org/pypi/python-documentcloud2](https://pypi.python.org/pypi/python-documentcloud2)-->
 * Coverage: [https://coveralls.io/r/datadesk/python-documentcloud](https://coveralls.io/r/datadesk/python-documentcloud)
 
 Features
@@ -22,13 +16,15 @@ Features
 
 * Retrieve and edit documents and projects, both public and private, from documentcloud.org
 * Upload PDFs into your documentcloud.org account and organize them into projects
-* Download text, images and entities extracted from your PDFs by DocumentCloud
+* Download text and images extracted from your PDFs by DocumentCloud
 
+<!--
 Getting started
 ---------------
 
 Installation is as easy as...
 
 ```bash
-$ pip install python-documentcloud
+$ pip install python-documentcloud2
 ```
+-->
