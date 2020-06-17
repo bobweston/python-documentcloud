@@ -47,7 +47,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'python-documentcloud2'
+project = u'documentcloud'
 copyright = u'2020, MuckRock Foundation'
 
 # The version info for the project you're documenting, acts as replacement for

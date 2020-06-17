@@ -6,9 +6,9 @@
 
 A simple python wrapper for the DocumentCloud API
 
-* Documentation: [http://python-documentcloud2.readthedocs.org/](http://python-documentcloud2.readthedocs.org/)
+* Documentation: [http://documentcloud.readthedocs.org/](http://documentcloud.readthedocs.org/)
 * Issues: [https://github.com/muckrock/python-documentcloud/issues](https://github.com/muckrock/python-documentcloud/issues)
-* Packaging: [https://pypi.python.org/pypi/python-documentcloud2](https://pypi.python.org/pypi/python-documentcloud2)
+* Packaging: [https://pypi.python.org/pypi/documentcloud](https://pypi.python.org/pypi/documentcloud)
 
 Features
 --------
@@ -23,5 +23,5 @@ Getting started
 Installation is as easy as...
 
 ```bash
-$ pip install python-documentcloud2
+$ pip install documentcloud
 ```

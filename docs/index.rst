@@ -1,4 +1,4 @@
-python-documentcloud2
+documentcloud
 =====================
 
 A simple Python wrapper for the `DocumentCloud API <http://api.beta.documentcloud.org/api/>`_
@@ -31,4 +31,4 @@ Contributing
 
 * Code repository: `https://github.com/muckrock/python-documentcloud <https://github.com/muckrock/python-documentcloud>`_
 * Issues: `https://github.com/muckrock/python-documentcloud/issues <https://github.com/muckrock/python-documentcloud/issues>`_
-* Packaging: `https://pypi.python.org/pypi/python-documentcloud2 <https://pypi.python.org/pypi/python-documentcloud2>`_
+* Packaging: `https://pypi.python.org/pypi/documentcloud <https://pypi.python.org/pypi/documentcloud>`_
