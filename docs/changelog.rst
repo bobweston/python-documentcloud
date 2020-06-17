@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+2.0.1
+~~~~~
+
+* Add long description to PyPI
+* More complete documentation
+
 2.0.0
 ~~~~~
 

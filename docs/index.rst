@@ -19,7 +19,10 @@ Documentation
    gettingstarted
    documents
    projects
-   otherobjects
+   annotations
+   sections
+   users
+   organizations
    changelog
    credits
 

@@ -4,167 +4,182 @@ Projects
 Methods for drawing down, editing and uploading data about DocumentCloud
 projects. A project is a group of documents.
 
-Retrieval
----------
+ProjectClient
+-------------
 
-.. method:: client.projects.get(id=None, title=None)
+.. class:: documentcloud.projects.ProjectClient
 
-   Return the project with the provided DocumentCloud identifer. You can
-   retrieve projects using either the `id` or `title`. ::
+   The project client gives access to retrieval and creation of projects.
+   It is generally accessed as ``client.projects``.
 
-        >>> from documentcloud import DocumentCloud
-        >>> client = DocumentCloud(USERNAME, PASSWORD)
-        >>> # Fetch using the id
-        >>> obj = client.projects.get(id='816')
-        >>> obj
-        <Project: The Ruben Salazar Files>
-        >>> # Fetch using the title
-        >>> obj = client.projects.get(title='The Ruben Salazar Files')
-        >>> obj
-        <Project: The Ruben Salazar Files>
+   .. method:: all(**params)
 
-.. method:: client.projects.get_by_id(id)
+      Return all projects for the authorized DocumentCloud account.
+      Please see the full `API documentation`_ for available parameters. ::
 
-   Return the project with the provided id. Operates the same as
-   `client.projects.get`.
+           >>> from documentcloud import DocumentCloud
+           >>> client = DocumentCloud(USERNAME, PASSWORD)
+           >>> obj_list = client.projects.all()
+           >>> obj_list[0]
+           <Project: Ruben Salazar>
 
-.. method:: client.projects.get_by_title(title)
+   .. method:: create(title, description="", private=True, document_ids=None)
 
-   Return the project with the provided title. Operates the same as
-   `client.projects.get`.
+      Create a new project on DocumentCloud. You must be authorized to do this.
+      Returns the object representing the new record you've created.
 
-.. method:: client.projects.all(**params)
+           >>> from documentcloud import DocumentCloud
+           >>> client = DocumentCloud(USERNAME, PASSWORD)
+           >>> obj = client.projects.create("New project")
+           >>> obj
+           <Project: New project>
 
-   Return all projects for the authorized DocumentCloud account.
-   Please see the full `API documentation
-   <https://beta.documentcloud.org/help/API/>`_ for available parameters. ::
+   .. method:: get(id=None, title=None)
 
-        >>> from documentcloud import DocumentCloud
-        >>> client = DocumentCloud(USERNAME, PASSWORD)
-        >>> obj_list = client.projects.all()
-        >>> obj_list[0]
-        <Project: Ruben Salazar>
+      Return the project with the provided DocumentCloud identifer. You can
+      retrieve projects using either the `id` or `title`. ::
 
-.. method:: client.projects.list(**params)
+           >>> from documentcloud import DocumentCloud
+           >>> client = DocumentCloud(USERNAME, PASSWORD)
+           >>> # Fetch using the id
+           >>> obj = client.projects.get(id='816')
+           >>> obj
+           <Project: The Ruben Salazar Files>
+           >>> # Fetch using the title
+           >>> obj = client.projects.get(title='The Ruben Salazar Files')
+           >>> obj
+           <Project: The Ruben Salazar Files>
 
-   List all projects.
-   Please see the full `API documentation
-   <https://beta.documentcloud.org/help/API/>`_ for available parameters.
+   .. method:: get_or_create_by_title(title)
 
-Editing
+      Fetch the project with provided name, or create it if it does not exist. You
+      must be authorized to do this. Returns a tuple. An object representing the
+      record comes first. A boolean that reports whether or not the objects was
+      created fresh comes second. It is true when the record was created, false
+      when it was found on the site already.
+
+           >>> from documentcloud import DocumentCloud
+           >>> client = DocumentCloud(USERNAME, PASSWORD)
+           >>> # The first time it will be created and added to documentcloud.org
+           >>> obj, created = client.projects.get_or_create_by_title("New project")
+           >>> obj, created
+           <Project: New project>, True
+           >>> # The second time it will be fetched from documentcloud.org
+           >>> obj, created = client.projects.get_or_create_by_title("New project")
+           >>> obj, created
+           <Project: New project>, False
+
+   .. method:: get_by_id(id)
+
+      Return the project with the provided id. Operates the same as
+      `client.projects.get`.
+
+   .. method:: get_by_title(title)
+
+      Return the project with the provided title. Operates the same as
+      `client.projects.get`.
+
+   .. method:: list(**params)
+
+      List all projects.
+      Please see the full `API documentation`_ for available parameters.
+
+Project
 -------
 
-.. method:: project_obj.put()
+.. class:: documentcloud.projects.Project
 
-   Save changes to a project back to DocumentCloud. You must be authorized to
-   make these changes. Only the
-   :attr:`description`,
-   :attr:`document_list`,
-   :attr:`private`,
-   and :attr:`title`,
-   attributes may be edited. ::
+   An individual project, as obtained by the :class:`documentcloud.projects.ProjectClient`.
 
-        >>> obj = client.projects.get('816')
-        >>> obj.title = "Brand new title"
-        >>> obj.put()
+   .. method:: put()
 
-.. method:: project_obj.delete()
+      Save changes to a project back to DocumentCloud. You must be authorized to
+      make these changes. Only the
+      :attr:`description`,
+      :attr:`document_list`,
+      :attr:`private`,
+      and :attr:`title`,
+      attributes may be edited. ::
 
-   Delete a project from DocumentCloud. You must be authorized to make these
-   changes. ::
+           >>> obj = client.projects.get('816')
+           >>> obj.title = "Brand new title"
+           >>> obj.put()
 
-        >>> obj = client.projects.get('816')
-        >>> obj.delete()
+   .. method:: delete()
 
-.. method:: project_obj.save()
+      Delete a project from DocumentCloud. You must be authorized to make these
+      changes. ::
 
-    An alias for :meth:`put` that saves changes back to DocumentCloud.
+           >>> obj = client.projects.get('816')
+           >>> obj.delete()
 
-Creation
---------
+   .. method:: save()
 
-.. method:: client.projects.create(title, description="", private=True, document_ids=None)
+       An alias for :meth:`put` that saves changes back to DocumentCloud.
 
-   Create a new project on DocumentCloud. You must be authorized to do this.
-   Returns the object representing the new record you've created.
+   .. attribute:: created_at
 
-        >>> from documentcloud import DocumentCloud
-        >>> client = DocumentCloud(USERNAME, PASSWORD)
-        >>> obj = client.projects.create("New project")
-        >>> obj
-        <Project: New project>
+      The date and time when this project was created
 
-.. method:: client.projects.get_or_create_by_title(title)
+   .. attribute:: description
 
-   Fetch the project with provided name, or create it if it does not exist. You
-   must be authorized to do this. Returns a tuple. An object representing the
-   record comes first. A boolean that reports whether or not the objects was
-   created fresh comes second. It is true when the record was created, false
-   when it was found on the site already.
+       A summary of the project. Can be edited and saved with a put command.
 
-        >>> from documentcloud import DocumentCloud
-        >>> client = DocumentCloud(USERNAME, PASSWORD)
-        >>> # The first time it will be created and added to documentcloud.org
-        >>> obj, created = client.projects.get_or_create_by_title("New project")
-        >>> obj, created
-        <Project: New project>, True
-        >>> # The second time it will be fetched from documentcloud.org
-        >>> obj, created = client.projects.get_or_create_by_title("New project")
-        >>> obj, created
-        <Project: New project>, False
+   .. attribute:: document_ids
 
-Metadata
---------
+       A list that contains the unique identifier of the documents assigned to
+       this project. Cannot be edited. Edit the document_list instead.
 
-.. attribute:: project_obj.created_at
+           >>> obj = client.projects.get('816')
+           >>> obj.document_ids
+           [19419, 19420, 19280, 19281, ...
 
-.. attribute:: project_obj.description
+   .. attribute:: document_list
 
-    A summary of the project. Can be edited and saved with a put command.
+       A list that documents assigned to this project. Can be expanded by
+       appending new documents to the list or cleared by reassigning it as an
+       empty list and then issuing the put command.
 
-.. attribute:: project_obj.document_ids
+           >>> obj = client.projects.get('816')
+           >>> obj.document_list
+           [<Document: Times Columnist Ruben Salazar Slain by Tear-gas Missile>, <Document: Salazar's Legacy Lives On>, <Document: Cub Reporter Catches Attention of El Paso FBI>, ...
 
-    A list that contains the unique identifier of the documents assigned to
-    this project. Cannot be edited. Edit the document_list instead.
+   .. attribute:: documents
 
-        >>> obj = client.projects.get('816')
-        >>> obj.document_ids
-        [19419, 19420, 19280, 19281, ...
+       Alias for :attr:`document_list`.
 
-.. attribute:: project_obj.document_list
+   .. attribute:: edit_access
 
-    A list that documents assigned to this project. Can be expanded by
-    appending new documents to the list or cleared by reassigning it as an
-    empty list and then issuing the put command.
+      A boolean indicating whether or not you have the ability to save this project.
 
-        >>> obj = client.projects.get('816')
-        >>> obj.document_list
-        [<Document: Times Columnist Ruben Salazar Slain by Tear-gas Missile>, <Document: Salazar's Legacy Lives On>, <Document: Cub Reporter Catches Attention of El Paso FBI>, ...
+   .. method:: get_document(id)
 
-.. attribute:: project_obj.documents
+           Retrieves a particular document from the project using the provided
+           DocumentCloud identifer.
 
-    Alias for :attr:`document_list`.
+   .. attribute:: id
 
-.. attribute:: project_obj.edit_access
+       The unique identifer of the project in DocumentCloud's system. Typically
+       this is a number.
 
-.. method:: project_obj.get_document(id)
+   .. attribute:: private
 
-        Retrieves a particular document from the project using the provided
-        DocumentCloud identifer.
+      Whether or not this project is private.  Private documents in public
+      projects will not be viewable, but setting a project to private will protect
+      its existence from being publically viewable.
 
-.. attribute:: project_obj.id
+   .. attribute:: slug
 
-    The unique identifer of the project in DocumentCloud's system. Typically
-    this is a number.
+      The slug for the project.  A slug is a URL friendly version of the title.
 
-.. attribute:: project_obj.private
+   .. attribute:: title
 
-.. attribute:: project_obj.slug
+       The name of the project. Can be edited and saved with a put command.
 
-.. attribute:: project_obj.title
+   .. attribute:: updated_at
 
-    The name of the project. Can be edited and saved with a put command.
+      The date and time of the last time this project was updated.
 
-.. attribute:: project_obj.updated_at
+   .. attribute:: user
 
-.. attribute:: project_obj.user
+      The ID of the :class:`documentcloud.users.User` who created this project.

@@ -3,380 +3,420 @@ Documents
 
 Methods for drawing down, editing and uploading data about documents.
 
-Retrieval
----------
+DocumentClient
+--------------
 
-.. method:: client.documents.get(id_, expand=None)
+.. class:: documentcloud.documents.DocumentClient
 
-   Return the document with the provided DocumentCloud identifer. ::
-
-        >>> from documentcloud import DocumentCloud
-        >>> client = DocumentCloud(USERNAME, PASSWORD)
-        >>> client.documents.get(71072)
-        <Document: Final OIR Report>
-
-   The identifier may be just the numeric ID (71072, preferred), the old style ID-slug
-   (71072-oir-final-report), or the new style slug-id (oir-final-report-71072).
-
-   Setting expand allows for the user or organization details to be fetched with the
-   document, instead of requiring a separate API request to fetch them.  Set expand to
-   a list of the values you would like expanded. ::
-
-        >>> client.documents.get(71072, expand=["user"])
-        >>> client.documents.get(71072, expand=["user", "organization"])
+   The document client gives access to retrieval and uploading of documents.
+   It is generally accessed as ``client.documents``.
 
 
-.. method:: client.documents.search(query, **params)
+   .. method:: all(self, **params)
 
-    Return a list of documents that match the provided query. ::
-
-            >>> from documentcloud import DocumentCloud
-            >>> client = DocumentCloud()
-            >>> obj_list = client.documents.search('Ruben Salazar')
-            >>> obj_list[0]
-            <Document: Final OIR Report>
-
-   The params may be set to any parameters that the search end point takes.
-   Please see the full `search documentation
-   <https://beta.documentcloud.org/help/search/>`_ for query syntax and
-   available parameters.
+       An alias for :meth:`list`.
 
 
-.. method:: client.documents.list(self, **params)
+   .. method:: get(id_, expand=None)
 
-   Return a list of all documents, possibly filtered by the given parameters.
-   Please see the full `API documentation <https://beta.documentcloud.org/help/API/>`_
-   for available parameters.
+      Return the document with the provided DocumentCloud identifer. ::
 
+           >>> from documentcloud import DocumentCloud
+           >>> client = DocumentCloud(USERNAME, PASSWORD)
+           >>> client.documents.get(71072)
+           <Document: Final OIR Report>
 
-.. method:: client.documents.all(self, **params)
+      The identifier may be just the numeric ID (71072, preferred), the old style ID-slug
+      (71072-oir-final-report), or the new style slug-id (oir-final-report-71072).
 
-    An alias for :meth:`list`.
+      Setting expand allows for the user or organization details to be fetched with the
+      document, instead of requiring a separate API request to fetch them.  Set expand to
+      a list of the values you would like expanded. ::
 
-
-
-Editing
--------
-
-.. method:: document_obj.put()
-
-   Save changes to a document back to DocumentCloud. You must be authorized to
-   make these changes. Only the
-   :attr:`access`,
-   :attr:`data`,
-   :attr:`description`,
-   :attr:`language`,
-   :attr:`related_article`,
-   :attr:`published_url`,
-   :attr:`source`,
-   and :attr:`title`,
-   attributes may be edited. ::
-
-        >>> # Grab a document
-        >>> obj = client.documents.get('71072')
-        >>> print obj.title
-        Draft OIR Report
-        >>> # Change its title
-        >>> obj.title = "Brand new title"
-        >>> print obj.title
-        Brand New Title
-        >>> # Save those changes
-        >>> obj.put()
-
-.. method:: document_obj.save()
-
-    An alias for :meth:`put` that saves changes back to DocumentCloud.
-
-.. method:: document_obj.delete()
-
-   Delete a document from DocumentCloud. You must be authorized to make these changes. ::
-
-        >>> obj = client.documents.get('71072-oir-final-report')
-        >>> obj.delete()
+           >>> client.documents.get(71072, expand=["user"])
+           >>> client.documents.get(71072, expand=["user", "organization"])
 
 
-Uploading
----------
+   .. method:: list(self, **params)
 
-.. method:: client.documents.upload(pdf, **kwargs)
+      Return a list of all documents, possibly filtered by the given parameters.
+      Please see the full `API documentation`_ for available parameters.
 
-   Upload a PDF to DocumentCloud. You must be authorized to do this. Returns
-   the object representing the new record you've created. You can submit either
-   a file path or a file object.
 
-        >>> from documentcloud import DocumentCloud
-        >>> client = DocumentCloud(USERNAME, PASSWORD)
-        >>> new_id = client.documents.upload("/home/ben/test.pdf", "Test PDF")
-        >>> # Now fetch it
-        >>> client.documents.get(new_id)
-        <Document: Test PDF>
+   .. method:: search(query, **params)
 
-    You can also use URLs which link to PDFs, if that's the kind of thing you
-    want to do.
+       Return a list of documents that match the provided query. ::
 
-        >>> client.documents.upload("http://ord.legistar.com/Chicago/attachments/e3a0cbcb-044d-4ec3-9848-23c5692b1943.pdf")
+               >>> from documentcloud import DocumentCloud
+               >>> client = DocumentCloud()
+               >>> obj_list = client.documents.search('Ruben Salazar')
+               >>> obj_list[0]
+               <Document: Final OIR Report>
 
-    You may set the ``kwargs`` to any of the writable attributes as described
-    in :meth:`put`.  Additionally, you may set ``force_ocr`` in order to force
-    OCR to take place even if the document has embedded text, as well as either
-    ``project`` to the ID of a project to upload the document into, or
-    ``projects``, a list of project IDs to upload the document into.
+      The params may be set to any parameters that the search end point takes.
+      Please see the full `search documentation`_ for query syntax and available
+      parameters.
 
-.. method:: client.documents.upload_directory(pdf, **kwargs)
 
-   Searches through the provided path and attempts to upload all the PDFs it
-   can find. Metadata, which accepts the same keywords as :meth:`upload`,
-   provided to the other keyword arguments will be recorded for all uploads
-   (except for title which will be set based on the filename). Returns a list
-   of document objects that are created. Be warned, this will upload any
-   documents in directories inside the path you specify.
+   .. method:: upload(pdf, **kwargs)
 
-        >>> from documentcloud import DocumentCloud
-        >>> client = DocumentCloud(DOCUMENTCLOUD_USERNAME, DOCUMENTCLOUD_PASSWORD)
-        >>> obj_list = client.documents.upload_directory('/home/ben/pdfs/groucho_marx/')
+      Upload a PDF to DocumentCloud. You must be authorized to do this. Returns
+      the object representing the new record you've created. You can submit either
+      a file path or a file object.
 
-Metadata
+           >>> from documentcloud import DocumentCloud
+           >>> client = DocumentCloud(USERNAME, PASSWORD)
+           >>> new_id = client.documents.upload("/home/ben/test.pdf", "Test PDF")
+           >>> # Now fetch it
+           >>> client.documents.get(new_id)
+           <Document: Test PDF>
+
+       You can also use URLs which link to PDFs, if that's the kind of thing you
+       want to do.
+
+           >>> upload("http://ord.legistar.com/Chicago/attachments/e3a0cbcb-044d-4ec3-9848-23c5692b1943.pdf")
+
+       You may set the ``kwargs`` to any of the writable attributes as described
+       in :meth:`documentcloud.documents.Document.put`.  Additionally, you may set ``force_ocr`` in
+       order to force OCR to take place even if the document has embedded text, as
+       well as either ``project`` to the ID of a project to upload the document
+       into, or ``projects``, a list of project IDs to upload the document into.
+
+
+   .. method:: upload_directory(pdf, **kwargs)
+
+      Searches through the provided path and attempts to upload all the PDFs it
+      can find. Metadata, which accepts the same keywords as :meth:`upload`,
+      provided to the other keyword arguments will be recorded for all uploads
+      (except for title which will be set based on the filename). Returns a list
+      of document objects that are created. Be warned, this will upload any
+      documents in directories inside the path you specify.
+
+           >>> from documentcloud import DocumentCloud
+           >>> client = DocumentCloud(DOCUMENTCLOUD_USERNAME, DOCUMENTCLOUD_PASSWORD)
+           >>> obj_list = client.documents.upload_directory('/home/ben/pdfs/groucho_marx/')
+
+
+Document
 --------
 
-.. attribute:: document_obj.access
+.. class:: documentcloud.documents.Document
 
-    The privacy level of the resource within the DocumentCloud system. It will
-    be either ``public``, ``private`` or ``organization``, the last of which
-    means the is only visible to members of the contributors organization. Can
-    be edited and saved with a put command.
+   An individual document, as obtained by the :class:`documentcloud.documents.DocumentClient`.
 
-.. XXX document the annotations and sections child client functionality
+   .. method:: put()
 
-.. attribute:: document_obj.annotations
-    
-    A list of the annotations users have left on the document. The data are
-    modeled by their own Python class, defined in the :ref:`annotations`
-    section.
+      Save changes to a document back to DocumentCloud. You must be authorized to
+      make these changes. Only the
+      :attr:`access`,
+      :attr:`data`,
+      :attr:`description`,
+      :attr:`language`,
+      :attr:`related_article`,
+      :attr:`published_url`,
+      :attr:`source`,
+      and :attr:`title`,
+      attributes may be edited. ::
 
-        >>> obj = client.documents.get('83251-fbi-file-on-christopher-biggie-smalls-wallace')
-        >>> obj.annotations
-        [<Annotation>, <Annotation>, <Annotation>, <Annotation>, <Annotation>]
+           >>> # Grab a document
+           >>> obj = client.documents.get('71072')
+           >>> print obj.title
+           Draft OIR Report
+           >>> # Change its title
+           >>> obj.title = "Brand new title"
+           >>> print obj.title
+           Brand New Title
+           >>> # Save those changes
+           >>> obj.put()
 
-.. attribute:: document_obj.asset_url
+   .. method:: delete()
 
-.. attribute:: document_obj.canonical_url
+      Delete a document from DocumentCloud. You must be authorized to make these changes. ::
 
-    The URL where the document is hosted at documentcloud.org.
+           >>> obj = client.documents.get('71072-oir-final-report')
+           >>> obj.delete()
 
-.. attribute:: document_obj.contributor
+   .. method:: save()
 
-    The user who originally uploaded the document.
+       An alias for :meth:`put` that saves changes back to DocumentCloud.
 
-.. attribute:: document_obj.contributor_organization
 
-    The organizational affiliation of the user who originally uploaded the document.
+   .. attribute:: access
 
-.. attribute:: document_obj.created_at
+       The privacy level of the resource within the DocumentCloud system. It will
+       be either ``public``, ``private`` or ``organization``, the last of which
+       means the is only visible to members of the contributors organization. Can
+       be edited and saved with a put command.
 
-    The date and time that the document was created, in Python's datetime format.
+   .. attribute:: annotations
 
-.. attribute:: document_obj.data
+      A client to access and update the annotations on the document.  See
+      :class:`Annotation` for more information.
 
-    A dictionary containing supplementary data linked to the document. This can
-    be any old thing. It's useful if you'd like to store additional metadata.
-    Can be edited and saved with a put command.
+   .. attribute:: asset_url
 
-        >>> obj = client.documents.get('83251-fbi-file-on-christopher-biggie-smalls-wallace')
-        >>> obj.data
-        {'category': 'hip-hop', 'byline': 'Ben Welsh', 'pub_date': datetime.date(2011, 3, 1)}
+      The base URL to obtain the static assets for this document.  See the `API
+      documentation`_ for more details.
 
-    Keys must be strings and only contain alphanumeric characters.
+   .. attribute:: canonical_url
 
+       The URL where the document is hosted at documentcloud.org.
 
-.. attribute:: document_obj.description
+   .. attribute:: contributor
 
-    A summary of the document. Can be edited and saved with a put command.
+       The user who originally uploaded the document.
 
-.. attribute:: document_obj.edit_access
+   .. attribute:: contributor_organization
 
-.. attribute:: document_obj.file_hash
+       The organizational affiliation of the user who originally uploaded the document.
 
-    A hash representation of the raw PDF data as a hexadecimal string.
+   .. attribute:: created_at
 
-        >>> obj = client.documents.get('1021571-lafd-2013-hiring-statistics')
-        >>> obj.file_hash
-        '872b9b858f5f3e6bb6086fec7f05dd464b60eb26'
+       The date and time that the document was created, in Python's datetime format.
 
-    You could recreate this hexadecimal hash yourself using the `SHA-1
-    algorithm <https://en.wikipedia.org/wiki/SHA-1>`_.
+   .. attribute:: data
 
-        >>> import hashlib
-        >>> hashlib.sha1(obj.pdf).hexdigest()
-        '872b9b858f5f3e6bb6086fec7f05dd464b60eb26'
+       A dictionary containing supplementary data linked to the document. This can
+       be any old thing. It's useful if you'd like to store additional metadata.
+       Can be edited and saved with a put command.
 
-.. attribute:: document_obj.full_text
+           >>> obj = client.documents.get('83251-fbi-file-on-christopher-biggie-smalls-wallace')
+           >>> obj.data
+           {'category': 'hip-hop', 'byline': 'Ben Welsh', 'pub_date': datetime.date(2011, 3, 1)}
 
-    Returns the full text of the document, as extracted from the original PDF by DocumentCloud. Results may vary, but this will give you what they got. Currently, DocumentCloud only makes this available for public documents.
+       Keys must be strings and only contain alphanumeric characters.
 
-        >>> obj = client.documents.get('71072-oir-final-report')
-        >>> obj.full_text
-        "Review of the Los Angeles County Sheriff's\nDepartment's Investigation
-        into the\nHomicide of Ruben Salazar\nA Special Report by the\nLos
-        Angeles County Office of Independent Review\n ...
 
-.. attribute:: document_obj.full_text_url
+   .. attribute:: description
 
-    Returns the URL that contains the full text of the document, as extracted
-    from the original PDF by DocumentCloud.
+       A summary of the document. Can be edited and saved with a put command.
 
-.. method:: document_obj.get_page_text(page)
+   .. attribute:: edit_access
 
-    Submit a page number and receive the raw text extracted from it by DocumentCloud.
+      A boolean indicating whether or not you have the ability to save this
+      document.
 
-    >>> obj = client.documents.get('1088501-adventuretime-alta')
-    >>> txt = obj.get_page_text(1)
-    # Let's print just the first line
-    >>> print txt.decode().split("\n")[0]
-    STATE OF CALIFORNIA- HEALTH AND HUMAN SERVICES AGENCY
+   .. attribute:: file_hash
 
-.. attribute:: document_obj.id
+       A hash representation of the raw PDF data as a hexadecimal string.
 
-    The unique identifer of the document in DocumentCloud's system. This is a number.
-    ``83251``
+           >>> obj = client.documents.get('1021571-lafd-2013-hiring-statistics')
+           >>> obj.file_hash
+           '872b9b858f5f3e6bb6086fec7f05dd464b60eb26'
 
-.. attribute:: document_obj.language
+       You could recreate this hexadecimal hash yourself using the `SHA-1
+       algorithm <https://en.wikipedia.org/wiki/SHA-1>`_.
 
-.. attribute:: document_obj.large_image
+           >>> import hashlib
+           >>> hashlib.sha1(obj.pdf).hexdigest()
+           '872b9b858f5f3e6bb6086fec7f05dd464b60eb26'
 
-    Returns the binary data for the "large" sized image of the document's first
-    page. If you would like the data for some other page, pass the page number
-    into ``document_obj.get_large_image(page)``. Currently, DocumentCloud only
-    makes this available for public documents.
+   .. attribute:: full_text
 
-.. attribute:: document_obj.large_image_url
+       Returns the full text of the document, as extracted from the original PDF
+       by DocumentCloud. Results may vary, but this will give you what they got.
 
-    Returns a URL containing the "large" sized image of the document's first
-    page. If you would like the URL for some other page, pass the page number
-    into ``document_obj.get_large_image_url(page)``.
+           >>> obj = client.documents.get('71072-oir-final-report')
+           >>> obj.full_text
+           "Review of the Los Angeles County Sheriff's\nDepartment's Investigation
+           into the\nHomicide of Ruben Salazar\nA Special Report by the\nLos
+           Angeles County Office of Independent Review\n ...
 
-.. attribute:: document_obj.large_image_url_list
+   .. attribute:: full_text_url
 
-    Returns a list of URLs for the "large" sized image of every page in the document.
+       Returns the URL that contains the full text of the document, as extracted
+       from the original PDF by DocumentCloud.
 
-.. attribute:: document_obj.mentions
+   .. method:: get_page_text(page)
 
-    When the document has been retrieved via a search, this returns a list of
-    places the search keywords appear in the text. The data are modeled by
-    their own Python class, defined in the :ref:`mentions` section.
+       Submit a page number and receive the raw text extracted from it by DocumentCloud.
 
-        >>> obj_list = client.documents.search('Christopher Wallace')
-        >>> obj = obj_list[0]
-        >>> obj.mentions
-        [<Mention: Page 2>, <Mention: Page 3> ....
+       >>> obj = client.documents.get('1088501-adventuretime-alta')
+       >>> txt = obj.get_page_text(1)
+       # Let's print just the first line
+       >>> print txt.decode().split("\n")[0]
+       STATE OF CALIFORNIA- HEALTH AND HUMAN SERVICES AGENCY
 
-.. attribute:: document_obj.normal_image
+   .. attribute:: id
 
-    Returns the binary data for the "normal" sized image of the document's
-    first page. If you would like the data for some other page, pass the page
-    number into ``document_obj.get_normal_image(page)``. Currently,
-    DocumentCloud only makes this available for public documents.
+       The unique identifer of the document in DocumentCloud's system. This is a number.
+       ``83251``
 
-.. attribute:: document_obj.normal_image_url
+   .. attribute:: language
 
-    Returns a URL containing the "normal" sized image of the document's first
-    page. If you would like the URL for some other page, pass the page number
-    into ``document_obj.get_normal_image_url(page)``.
+      The three character code for the language this document is in.
 
-.. attribute:: document_obj.normal_image_url_list
+   .. attribute:: large_image
 
-    Returns a list of URLs for the "normal" sized image of every page in the document.
+       Returns the binary data for the "large" sized image of the document's first
+       page. If you would like the data for some other page, pass the page number
+       into ``get_large_image(page)``.
 
-.. XXX organization, expand, cache, ref organization object
+   .. attribute:: large_image_url
 
-.. attribute:: document_obj.organization
+       Returns a URL containing the "large" sized image of the document's first
+       page. If you would like the URL for some other page, pass the page number
+       into ``get_large_image_url(page)``.
 
-.. attribute:: document_obj.page_count
+   .. attribute:: large_image_url_list
 
-    Alias for :attr:`pages`.
+       Returns a list of URLs for the "large" sized image of every page in the document.
 
-.. attribute:: document_obj.page_spec
+   .. attribute:: mentions
 
-.. attribute:: document_obj.pages
+       When the document has been retrieved via a search, this returns a list of
+       places the search keywords appear in the text. The data are modeled by
+       their own Python class, :class:`documentcloud.documents.Mention`.
 
-    The number of pages in the document.
+           >>> obj_list = client.documents.search('Christopher Wallace')
+           >>> obj = obj_list[0]
+           >>> obj.mentions
+           [<Mention: Page 2>, <Mention: Page 3> ....
 
-.. attribute:: document_obj.pdf
+   .. attribute:: normal_image
 
-    Returns the binary data for document's original PDF file. Currently,
-    DocumentCloud only makes this available for public documents.
+       Returns the binary data for the "normal" sized image of the document's
+       first page. If you would like the data for some other page, pass the page
+       number into ``get_normal_image(page)``.
 
-.. attribute:: document_obj.pdf_url
+   .. attribute:: normal_image_url
 
-    Returns a URL containing the binary data for document's original PDF file.
+       Returns a URL containing the "normal" sized image of the document's first
+       page. If you would like the URL for some other page, pass the page number
+       into ``get_normal_image_url(page)``.
 
-.. attribute:: document_obj.projects
+   .. attribute:: normal_image_url_list
 
-.. attribute:: document_obj.published_url
+       Returns a list of URLs for the "normal" sized image of every page in the document.
 
-    Returns an URL outside of documentcloud.org where this document has been published.
+   .. attribute:: organization
 
-.. attribute:: document_obj.related_article
+      The :class:`documentcloud.organizations.Organization` which owns this
+      document.  This will require an additional API call unless you specify
+      `"organization"` in the `expand` parameter when fetching this document.
 
-    Returns an URL for a news story related to this document.
+   .. attribute:: organization_id
 
-.. XXX
-.. attribute:: document_obj.sections
+      The ID for the organization which owns this document
 
-    A list of the sections earmarked in the text by a user. The data are
-    modeled by their own Python class, defined in the :ref:`sections` section.
+   .. attribute:: page_count
 
-        >>> obj = client.documents.get('74103-report-of-the-calpers-special-review')
-        >>> obj.sections
-        [<Section: Letter to Avraham Shemesh and Richard Resller of SIM Group>, <Section: Letter to Ralph Whitworth, founder of Relational Investors>, ...
+       Alias for :attr:`pages`.
 
-.. attribute:: document_obj.slug
+   .. attribute:: page_spec
 
-.. attribute:: document_obj.small_image
+      The page spec is a compressed string that lists dimensions in pixels for every
+      page in a document. Refer to ListCrunch_ for the compression format. For
+      example, `612.0x792.0:0-447`
 
-    Returns the binary data for the "small" sized image of the document's first
-    page. If you would like the data for some other page, pass the page number
-    into ``document_obj.get_small_image(page)``. Currently, DocumentCloud only
-    makes this available for public documents.
+   .. attribute:: pages
 
-.. attribute:: document_obj.small_image_url
+       The number of pages in the document.
 
-    Returns a URL containing the "small" sized image of the document's first
-    page. If you would like the URL for some other page, pass the page number
-    into ``document_obj.get_small_image_url(page)``.
+   .. attribute:: pdf
 
-.. attribute:: document_obj.small_image_url_list
+       Returns the binary data for document's original PDF file.
 
-    Returns a list of URLs for the "small" sized image of every page in the document.
+   .. attribute:: pdf_url
 
-.. attribute:: document_obj.source
+       Returns a URL containing the binary data for document's original PDF file.
 
-    The original source of the document. Can be edited and saved with a put command.
+   .. attribute:: projects
 
-.. attribute:: document_obj.status
+      Returns a list of IDs for the projects this document is in.
 
-.. attribute:: document_obj.thumbnail_image
+   .. attribute:: published_url
 
-    Returns the binary data for the "thumbnail" sized image of the document's
-    first page. If you would like the data for some other page, pass the page
-    number into ``document_obj.get_thumbnail_image(page)``. Currently,
-    DocumentCloud only makes this available for public documents.
+       Returns an URL outside of documentcloud.org where this document has been published.
 
-.. attribute:: document_obj.thumbnail_image_url
+   .. attribute:: related_article
 
-    Returns a URL containing the "thumbnail" sized image of the document's
-    first page. If you would like the URL for some other page, pass the page
-    number into ``document_obj.get_small_thumbnail_url(page)``.
+       Returns an URL for a news story related to this document.
 
-.. attribute:: document_obj.thumbnail_image_url_list
+   .. attribute:: sections
 
-    Returns a list of URLs for the "small" sized image of every page in the document.
+      A client to access and update the sections on the document.  See
+      :class:`documentcloud.sections.Section` for more information.
 
-.. attribute:: document_obj.title
+   .. attribute:: slug
 
-    The name of the document. Can be edited and saved with a put command.
+      Returns the document's slug.  A slug is a URL friendly version of the title.
 
-.. attribute:: document_obj.updated_at
+   .. attribute:: small_image
 
-    The date and time that the document was last updated, in Python's datetime format.
+       Returns the binary data for the "small" sized image of the document's first
+       page. If you would like the data for some other page, pass the page number
+       into ``get_small_image(page)``.
 
-.. attribute:: document_obj.user
+   .. attribute:: small_image_url
+
+       Returns a URL containing the "small" sized image of the document's first
+       page. If you would like the URL for some other page, pass the page number
+       into ``get_small_image_url(page)``.
+
+   .. attribute:: small_image_url_list
+
+       Returns a list of URLs for the "small" sized image of every page in the document.
+
+   .. attribute:: source
+
+       The original source of the document. Can be edited and saved with a put command.
+
+   .. attribute:: status
+
+      This is the status of the document.  Possible statuses include:
+
+      * `success`: The document has been succesfully processed
+      * `readable`: The document is currently processing, but is readable during the operation
+      * `pending`: The document is processing and not currently readable
+      * `error`: There was an [error](#errors) during processing
+      * `nofile`: The document was created, but no file was uploaded yet
+
+   .. attribute:: thumbnail_image
+
+       Returns the binary data for the "thumbnail" sized image of the document's
+       first page. If you would like the data for some other page, pass the page
+       number into ``get_thumbnail_image(page)``.
+
+   .. attribute:: thumbnail_image_url
+
+       Returns a URL containing the "thumbnail" sized image of the document's
+       first page. If you would like the URL for some other page, pass the page
+       number into ``get_small_thumbnail_url(page)``.
+
+   .. attribute:: thumbnail_image_url_list
+
+       Returns a list of URLs for the "small" sized image of every page in the document.
+
+   .. attribute:: title
+
+       The name of the document. Can be edited and saved with a put command.
+
+   .. attribute:: updated_at
+
+       The date and time that the document was last updated, in Python's datetime format.
+
+   .. attribute:: user
+
+      The :class:`documentcloud.users.User` which owns this document.  This
+      will require an additional API call unless you specify `"user"` in the
+      `expand` parameter when fetching this document.
+
+   .. attribute:: user_id
+
+      The ID for the user which owns this document
+
+Mentions
+--------
+
+.. class:: documentcloud.documents.Mention
+
+   Mentions of a search keyword found in one of the documents.
+
+   .. attribute:: page
+
+       The page where the mention occurs.
+
+   .. attribute:: text
+
+       The text surrounding the mention of the keyword.
