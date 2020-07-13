@@ -6,10 +6,10 @@ from future.utils import python_2_unicode_compatible
 
 # Local
 from .base import APISet, BaseAPIClient, BaseAPIObject
-from .constants import PER_PAGE_MAX
+from .constants import BULK_LIMIT, PER_PAGE_MAX
 from .documents import Document
 from .exceptions import DoesNotExistError, MultipleObjectsReturnedError
-from .toolbox import get_id
+from .toolbox import get_id, grouper
 
 
 @python_2_unicode_compatible
@@ -33,9 +33,12 @@ class Project(BaseAPIObject):
         super(Project, self).save()
         if self._document_list:
             data = [{"document": d} for d in self.document_ids]
-            self._client.put(
-                "{}/{}/documents/".format(self.api_path, self.id), json=data
-            )
+            for data_group in grouper(data, BULK_LIMIT):
+                # Grouper will put None's on the end of the last group
+                data_group = [d for d in data_group if d is not None]
+                self._client.put(
+                    "{}/{}/documents/".format(self.api_path, self.id), json=data_group
+                )
 
     @property
     def document_list(self):
