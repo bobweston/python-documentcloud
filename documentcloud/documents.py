@@ -6,6 +6,7 @@ Documents
 from __future__ import division, print_function, unicode_literals
 
 # Standard Library
+import logging
 import os
 import re
 import warnings
@@ -23,6 +24,8 @@ from .organizations import Organization
 from .sections import SectionClient
 from .toolbox import grouper, is_url, merge_dicts
 from .users import User
+
+logger = logging.getLogger("documentcloud")
 
 
 @python_2_unicode_compatible
@@ -326,15 +329,22 @@ class DocumentClient(BaseAPIClient):
         # Loop through the path and get all the files
         path_list = self._collect_files(path)
 
+        logger.info(
+            "Upload directory on %s: Found %d files to upload", path, len(path_list)
+        )
+
         # Upload all the pdfs using the bulk API to reduce the number
         # of API calls and improve performance
         obj_list = []
         params = self._format_upload_parameters("", **kwargs)
-        for pdf_paths in grouper(path_list, BULK_LIMIT):
+        for i, pdf_paths in enumerate(grouper(path_list, BULK_LIMIT)):
             # Grouper will put None's on the end of the last group
             pdf_paths = [p for p in pdf_paths if p is not None]
 
+            logger.info("Uploading group %d: %s", i + 1, "\n".join(pdf_paths))
+
             # create the documents
+            logger.info("Creating the documents...")
             response = self.client.post(
                 "documents/",
                 json=[
@@ -348,12 +358,16 @@ class DocumentClient(BaseAPIClient):
             obj_list.extend(create_json)
             presigned_urls = [j["presigned_url"] for j in create_json]
             for url, pdf_path in zip(presigned_urls, pdf_paths):
+                logger.info("Uploading %s to S3...", pdf_path)
                 response = requests.put(url, data=open(pdf_path, "rb").read())
                 self.client.raise_for_status(response)
 
             # begin processing the documents
+            logger.info("Processing the documents...")
             doc_ids = [j["id"] for j in create_json]
             response = self.client.post("documents/process/", json={"ids": doc_ids})
+
+        logger.info("Upload directory complete")
 
         # Pass back the list of documents
         return [Document(self.client, d) for d in obj_list]
