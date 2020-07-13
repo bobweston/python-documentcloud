@@ -14,11 +14,13 @@ from functools import partial
 
 # Third Party
 from future.utils import python_2_unicode_compatible
+from requests.exceptions import RequestException
 
 # Local
 from .annotations import AnnotationClient
 from .base import APIResults, BaseAPIClient, BaseAPIObject
 from .constants import BULK_LIMIT
+from .exceptions import APIError
 from .organizations import Organization
 from .sections import SectionClient
 from .toolbox import grouper, is_url, merge_dicts, requests_retry_session
@@ -321,7 +323,7 @@ class DocumentClient(BaseAPIClient):
             )
         return path_list
 
-    def upload_directory(self, path, **kwargs):
+    def upload_directory(self, path, handle_errors=False, **kwargs):
         """Upload all PDFs in a directory"""
 
         # do not set the same title for all documents
@@ -346,13 +348,24 @@ class DocumentClient(BaseAPIClient):
 
             # create the documents
             logger.info("Creating the documents...")
-            response = self.client.post(
-                "documents/",
-                json=[
-                    merge_dicts(params, {"title": self._get_title(p)})
-                    for p in pdf_paths
-                ],
-            )
+            try:
+                response = self.client.post(
+                    "documents/",
+                    json=[
+                        merge_dicts(params, {"title": self._get_title(p)})
+                        for p in pdf_paths
+                    ],
+                )
+            except (APIError, RequestException) as exc:
+                if handle_errors:
+                    logger.info(
+                        "Error creating the following documents: %s %s",
+                        exc,
+                        "\n".join(pdf_paths),
+                    )
+                    continue
+                else:
+                    raise
 
             # upload the files directly to storage
             create_json = response.json()
@@ -360,15 +373,37 @@ class DocumentClient(BaseAPIClient):
             presigned_urls = [j["presigned_url"] for j in create_json]
             for url, pdf_path in zip(presigned_urls, pdf_paths):
                 logger.info("Uploading %s to S3...", pdf_path)
-                response = requests_retry_session().put(
-                    url, data=open(pdf_path, "rb").read()
-                )
-                self.client.raise_for_status(response)
+                try:
+                    response = requests_retry_session().put(
+                        url, data=open(pdf_path, "rb").read()
+                    )
+                    self.client.raise_for_status(response)
+                except (APIError, RequestException) as exc:
+                    if handle_errors:
+                        logger.info(
+                            "Error uploading the following document: %s %s",
+                            exc,
+                            pdf_path,
+                        )
+                        continue
+                    else:
+                        raise
 
             # begin processing the documents
             logger.info("Processing the documents...")
             doc_ids = [j["id"] for j in create_json]
-            response = self.client.post("documents/process/", json={"ids": doc_ids})
+            try:
+                response = self.client.post("documents/process/", json={"ids": doc_ids})
+            except (APIError, RequestException) as exc:
+                if handle_errors:
+                    logger.info(
+                        "Error creating the following documents: %s %s",
+                        exc,
+                        "\n".join(pdf_paths),
+                    )
+                    continue
+                else:
+                    raise
 
         logger.info("Upload directory complete")
 
