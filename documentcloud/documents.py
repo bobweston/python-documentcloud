@@ -13,7 +13,6 @@ import warnings
 from functools import partial
 
 # Third Party
-import requests
 from future.utils import python_2_unicode_compatible
 
 # Local
@@ -22,7 +21,7 @@ from .base import APIResults, BaseAPIClient, BaseAPIObject
 from .constants import BULK_LIMIT
 from .organizations import Organization
 from .sections import SectionClient
-from .toolbox import grouper, is_url, merge_dicts
+from .toolbox import grouper, is_url, merge_dicts, requests_retry_session
 from .users import User
 
 logger = logging.getLogger("documentcloud")
@@ -154,7 +153,9 @@ class Document(BaseAPIObject):
         return self.organization.slug
 
     def _get_url(self, url, text):
-        response = requests.get(url, headers={"User-Agent": "python-documentcloud2"})
+        response = requests_retry_session().get(
+            url, headers={"User-Agent": "python-documentcloud2"}
+        )
         if text:
             return response.content.decode("utf8")
         else:
@@ -297,7 +298,7 @@ class DocumentClient(BaseAPIClient):
         # upload the file directly to storage
         create_json = response.json()
         presigned_url = create_json["presigned_url"]
-        response = requests.put(presigned_url, data=file_.read())
+        response = requests_retry_session().put(presigned_url, data=file_.read())
 
         # begin processing the document
         doc_id = create_json["id"]
@@ -359,7 +360,9 @@ class DocumentClient(BaseAPIClient):
             presigned_urls = [j["presigned_url"] for j in create_json]
             for url, pdf_path in zip(presigned_urls, pdf_paths):
                 logger.info("Uploading %s to S3...", pdf_path)
-                response = requests.put(url, data=open(pdf_path, "rb").read())
+                response = requests_retry_session().put(
+                    url, data=open(pdf_path, "rb").read()
+                )
                 self.client.raise_for_status(response)
 
             # begin processing the documents
