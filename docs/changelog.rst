@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+2.0.2
+~~~~~
+
+* Add logging and error handling to upload_directory 
+* Add request retry logic for PUT requests to S3 and to file fetching requests
+* Respect bulk limit for adding documents to a project
+
 2.0.1
 ~~~~~
 
